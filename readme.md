@@ -4,15 +4,15 @@ TODAS as janelas deverão conter o mesmo cabeçalho (header) e rodapé (footer),
 - Cabeçalho: logo da empresa na parte esquerda, e área de login na parte direita, ou se já logado, botão de sair ("Logout").
 - Rodapé: Dados sobre a instituição (telefone, email de contato) e algumas empresas que apoiam a instituição.
 
--Tela de cursos e matérias (home) - Janela na qual a área central (body) consistirá em: Uma barra de pesquisa de cursos logo acima dos cursos, que ficarão em carrossel e se clicado em qualquer curso, abrirá um pop-up que contêm a modalidade do curso, o câmpus, duração e horários, teremos um pequeno texto sobre o curso escolhido e sua grade curricular.
+-Tela de cursos e matérias (home) - Janela na qual a área central (body) consistirá em: Uma barra de pesquisa de cursos logo acima dos cursos, que ficarão em carrossel e se clicado em qualquer curso, abrirá um pop-up que contêm a modalidade do curso, o câmpus, duração e horários, e um pequeno texto sobre o curso.
 
 -Tela de login - Janela na qual a área central (body) consistirá em dois campos (inputs) em seguida dos seus devidos nomes ("E-mail e "Senha"), para colocar as credenciais de login, com um botão ("Fazer login") logo abaixo dos campos para entrar, haverá um outro botão ("Cadastrar") ao lado do de entrada que levará para página de cadastro, caso ele não esteja registrado ainda.
 
 -Tela de cadastro - Janela na qual a área central (body) consistirá em diversos nomes de cada campo, seguido de seu respectivo campo (input), que deverão ser preenchidos para que o aluno se cadastre. Os campos serão dividos em 4 partes, 
 - Primeira parte (Dados Cadastrais): "E-mail", "Confirmação do E-mail", "Senha" e "Confirmação da senha".
-- Segunda parte (Dados Pessoais): "Nome completo", "Nome social" (opcional), "CPF", "Data de nascimento", "Sexo", "Nome do responsável", "RG", "Orgão emissor" e "Estado emissor".
+- Segunda parte (Dados Pessoais): "Nome completo", "Nome social" (opcional), "CPF", "Data de nascimento", "RG".
 - Terceira parte (Endereço): "Logradouro", "Número", "Complemento" (opcional), "Bairro", "Estado" e "Cidade".
-- Quarta parte (Contato): "Telefone pessoal", "Telefone residencial" (opcional), "Telefone comercial" (opcional) e "Celular".
+- Quarta parte (Contato): "Telefone comercial" (opcional) e "Celular".
 No final você terá um botão para cadastrar essas informações.
 
 A tela do professor será a partir do login, que só será acessada caso digitado as credenciais certas (login e senha de professor).
