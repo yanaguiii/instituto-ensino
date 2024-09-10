@@ -1,22 +1,26 @@
 #InstitutoEnsino
 
-Tela de cursos e matérias (home) - (fazer uma janela com as opções de cursos e ao clicar no curso desejado abrirá um pop up que contêm, a modalidade do curso, o campus, duração e horários
-(talvez valores) teremos um pequeno texto sobre o curso e logo abaixo teremos a grade curricular do curso) / (na home teremos uma barra de pesquisa, e uma área contando sobre
-a instituição que mostre algum de nossos parceiros que apoiam a instituição.)
+TODAS as janelas deverão conter o mesmo cabeçalho (header) e rodapé (footer), que consistirá em: 
+Cabeçalho: logo da empresa na parte esquerda, e área de login na parte direita, ou se já logado, botão de sair ("Logout").
+Rodapé: Dados sobre a instituição (telefone, email de contato) e algumas empresas que apoiam a instituição.
 
-Tela de login a partir do home (a tela de login podemos fazer uma caixa/janela pop up, com as credenciais, email e senha para login, com um botão para entrar e 
-uma área juntamente a essa janela perguntando se você já tem cadastro, caso não, hávera um botão para você se cadastrar)
+Tela de cursos e matérias (home) - Janela na qual a área central (body) consistirá em: Uma barra de pesquisa de cursos logo acima dos cursos, que ficarão em carrossel e se clicado em qualquer curso, abrirá um pop-up que contêm a modalidade do curso, o câmpus, duração e horários, teremos um pequeno texto sobre o curso escolhido e sua grade curricular.
 
-Tela de cadastro a partir do login (na tela de cadastro para que o aluno se cadastre estaremos pedindo as seguintes credenciais, email/confirmação do email senha/confirmação da senha
-já nos dados pessoais do aluno iremos pedir nome completo, nome social (opcional), CPF, data de nascimento, o sexo e o nome da mãe, pediremos também o RG com o número do documento, 
-o orgão emissor e o estado emissor. Já na área de endereço iremos pedir a rua, número, complemento (opcional), bairro, estado e cidade. Além disso telefone para contato, 
-telefone residencial (opcional), telefone comercial (opcional), e celular. no final você terá um botão para cadastrar essas informações.)
+Tela de login - Janela na qual a área central (body) consistirá em dois campos (inputs) em seguida dos seus devidos nomes ("E-mail e "Senha"), para colocar as credenciais de login, com um botão ("Fazer login") logo abaixo dos campos para entrar, haverá um outro botão ("Cadastrar") ao lado do de entrada que levará para página de cadastro, caso ele não esteja registrado ainda.
 
-Tela do professor (exibir alunos e aulas) - (a tela de login do professor será a partir do login dele, logo após ele acessar o login dele, 
-ele será redrecionado a tela do professor)
+Tela de cadastro - Janela na qual a área central (body) consistirá em diversos nomes de cada campo, seguido de seu respectivo campo (input), que deverão ser preenchidos para que o aluno se cadastre. Os campos serão dividos em 4 partes, 
+- Primeira parte (Dados Cadastrais): "E-mail", "Confirmação do E-mail", "Senha" e "Confirmação da senha".
+- Segunda parte (Dados Pessoais): "Nome completo", "Nome social" (opcional), "CPF", "Data de nascimento", "Sexo", "Nome do responsável", "RG", "Orgão emissor" e "Estado emissor".
+- Terceira parte (Endereço): "Logradouro", "Número", "Complemento" (opcional), "Bairro", "Estado" e "Cidade".
+- Quarta parte (Contato): "Telefone pessoal", "Telefone residencial" (opcional), "Telefone comercial" (opcional) e "Celular".
+No final você terá um botão para cadastrar essas informações.
 
-Tela de informações do aluno (exibir matérias, notas, faltas, etc) - (O aluno terá a area do aluno, logo após o login dele, 
-ele poderá acessar sua area contendo suas informações)
+A tela do professor será a partir do login, que só será acessada caso digitado as credenciais certas (login e senha de professor).
+Tela do professor - Janela na qual a área central (body) consistirá em exibir as matérias que ele ministra em uma lista na esquerda, que se clicadas exibirão suas informações no meio da tela, como, seus devidos cursos e os alunos que-o estudam, os alunos também serão clicáveis, e caso clicados, a página deve estender para baixo, exibindo informações (notas, faltas, info. adicional) sobre o aluno clicado. Todas as informações sobre a matéria e sobre os alunos poderão ser editadas/removidas/adicionadas pelo professor.
+
+A tela do aluno será a partir do login, que só será acessada caso digitado as credenciais certas (login e senha de aluno).
+Tela do aluno - Janela na qual a área central (body) consistirá em exibir as matérias que o aluno cursa em uma lista na direita da página, e caso clicado na matéria, deverá ser exibido as informações daquela matéria: notas, atividades, posts do professor, cursos, ou qualquer outra informação que o professor adicionar.
+
 
 Adicionar e organizar matérias
 Adicionar e organizar professores
