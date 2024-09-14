@@ -26,3 +26,8 @@ A tela do aluno será a partir do login, que só será acessada caso digitado as
 -Adicionar e organizar professores
 -Adicionar e organizar alunos
 -Adicionar e organizar aulas
+
+#Protótipos
+
+![Diagrama DER](/images/Diagrama ER Instituição Ensino-1.png)
+![Diagrama MER](/images/DER Instituto Ensino print.png)
