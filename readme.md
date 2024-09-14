@@ -32,3 +32,14 @@ A tela do aluno será a partir do login, que só será acessada caso digitado as
 ![Diagrama DER](/images/DER.png)
 ![Diagrama MER](/images/MER.PNG)
 
+#prototipos 
+![Diagrama MER](/images/telahome.png)
+![Diagrama MER](/images/telalogin.png)
+![Diagrama MER](/images/telaprofessor.png)
+![Diagrama MER](/images/telaaluno.png)
+![Diagrama MER](/images/telacadastro.png)
+![Diagrama MER](/images/telacurso1.png)
+![Diagrama MER](/images/telacurso2.png)
+![Diagrama MER](/images/telacurso3.png)
+![Diagrama MER](/images/telacurso4.png)
+
