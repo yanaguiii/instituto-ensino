@@ -30,5 +30,5 @@ A tela do aluno será a partir do login, que só será acessada caso digitado as
 #Diagramas
 
 ![Diagrama DER](/images/DER.png)
-![Diagrama MER](/images/MER.png)
+![Diagrama MER](/images/MER.PNG)
 
