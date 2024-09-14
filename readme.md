@@ -29,5 +29,6 @@ A tela do aluno será a partir do login, que só será acessada caso digitado as
 
 #Protótipos
 
-![Diagrama DER](images/Diagrama ER Instituição Ensino-1.png)
-![Diagrama MER](images/DER Instituto Ensino print.png)
+![Diagrama DER](images/Diagrama%20ER%20Instituição%20Ensino-1.png)
+![Diagrama MER](images/DER%20Instituto%20Ensino%20print.png)
+
