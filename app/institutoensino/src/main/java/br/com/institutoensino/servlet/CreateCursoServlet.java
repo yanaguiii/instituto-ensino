@@ -1,5 +1,8 @@
 package br.com.institutoensino.servlet;
 
+import br.com.institutoensino.dao.CursoDao;
+import br.com.institutoensino.model.Curso;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,9 +16,28 @@ public class CreateCursoServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        String cursoName = req.getParameter("curso-name");
+        String cursoNome = req.getParameter("curso-nome");
+        String cursoModalidade = req.getParameter("curso-modalidade");
+        String cursoDuracaoStr = req.getParameter("curso-duracao");
+        String cursoCampus = req.getParameter("curso-campus");
+        String cursoTurno = req.getParameter("curso-turno");
+        String cursoDescricao = req.getParameter("curso-descricao");
 
-        System.out.println(cursoName);
+        Float cursoDuracao = null; // Inicializa como null
+
+        cursoDuracao = Float.parseFloat(cursoDuracaoStr);
+
+        Curso curso = new Curso();
+        curso.setNome(cursoNome);
+        curso.setModalidade(cursoModalidade);
+        curso.setDuracao(cursoDuracao);
+        curso.setCampus(cursoCampus);
+        curso.setTurno(cursoTurno);
+        curso.setDescricao(cursoDescricao);
+
+
+        CursoDao cursoDao = new CursoDao();
+        cursoDao.createCurso(curso);
 
         req.getRequestDispatcher("index.html").forward(req,resp);
 
