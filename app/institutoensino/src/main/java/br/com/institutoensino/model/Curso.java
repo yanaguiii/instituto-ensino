@@ -1,12 +1,31 @@
 package br.com.institutoensino.model;
-
 public class Curso {
+    private int idCurso;
     private String nome;
     private String modalidade;
     private float duracao;
     private String campus;
     private String turno;
     private String descricao;
+
+    public Curso(){}
+
+    public Curso(String nome, String modalidade, float duracao, String campus, String turno, String descricao) {
+        this.nome = nome;
+        this.modalidade = modalidade;
+        this.duracao = duracao;
+        this.campus = campus;
+        this.turno = turno;
+        this.descricao = descricao;
+    }
+
+    public int getIdCurso() {
+        return idCurso;
+    }
+
+    public void setIdCurso(int idCurso) {
+        this.idCurso = idCurso;
+    }
 
     public String getNome() {
         return nome;

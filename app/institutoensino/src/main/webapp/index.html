@@ -1,29 +1,149 @@
-<html>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulários de Cadastro</title>
+</head>
 <body>
-<h2>Hello World!</h2>
+<h1>Criar Usuário</h1>
+<form action="/create-usuario" method="post">
+    <label>Nome:</label>
+    <input type="text" id="usuario-nome" name="usuario-nome" required>
 
-<form action="/create-curso" method="post">
+    <label>Email:</label>
+    <input type="email" id="usuario-email" name="usuario-email" required>
 
-    <label>Nome do curso:</label>
-    <input type="text" id="curso-nome" name="curso-nome">
+    <label>Senha:</label>
+    <input type="password" id="usuario-senha" name="usuario-senha" required>
 
-    <label>Modalidade do curso:</label>
-    <input type="text" id="curso-modalidade" name="curso-modalidade">
+    <label>Data de Nascimento:</label>
+    <input type="date" id="usuario-nascimento" name="usuario-nascimento" required>
 
-    <label>Duração do curso:</label>
-    <input type="text" id="curso-duracao" name="curso-duracao">
+    <label>CPF:</label>
+    <input type="text" id="usuario-cpf" name="usuario-cpf" required>
 
-    <label>Campus do curso:</label>
-    <input type="text" id="curso-campus" name="curso-campus">
+    <label>RG:</label>
+    <input type="text" id="usuario-rg" name="usuario-rg" required>
 
-    <label>Turno do curso:</label>
-    <input type="text" id="curso-turno" name="curso-turno">
+    <label>Logradouro:</label>
+    <input type="text" id="usuario-logradouro" name="usuario-logradouro" required>
 
-    <label>Descrição do curso:</label>
-    <input type="text" id="curso-descricao" name="curso-descricao">
+    <label>Número:</label>
+    <input type="number" id="usuario-numero" name="usuario-numero" required>
+
+    <label>Complemento:</label>
+    <input type="text" id="usuario-complemento" name="usuario-complemento">
+
+    <label>Bairro:</label>
+    <input type="text" id="usuario-bairro" name="usuario-bairro" required>
+
+    <label>Cidade:</label>
+    <input type="text" id="usuario-cidade" name="usuario-cidade" required>
+
+    <label>Estado:</label>
+    <input type="text" id="usuario-estado" name="usuario-estado" maxlength="2" required>
+
+    <label>Telefone Comercial:</label>
+    <input type="text" id="usuario-telefone-comercial" name="usuario-telefone-comercial">
+
+    <label>Celular:</label>
+    <input type="text" id="usuario-celular" name="usuario-celular" required>
 
     <button type="submit">Enviar</button>
 </form>
 
+<h1>Criar Curso</h1>
+<form action="/create-curso" method="post">
+    <label>Nome do Curso:</label>
+    <input type="text" id="curso-nome" name="curso-nome" required>
+
+    <label>Modalidade:</label>
+    <input type="text" id="curso-modalidade" name="curso-modalidade" required>
+
+    <label>Duração:</label>
+    <input type="number" step="0.1" id="curso-duracao" name="curso-duracao" required>
+
+    <label>Campus:</label>
+    <input type="text" id="curso-campus" name="curso-campus" required>
+
+    <label>Turno:</label>
+    <input type="text" id="curso-turno" name="curso-turno" required>
+
+    <label>Descrição:</label>
+    <input type="text" id="curso-descricao" name="curso-descricao" required>
+
+    <button type="submit">Enviar</button>
+</form>
+
+<h1>Criar Professor</h1>
+<form action="/create-professor" method="post">
+    <label>ID do Usuário:</label>
+    <input type="number" id="professor-id-usuario" name="professor-id-usuario" required>
+
+    <label>Salário:</label>
+    <input type="number" step="0.01" id="professor-salario" name="professor-salario" required>
+
+    <button type="submit">Enviar</button>
+</form>
+
+<h1>Criar Aluno</h1>
+<form action="/create-aluno" method="post">
+    <label>ID do Usuário:</label>
+    <input type="number" id="aluno-id-usuario" name="aluno-id-usuario" required>
+
+    <label>Matrícula:</label>
+    <input type="text" id="aluno-matricula" name="aluno-matricula" required>
+
+    <button type="submit">Enviar</button>
+</form>
+
+<h1>Criar Matéria</h1>
+<form action="/create-materia" method="post">
+    <label>Nome da Matéria:</label>
+    <input type="text" id="materia-nome" name="materia-nome" required>
+
+    <label>ID do Curso:</label>
+    <input type="number" id="materia-id-curso" name="materia-id-curso" required>
+
+    <label>ID do Professor:</label>
+    <input type="number" id="materia-id-professor" name="materia-id-professor" required>
+
+    <button type="submit">Enviar</button>
+</form>
+
+<h1>Criar Aluno-Matéria</h1>
+<form action="/create-aluno-materia" method="post">
+    <label>ID do Aluno:</label>
+    <input type="number" id="aluno-materia-id-aluno" name="aluno-materia-id-aluno" required>
+
+    <label>ID da Matéria:</label>
+    <input type="number" id="aluno-materia-id-materia" name="aluno-materia-id-materia" required>
+
+    <label>Nota:</label>
+    <input type="number" step="0.01" id="aluno-materia-nota" name="aluno-materia-nota" required>
+
+    <label>Faltas:</label>
+    <input type="number" id="aluno-materia-faltas" name="aluno-materia-faltas" required>
+
+    <button type="submit">Enviar</button>
+</form>
+
+<h1>Criar Post de Professor</h1>
+<form action="/create-post-professor" method="post">
+    <label>Conteúdo do Post:</label>
+    <textarea id="post-conteudo" name="post-conteudo" required></textarea>
+
+    <label>Data:</label>
+    <input type="date" id="post-data" name="post-data" required>
+
+    <label>ID do Professor:</label>
+    <input type="number" id="post-id-professor" name="post-id-professor" required>
+
+    <label>ID da Matéria:</label>
+    <input type="number" id="post-id-materia" name="post-id-materia" required>
+
+    <button type="submit">Enviar</button>
+</form>
 </body>
 </html>

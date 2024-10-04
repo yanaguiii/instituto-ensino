@@ -33,7 +33,7 @@ public class CursoDao {
 
         } catch (Exception e) {
 
-            System.out.println("fail in database connection CURSO "+ e.getMessage());
+            System.out.println("fail in database connection curso "+ e.getMessage());
 
         }
     }
