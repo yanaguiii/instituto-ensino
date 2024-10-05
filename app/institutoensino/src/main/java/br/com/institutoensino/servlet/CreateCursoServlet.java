@@ -26,17 +26,11 @@ public class CreateCursoServlet extends HttpServlet {
 
         cursoDuracao = Float.parseFloat(cursoDuracaoStr);
 
-        Curso curso = new Curso();
-        curso.setNome(cursoNome);
-        curso.setModalidade(cursoModalidade);
-        curso.setDuracao(cursoDuracao);
-        curso.setCampus(cursoCampus);
-        curso.setTurno(cursoTurno);
-        curso.setDescricao(cursoDescricao);
+        Curso curso = new Curso(cursoNome, cursoModalidade, cursoDuracao, cursoCampus, cursoTurno, cursoDescricao);
 
 
-        CursoDao cursoDao = new CursoDao();
-        cursoDao.createCurso(curso);
+
+        new CursoDao().createCurso(curso);
 
         req.getRequestDispatcher("index.html").forward(req,resp);
 

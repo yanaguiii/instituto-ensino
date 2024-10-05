@@ -1,5 +1,6 @@
 package br.com.institutoensino.dao;
 
+import br.com.institutoensino.config.ConnectionPoolConfig;
 import br.com.institutoensino.model.Usuario;
 
 import java.sql.Connection;
@@ -12,10 +13,9 @@ public class UsuarioDao {
         String SQL = "INSERT INTO USUARIO (NOME, EMAIL, SENHA, NASCIMENTO, CPF, RG, LOGRADOURO, NUMERO, COMPLEMENTO, BAIRRO, CIDADE, ESTADO, TELEFONE_COMERCIAL, CELULAR) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try {
-            Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
-            System.out.println("success in database connection");
+            Connection con = ConnectionPoolConfig.getConnection();
 
-            PreparedStatement preparedStatement = connection.prepareStatement(SQL);
+            PreparedStatement preparedStatement = con.prepareStatement(SQL);
             preparedStatement.setString(1, usuario.getNome());
             preparedStatement.setString(2, usuario.getEmail());
             preparedStatement.setString(3, usuario.getSenha());
@@ -33,7 +33,7 @@ public class UsuarioDao {
             preparedStatement.execute();
 
             System.out.println("success in insert usuario");
-            connection.close();
+            con.close();
         } catch (Exception e) {
             System.out.println("fail in database connection usuario " + e.getMessage());
         }
