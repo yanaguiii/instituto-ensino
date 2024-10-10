@@ -21,19 +21,19 @@ public class CreatePostProfessorServlet extends HttpServlet {
         String idProfessorStr = req.getParameter("post-id-professor");
         String idMateriaStr = req.getParameter("post-id-materia");
 
-        Date data = Date.valueOf(dataStr);
-        int idProfessor = Integer.parseInt(idProfessorStr);
-        int idMateria = Integer.parseInt(idMateriaStr);
+        try {
+            Date data = Date.valueOf(dataStr);
+            int idProfessor = Integer.parseInt(idProfessorStr);
+            int idMateria = Integer.parseInt(idMateriaStr);
 
-        PostProfessor postProfessor = new PostProfessor();
-        postProfessor.setConteudo(conteudo);
-        postProfessor.setData(data);
-        postProfessor.setIdProfessor(idProfessor);
-        postProfessor.setIdMateria(idMateria);
+            PostProfessor postProfessor = new PostProfessor(conteudo, data, idProfessor, idMateria);
 
-        PostProfessorDao postProfessorDao = new PostProfessorDao();
-        postProfessorDao.createPostProfessor(postProfessor);
+            new PostProfessorDao().createPostProfessor(postProfessor);
 
-        req.getRequestDispatcher("index.html").forward(req, resp);
+            resp.sendRedirect("/find-all-posts");
+        } catch (NumberFormatException e) {
+            req.setAttribute("error", "Invalid input format.");
+            req.getRequestDispatcher("index.html").forward(req, resp);
+        }
     }
 }

@@ -21,20 +21,22 @@ public class CreateAlunoMateriaServlet extends HttpServlet {
         String notaStr = req.getParameter("aluno-materia-nota");
         String faltasStr = req.getParameter("aluno-materia-faltas");
 
-        int idAluno = Integer.parseInt(idAlunoStr);
-        int idMateria = Integer.parseInt(idMateriaStr);
-        BigDecimal nota = new BigDecimal(notaStr);
-        int faltas = Integer.parseInt(faltasStr);
+        try {
+            int idAluno = Integer.parseInt(idAlunoStr);
+            int idMateria = Integer.parseInt(idMateriaStr);
+            BigDecimal nota = new BigDecimal(notaStr);
+            int faltas = Integer.parseInt(faltasStr);
 
-        AlunoMateria alunoMateria = new AlunoMateria();
-        alunoMateria.setIdAluno(idAluno);
-        alunoMateria.setIdMateria(idMateria);
-        alunoMateria.setNota(nota);
-        alunoMateria.setFaltas(faltas);
+            AlunoMateria alunoMateria = new AlunoMateria(idAluno, idMateria, nota, faltas);
 
-        AlunoMateriaDao alunoMateriaDao = new AlunoMateriaDao();
-        alunoMateriaDao.createAlunoMateria(alunoMateria);
+            new AlunoMateriaDao().createAlunoMateria(alunoMateria);
 
-        req.getRequestDispatcher("index.html").forward(req, resp);
+            resp.sendRedirect("/find-all-alunos-materias");
+        } catch (NumberFormatException e) {
+            req.setAttribute("error", "Invalid input format.");
+            req.getRequestDispatcher("index.html").forward(req, resp);
+        }
     }
 }
+
+

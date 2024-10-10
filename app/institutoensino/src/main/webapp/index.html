@@ -4,146 +4,251 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulários de Cadastro</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
-<body>
+
+<body class="container">
 <h1>Criar Usuário</h1>
 <form action="/create-usuario" method="post">
-    <label>Nome:</label>
-    <input type="text" id="usuario-nome" name="usuario-nome" required>
+    <div class ="row">
+    <div class="col-md-4 mb-3">
+        <label for="usuario-nome" class="form-label">Nome:</label>
+        <input type="text" class="form-control" id="usuario-nome" name="usuario-nome" placeholder="user" required>
+    </div>
 
-    <label>Email:</label>
-    <input type="email" id="usuario-email" name="usuario-email" required>
+    <div class="col-md-4 mb-3">
+        <label for="usuario-email" class="form-label">Email:</label>
+        <input type="email" class="form-control" id="usuario-email" name="usuario-email" required>
+    </div>
 
-    <label>Senha:</label>
-    <input type="password" id="usuario-senha" name="usuario-senha" required>
+    <div class="col-md-4 mb-3">
+        <label for="usuario-senha" class="form-label">Senha:</label>
+        <input type="password" class="form-control" id="usuario-senha" name="usuario-senha" required>
+    </div>
+    </div>
 
-    <label>Data de Nascimento:</label>
-    <input type="date" id="usuario-nascimento" name="usuario-nascimento" required>
+    <div class ="row">
+    <div class="col-md-4 mb-3">
+        <label for="usuario-nascimento" class="form-label">Data de Nascimento:</label>
+        <input type="date" class="form-control" id="usuario-nascimento" name="usuario-nascimento" required>
+    </div>
 
-    <label>CPF:</label>
-    <input type="text" id="usuario-cpf" name="usuario-cpf" required>
+    <div class="col-md-4 mb-3">
+        <label for="usuario-cpf" class="form-label">CPF:</label>
+        <input type="text" class="form-control" id="usuario-cpf" name="usuario-cpf" required>
+    </div>
 
-    <label>RG:</label>
-    <input type="text" id="usuario-rg" name="usuario-rg" required>
+    <div class="col-md-4 mb-3">
+        <label for="usuario-rg" class="form-label">RG:</label>
+        <input type="text" class="form-control" id="usuario-rg" name="usuario-rg" required>
+    </div>
+    </div>
 
-    <label>Logradouro:</label>
-    <input type="text" id="usuario-logradouro" name="usuario-logradouro" required>
+    <div class ="row">
+    <div class="col-md-4 mb-3">
+        <label for="usuario-logradouro" class="form-label">Logradouro:</label>
+        <input type="text" class="form-control" id="usuario-logradouro" name="usuario-logradouro" required>
+    </div>
 
-    <label>Número:</label>
-    <input type="number" id="usuario-numero" name="usuario-numero" required>
+    <div class="col-md-4 mb-3">
+        <label for="usuario-numero" class="form-label">Número:</label>
+        <input type="number" class="form-control" id="usuario-numero" name="usuario-numero" required>
+    </div>
 
-    <label>Complemento:</label>
-    <input type="text" id="usuario-complemento" name="usuario-complemento">
+    <div class="col-md-4 mb-3">
+        <label for="usuario-complemento" class="form-label">Complemento:</label>
+        <input type="text" class="form-control" id="usuario-complemento" name="usuario-complemento">
+    </div>
+    </div>
 
-    <label>Bairro:</label>
-    <input type="text" id="usuario-bairro" name="usuario-bairro" required>
+    <div class ="row">
+    <div class="col-md-4 mb-3">
+        <label for="usuario-bairro" class="form-label">Bairro:</label>
+        <input type="text" class="form-control" id="usuario-bairro" name="usuario-bairro" required>
+    </div>
 
-    <label>Cidade:</label>
-    <input type="text" id="usuario-cidade" name="usuario-cidade" required>
+    <div class="col-md-4 mb-3">
+        <label for="usuario-cidade" class="form-label">Cidade:</label>
+        <input type="text" class="form-control" id="usuario-cidade" name="usuario-cidade" required>
+    </div>
 
-    <label>Estado:</label>
-    <input type="text" id="usuario-estado" name="usuario-estado" maxlength="2" required>
+    <div class="col-md-4 mb-3">
+        <label for="usuario-estado" class="form-label">Estado:</label>
+        <input type="text" class="form-control" id="usuario-estado" name="usuario-estado" maxlength="2" required>
+    </div>
+    </div>
 
-    <label>Telefone Comercial:</label>
-    <input type="text" id="usuario-telefone-comercial" name="usuario-telefone-comercial">
+    <div class ="row">
+    <div class="col-md-4 mb-3">
+        <label for="usuario-telefone-comercial" class="form-label">Telefone Comercial:</label>
+        <input type="text" class="form-control" id="usuario-telefone-comercial" name="usuario-telefone-comercial">
+    </div>
 
-    <label>Celular:</label>
-    <input type="text" id="usuario-celular" name="usuario-celular" required>
+    <div class="col-md-4 mb-3">
+        <label for="usuario-celular" class="form-label">Celular:</label>
+        <input type="text" class="form-control" id="usuario-celular" name="usuario-celular" required>
+    </div>
+    </div>
 
-    <button type="submit">Enviar</button>
+    <button type="submit" class="btn btn-primary">Enviar</button>
 </form>
 
 <h1>Criar Curso</h1>
 <form action="/create-curso" method="post">
-    <label>Nome do Curso:</label>
-    <input type="text" id="curso-nome" name="curso-nome" required>
+    <div class ="row">
+    <div class="col-md-4 mb-3">
+        <label for="curso-nome" class="form-label">Nome do Curso:</label>
+        <input type="text" class="form-control" id="curso-nome" name="curso-nome" required>
+    </div>
 
-    <label>Modalidade:</label>
-    <input type="text" id="curso-modalidade" name="curso-modalidade" required>
+    <div class="col-md-4 mb-3">
+        <label for="curso-modalidade" class="form-label">Modalidade:</label>
+        <input type="text" class="form-control" id="curso-modalidade" name="curso-modalidade" required>
+    </div>
 
-    <label>Duração:</label>
-    <input type="number" step="0.1" id="curso-duracao" name="curso-duracao" required>
+    <div class="col-md-4 mb-3">
+        <label for="curso-duracao" class="form-label">Duração:</label>
+        <input type="number" step="0.1" class="form-control" id="curso-duracao" name="curso-duracao" required>
+    </div>
+    </div>
 
-    <label>Campus:</label>
-    <input type="text" id="curso-campus" name="curso-campus" required>
+    <div class ="row">
+    <div class="col-md-4 mb-3">
+        <label for="curso-campus" class="form-label">Campus:</label>
+        <input type="text" class="form-control" id="curso-campus" name="curso-campus" required>
+    </div>
 
-    <label>Turno:</label>
-    <input type="text" id="curso-turno" name="curso-turno" required>
+    <div class="col-md-4 mb-3">
+        <label for="curso-turno" class="form-label">Turno:</label>
+        <input type="text" class="form-control" id="curso-turno" name="curso-turno" required>
+    </div>
 
-    <label>Descrição:</label>
-    <input type="text" id="curso-descricao" name="curso-descricao" required>
+    <div class="col-md-4 mb-3">
+        <label for="curso-descricao" class="form-label">Descrição:</label>
+        <input type="text" class="form-control" id="curso-descricao" name="curso-descricao" required>
+    </div>
+    </div>
 
-    <button type="submit">Enviar</button>
+    <button type="submit" class="btn btn-primary">Enviar</button>
 </form>
 
 <h1>Criar Professor</h1>
 <form action="/create-professor" method="post">
-    <label>ID do Usuário:</label>
-    <input type="number" id="professor-id-usuario" name="professor-id-usuario" required>
 
-    <label>Salário:</label>
-    <input type="number" step="0.01" id="professor-salario" name="professor-salario" required>
+    <div class ="row">
+    <div class="col-md-4 mb-3">
+        <label for="professor-id-usuario" class="form-label">ID do Usuário:</label>
+        <input type="number" class="form-control" id="professor-id-usuario" name="professor-id-usuario" required>
+    </div>
 
-    <button type="submit">Enviar</button>
+    <div class="col-md-4 mb-3">
+        <label for="professor-salario" class="form-label">Salário:</label>
+        <input type="number" step="0.01" class="form-control" id="professor-salario" name="professor-salario" required>
+    </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Enviar</button>
 </form>
 
 <h1>Criar Aluno</h1>
 <form action="/create-aluno" method="post">
-    <label>ID do Usuário:</label>
-    <input type="number" id="aluno-id-usuario" name="aluno-id-usuario" required>
 
-    <label>Matrícula:</label>
-    <input type="text" id="aluno-matricula" name="aluno-matricula" required>
+    <div class ="row">
+    <div class="col-md-4 mb-3">
+        <label for="aluno-id-usuario" class="form-label">ID do Usuário:</label>
+        <input type="number" class="form-control" id="aluno-id-usuario" name="aluno-id-usuario" required>
+    </div>
 
-    <button type="submit">Enviar</button>
+    <div class="col-md-4 mb-3">
+        <label for="aluno-matricula" class="form-label">Matrícula:</label>
+        <input type="text" class="form-control" id="aluno-matricula" name="aluno-matricula" required>
+    </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Enviar</button>
 </form>
 
 <h1>Criar Matéria</h1>
 <form action="/create-materia" method="post">
-    <label>Nome da Matéria:</label>
-    <input type="text" id="materia-nome" name="materia-nome" required>
+    <div class="row">
+    <div class="col-md-4 mb-3">
+        <label for="materia-nome" class="form-label">Nome da Matéria:</label>
+        <input type="text" class="form-control" id="materia-nome" name="materia-nome" required>
+    </div>
 
-    <label>ID do Curso:</label>
-    <input type="number" id="materia-id-curso" name="materia-id-curso" required>
+    <div class="col-md-4 mb-3">
+        <label for="materia-id-curso" class="form-label">ID do Curso:</label>
+        <input type="number" class="form-control" id="materia-id-curso" name="materia-id-curso" required>
+    </div>
 
-    <label>ID do Professor:</label>
-    <input type="number" id="materia-id-professor" name="materia-id-professor" required>
-
-    <button type="submit">Enviar</button>
+    <div class="col-md-4 mb-3">
+        <label for="materia-id-professor" class="form-label">ID do Professor:</label>
+        <input type="number" class="form-control" id="materia-id-professor" name="materia-id-professor" required>
+    </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Enviar</button>
 </form>
 
 <h1>Criar Aluno-Matéria</h1>
 <form action="/create-aluno-materia" method="post">
-    <label>ID do Aluno:</label>
-    <input type="number" id="aluno-materia-id-aluno" name="aluno-materia-id-aluno" required>
 
-    <label>ID da Matéria:</label>
-    <input type="number" id="aluno-materia-id-materia" name="aluno-materia-id-materia" required>
+    <div class ="row">
+    <div class="col-md-3 mb-3">
+        <label for="aluno-materia-id-aluno" class="form-label">ID do Aluno:</label>
+        <input type="number" class="form-control" id="aluno-materia-id-aluno" name="aluno-materia-id-aluno" required>
+    </div>
 
-    <label>Nota:</label>
-    <input type="number" step="0.01" id="aluno-materia-nota" name="aluno-materia-nota" required>
+    <div class="col-md-3 mb-3">
+        <label for="aluno-materia-id-materia" class="form-label">ID da Matéria:</label>
+        <input type="number" class="form-control" id="aluno-materia-id-materia" name="aluno-materia-id-materia" required>
+    </div>
 
-    <label>Faltas:</label>
-    <input type="number" id="aluno-materia-faltas" name="aluno-materia-faltas" required>
+    <div class="col-md-3 mb-3">
+        <label for="aluno-materia-nota" class="form-label">Nota:</label>
+        <input type="number" step="0.01" class="form-control" id="aluno-materia-nota" name="aluno-materia-nota" required>
+    </div>
 
-    <button type="submit">Enviar</button>
+    <div class="col-md-3 mb-3">
+        <label for="aluno-materia-faltas" class="form-label">Faltas:</label>
+        <input type="number" class="form-control" id="aluno-materia-faltas" name="aluno-materia-faltas" required>
+    </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Enviar</button>
 </form>
 
 <h1>Criar Post de Professor</h1>
 <form action="/create-post-professor" method="post">
-    <label>Conteúdo do Post:</label>
-    <textarea id="post-conteudo" name="post-conteudo" required></textarea>
 
-    <label>Data:</label>
-    <input type="date" id="post-data" name="post-data" required>
+    <div class ="row">
+    <div class="col-md-3 mb-3">
+        <label for="post-conteudo" class="form-label">Conteúdo do Post:</label>
+        <textarea class="form-control" id="post-conteudo" name="post-conteudo" required></textarea>
+    </div>
 
-    <label>ID do Professor:</label>
-    <input type="number" id="post-id-professor" name="post-id-professor" required>
+    <div class="col-md-3 mb-3">
+        <label for="post-data" class="form-label">Data:</label>
+        <input type="date" class="form-control" id="post-data" name="post-data" required>
+    </div>
 
-    <label>ID da Matéria:</label>
-    <input type="number" id="post-id-materia" name="post-id-materia" required>
+    <div class="col-md-3 mb-3">
+        <label for="post-id-professor" class="form-label">ID do Professor:</label>
+        <input type="number" class="form-control" id="post-id-professor" name="post-id-professor" required>
+    </div>
 
-    <button type="submit">Enviar</button>
+    <div class="col-md-3 mb-3">
+        <label for="post-id-materia" class="form-label">ID da Matéria:</label>
+        <input type="number" class="form-control" id="post-id-materia" name="post-id-materia" required>
+    </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Enviar</button>
 </form>
+
+<form action="find-all" method="get">
+    <button type="submit" class="btn btn-primary">Carregar Todas as Tabelas</button>
+</form>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-rp+3U+I8dFO29EtG2vFI0g9MHLh4sPLQJ7bBn3fLphfh5dfufJrdl4zrcAM7G8kC" crossorigin="anonymous"></script>
 </body>
 </html>

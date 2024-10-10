@@ -19,17 +19,18 @@ public class CreateMateriaServlet extends HttpServlet {
         String idCursoStr = req.getParameter("materia-id-curso");
         String idProfessorStr = req.getParameter("materia-id-professor");
 
-        int idCurso = Integer.parseInt(idCursoStr);
-        int idProfessor = Integer.parseInt(idProfessorStr);
+        try {
+            int idCurso = Integer.parseInt(idCursoStr);
+            int idProfessor = Integer.parseInt(idProfessorStr);
 
-        Materia materia = new Materia();
-        materia.setNome(nome);
-        materia.setIdCurso(idCurso);
-        materia.setIdProfessor(idProfessor);
+            Materia materia = new Materia(nome, idCurso, idProfessor);
 
-        MateriaDao materiaDao = new MateriaDao();
-        materiaDao.createMateria(materia);
+            new MateriaDao().createMateria(materia);
 
-        req.getRequestDispatcher("index.html").forward(req, resp);
+            resp.sendRedirect("/find-all-materias");
+        } catch (NumberFormatException e) {
+            req.setAttribute("error", "Invalid input format.");
+            req.getRequestDispatcher("index.html").forward(req, resp);
+        }
     }
 }

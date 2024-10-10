@@ -22,17 +22,22 @@ public class CreateCursoServlet extends HttpServlet {
         String cursoTurno = req.getParameter("curso-turno");
         String cursoDescricao = req.getParameter("curso-descricao");
 
-        Float cursoDuracao = null; // Inicializa como null
+        Float cursoDuracao = null;
 
-        cursoDuracao = Float.parseFloat(cursoDuracaoStr);
+        try {
+            cursoDuracao = Float.parseFloat(cursoDuracaoStr);
 
-        Curso curso = new Curso(cursoNome, cursoModalidade, cursoDuracao, cursoCampus, cursoTurno, cursoDescricao);
+            Curso curso = new Curso(cursoNome, cursoModalidade, cursoDuracao, cursoCampus, cursoTurno, cursoDescricao);
 
+            new CursoDao().createCurso(curso);
 
-
-        new CursoDao().createCurso(curso);
-
-        req.getRequestDispatcher("index.html").forward(req,resp);
-
+            resp.sendRedirect("/find-all-cursos");
+        } catch (NumberFormatException e) {
+            req.setAttribute("error", "Formato de duração inválido.");
+            req.getRequestDispatcher("index.html").forward(req, resp);
+        } catch (Exception e) {
+            req.setAttribute("error", "Erro ao criar curso: " + e.getMessage());
+            req.getRequestDispatcher("index.html").forward(req, resp);
+        }
     }
 }

@@ -4,8 +4,12 @@ import br.com.institutoensino.config.ConnectionPoolConfig;
 import br.com.institutoensino.model.Usuario;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
 
 public class UsuarioDao {
 
@@ -36,6 +40,49 @@ public class UsuarioDao {
             con.close();
         } catch (Exception e) {
             System.out.println("fail in database connection usuario " + e.getMessage());
+        }
+    }
+
+    public List<Usuario> findAllUsuarios() {
+        String SQL = "SELECT * FROM USUARIO";
+
+        try {
+            Connection con = ConnectionPoolConfig.getConnection();
+
+            PreparedStatement preparedStatement = con.prepareStatement(SQL);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            List<Usuario> usuarios = new ArrayList<>();
+
+            while (resultSet.next()) {
+                String nome = resultSet.getString("NOME");
+                String email = resultSet.getString("EMAIL");
+                String senha = resultSet.getString("SENHA");
+                Date nascimento = resultSet.getDate("NASCIMENTO");
+                String cpf = resultSet.getString("CPF");
+                String rg = resultSet.getString("RG");
+                String logradouro = resultSet.getString("LOGRADOURO");
+                int numero = resultSet.getInt("NUMERO");
+                String complemento = resultSet.getString("COMPLEMENTO");
+                String bairro = resultSet.getString("BAIRRO");
+                String cidade = resultSet.getString("CIDADE");
+                String estado = resultSet.getString("ESTADO");
+                String telefoneComercial = resultSet.getString("TELEFONE_COMERCIAL");
+                String celular = resultSet.getString("CELULAR");
+
+                Usuario usuario = new Usuario(nome, email, senha, nascimento, cpf, rg, logradouro, numero, complemento, bairro, cidade, estado, telefoneComercial, celular);
+                usuarios.add(usuario);
+            }
+
+            System.out.println("success in select * usuario");
+            con.close();
+
+            return usuarios;
+
+        } catch (Exception e) {
+            System.out.println("fail in database connection");
+
+            return Collections.emptyList();
         }
     }
 }

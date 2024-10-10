@@ -16,19 +16,21 @@ public class CreateProfessorServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String idUsuarioStr = req.getParameter("professor-id-usuario"); // Ajuste aqui
+        String idUsuarioStr = req.getParameter("professor-id-usuario");
         String salarioStr = req.getParameter("professor-salario");
 
-        int idUsuario = Integer.parseInt(idUsuarioStr);
-        BigDecimal salario = new BigDecimal(salarioStr);
+        try {
+            int idUsuario = Integer.parseInt(idUsuarioStr);
+            BigDecimal salario = new BigDecimal(salarioStr);
 
-        Professor professor = new Professor();
-        professor.setIdUsuario(idUsuario);
-        professor.setSalario(salario);
+            Professor professor = new Professor(idUsuario, salario);
 
-        ProfessorDao professorDao = new ProfessorDao();
-        professorDao.createProfessor(professor);
+            new ProfessorDao().createProfessor(professor);
 
-        req.getRequestDispatcher("index.html").forward(req, resp);
+            resp.sendRedirect("/find-all-professores");
+        } catch (NumberFormatException e) {
+            req.setAttribute("error", "Invalid input format.");
+            req.getRequestDispatcher("index.html").forward(req, resp);
+        }
     }
 }
