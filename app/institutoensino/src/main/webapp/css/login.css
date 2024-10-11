@@ -136,3 +136,20 @@ p a:hover {
     width: 120px;   /* Ajuste do tamanho da logo */
     height: auto;
 }
+.error-message {
+    background-color: #f8d7da; /* Fundo rosa claro */
+    color: #721c24; /* Texto vermelho escuro */
+    border: 1px solid #f5c6cb; /* Borda rosa mais escura */
+    padding: 10px 15px; /* Espaçamento interno */
+    margin: 15px 0; /* Margem superior e inferior */
+    border-radius: 5px; /* Bordas arredondadas */
+    font-size: 16px; /* Tamanho da fonte */
+    text-align: center; /* Centraliza o texto */
+    transition: opacity 0.5s ease; /* Transição suave para opacidade */
+}
+
+/* Efeito de desvanecimento opcional */
+.error-message.hide {
+    opacity: 0;
+    pointer-events: none; /* Desativa a interação com a mensagem ao desvanecer */
+}

@@ -6,6 +6,7 @@ import br.com.institutoensino.model.Usuario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -14,6 +15,11 @@ import java.util.List;
 public class UsuarioDao {
 
     public void createUsuario(Usuario usuario) {
+        if (emailExiste(usuario.getEmail())) {
+            System.out.println("O e-mail já está cadastrado.");
+            return;
+        }
+
         String SQL = "INSERT INTO USUARIO (NOME, EMAIL, SENHA, NASCIMENTO, CPF, RG, LOGRADOURO, NUMERO, COMPLEMENTO, BAIRRO, CIDADE, ESTADO, TELEFONE_COMERCIAL, CELULAR) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try {
@@ -36,12 +42,13 @@ public class UsuarioDao {
             preparedStatement.setString(14, usuario.getCelular());
             preparedStatement.execute();
 
-            System.out.println("success in insert usuario");
+            System.out.println("Usuário inserido com sucesso.");
             con.close();
-        } catch (Exception e) {
-            System.out.println("fail in database connection usuario " + e.getMessage());
+        } catch (SQLException e) {
+            System.out.println("Erro ao inserir usuário: " + e.getMessage());
         }
     }
+
 
     public List<Usuario> findAllUsuarios() {
         String SQL = "SELECT * FROM USUARIO";
@@ -85,4 +92,52 @@ public class UsuarioDao {
             return Collections.emptyList();
         }
     }
+
+
+        public Usuario validarLogin(String email, String password) {
+            Usuario usuario = null;
+            try (Connection conn = ConnectionPoolConfig.getConnection()) {
+                String SQL = "SELECT * FROM USUARIO WHERE Email = ? AND Senha = ?";
+                PreparedStatement stmt = conn.prepareStatement(SQL);
+                stmt.setString(1, email);
+                stmt.setString(2, password);
+                ResultSet rs = stmt.executeQuery();
+
+                if (rs.next()) {
+                    usuario = new Usuario();
+                    usuario.setIdUsuario(rs.getInt("ID_Usuario"));
+                    usuario.setNome(rs.getString("Nome"));
+                    usuario.setEmail(rs.getString("Email"));
+                    // Pegar outros campos se necessário
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            return usuario;
+        }
+
+    public boolean emailExiste(String email) {
+        String SQL = "SELECT COUNT(*) FROM USUARIO WHERE EMAIL = ?";
+        boolean existe = false;
+
+        try (Connection con = ConnectionPoolConfig.getConnection()) {
+            PreparedStatement preparedStatement = con.prepareStatement(SQL);
+            preparedStatement.setString(1, email);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                int count = resultSet.getInt(1);
+                existe = count > 0;  // Se o resultado for maior que 0, o email já existe
+            }
+
+            con.close();
+        } catch (SQLException e) {
+            System.out.println("Erro ao verificar e-mail: " + e.getMessage());
+        }
+
+        return existe;
+    }
+
 }
+
+

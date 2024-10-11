@@ -11,3 +11,11 @@ togglePassword.addEventListener('click', function () {
     // Mudar ícone
     this.classList.toggle('fa-eye-slash');
 });
+
+// Exemplo de desvanecimento após 5 segundos
+setTimeout(() => {
+    const errorMessage = document.querySelector('.error-message');
+    if (errorMessage) {
+        errorMessage.classList.add('hide');
+    }
+}, 5000);
