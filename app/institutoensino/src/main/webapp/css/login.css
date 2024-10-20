@@ -76,6 +76,18 @@ input[type="password"] {
     background-color: #f9f9f9;
 }
 
+input[type="password"],
+input[type="text"] {
+    width: 100%; /* Garante que a largura do input é 100% */
+    padding: 12px; /* O mesmo padding que você já definiu */
+    border: 1px solid #ccc; /* Mantém a borda consistente */
+    border-radius: 4px; /* Mantém o mesmo arredondamento */
+    margin-bottom: 20px; /* Margem inferior consistente */
+    font-size: 14px; /* Mantém o mesmo tamanho da fonte */
+    background-color: #f9f9f9; /* Mantém a mesma cor de fundo */
+}
+
+
 /* Container do campo de senha e ícone */
 .password-container {
     position: relative;
@@ -83,11 +95,17 @@ input[type="password"] {
 
 .password-container i {
     position: absolute;
-    top: 50%;
-    right: 10px;
-    transform: translateY(-50%);
+    top: 35%; /* Mantenha isso */
+    right: 10px; /* Distância da borda direita */
+    transform: translateY(-50%); /* Centraliza verticalmente */
     cursor: pointer;
     color: #555;
+    font-size: 18px; /* Tamanho do ícone */
+    transition: color 0.3s;
+}
+
+.password-container i:hover {
+    color: #007863; /* Altera a cor ao passar o mouse */
 }
 
 /* Botão de acessar */
@@ -152,4 +170,5 @@ p a:hover {
 .error-message.hide {
     opacity: 0;
     pointer-events: none; /* Desativa a interação com a mensagem ao desvanecer */
+    transition: opacity 0.5s ease;
 }

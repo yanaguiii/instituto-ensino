@@ -21,6 +21,26 @@ public class Usuario {
 
     public Usuario() {}
 
+    public Usuario(int idUsuario, String nome, String email, String senha, Date nascimento, String cpf, String rg,
+                   String logradouro, int numero, String complemento, String bairro, String cidade,
+                   String estado, String telefoneComercial, String celular) {
+        this.idUsuario = idUsuario;
+        this.nome = nome;
+        this.email = email;
+        this.senha = senha;
+        this.nascimento = nascimento;
+        this.cpf = cpf;
+        this.rg = rg;
+        this.logradouro = logradouro;
+        this.numero = numero;
+        this.complemento = complemento;
+        this.bairro = bairro;
+        this.cidade = cidade;
+        this.estado = estado;
+        this.telefoneComercial = telefoneComercial;
+        this.celular = celular;
+    }
+
     public Usuario(String nome, String email, String senha, Date nascimento, String cpf, String rg,
                    String logradouro, int numero, String complemento, String bairro, String cidade,
                    String estado, String telefoneComercial, String celular) {

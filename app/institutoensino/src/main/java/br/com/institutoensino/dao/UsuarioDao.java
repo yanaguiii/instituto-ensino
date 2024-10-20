@@ -3,10 +3,7 @@ package br.com.institutoensino.dao;
 import br.com.institutoensino.config.ConnectionPoolConfig;
 import br.com.institutoensino.model.Usuario;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -62,6 +59,7 @@ public class UsuarioDao {
             List<Usuario> usuarios = new ArrayList<>();
 
             while (resultSet.next()) {
+                int idUsuario = resultSet.getInt("ID_USUARIO");
                 String nome = resultSet.getString("NOME");
                 String email = resultSet.getString("EMAIL");
                 String senha = resultSet.getString("SENHA");
@@ -77,7 +75,7 @@ public class UsuarioDao {
                 String telefoneComercial = resultSet.getString("TELEFONE_COMERCIAL");
                 String celular = resultSet.getString("CELULAR");
 
-                Usuario usuario = new Usuario(nome, email, senha, nascimento, cpf, rg, logradouro, numero, complemento, bairro, cidade, estado, telefoneComercial, celular);
+                Usuario usuario = new Usuario(idUsuario, nome, email, senha, nascimento, cpf, rg, logradouro, numero, complemento, bairro, cidade, estado, telefoneComercial, celular);
                 usuarios.add(usuario);
             }
 
@@ -137,6 +135,26 @@ public class UsuarioDao {
 
         return existe;
     }
+
+    public void deleteUsuarioById(int idUsuario) {
+        String SQL = "DELETE FROM USUARIO WHERE ID_USUARIO = ?";
+
+        try {
+            Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+            System.out.println("success in database connection");
+
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL);
+            preparedStatement.setInt(1, idUsuario);
+            preparedStatement.execute();
+
+            System.out.println("success in delete usuario with id " + idUsuario);
+            connection.close();
+
+        } catch (Exception e) {
+            System.out.println("fail in database connection usuario " + e.getMessage());
+        }
+    }
+
 
 }
 

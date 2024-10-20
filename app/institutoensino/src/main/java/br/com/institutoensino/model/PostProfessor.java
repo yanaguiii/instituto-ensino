@@ -11,6 +11,14 @@ public class PostProfessor {
 
     public PostProfessor() {}
 
+    public PostProfessor(int idPost, String conteudo, Date data, int idProfessor, int idMateria) {
+        this.idPost = idPost;
+        this.conteudo = conteudo;
+        this.data = data;
+        this.idProfessor = idProfessor;
+        this.idMateria = idMateria;
+    }
+
     public PostProfessor(String conteudo, Date data, int idProfessor, int idMateria) {
         this.conteudo = conteudo;
         this.data = data;

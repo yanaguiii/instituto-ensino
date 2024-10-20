@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <html>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -17,6 +16,7 @@
     <table class="table">
         <thead>
         <tr>
+            <th>ID Curso</th>
             <th>Nome</th>
             <th>Modalidade</th>
             <th>Duração</th>
@@ -28,12 +28,20 @@
         <tbody>
         <c:forEach var="curso" items="${cursos}">
             <tr>
+                <td>${curso.idCurso}</td>
                 <td>${curso.nome}</td>
                 <td>${curso.modalidade}</td>
                 <td>${curso.duracao}</td>
                 <td>${curso.campus}</td>
                 <td>${curso.turno}</td>
                 <td>${curso.descricao}</td>
+                <td>
+                    <form action="/delete-curso" method="post">
+                        <input type="hidden" id="idCurso" name="idCurso" value="${curso.idCurso}">
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
+
             </tr>
         </c:forEach>
         </tbody>
@@ -44,6 +52,7 @@
     <table class="table">
         <thead>
         <tr>
+            <th>ID Usuário</th>
             <th>Nome</th>
             <th>Email</th>
             <th>Data de Nascimento</th>
@@ -61,6 +70,7 @@
         <tbody>
         <c:forEach var="usuario" items="${usuarios}">
             <tr>
+                <td>${usuario.idUsuario}</td>
                 <td>${usuario.nome}</td>
                 <td>${usuario.email}</td>
                 <td>${usuario.nascimento}</td>
@@ -74,6 +84,13 @@
                 <td>${usuario.estado}</td>
                 <td>${usuario.celular}</td>
                 <td>${usuario.telefoneComercial}</td>
+                <td>
+                    <form action="/delete-usuario" method="post">
+                        <input type="hidden" id="idUsuario" name="idUsuario" value="${usuario.idUsuario}">
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
+
             </tr>
         </c:forEach>
         </tbody>
@@ -93,6 +110,13 @@
             <tr>
                 <td>${professor.idProfessor}</td>
                 <td>${professor.salario}</td>
+                <td>
+                    <form action="/delete-professor" method="post">
+                        <input type="hidden" id="idProfessor" name="idProfessor" value="${professor.idProfessor}">
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
+
             </tr>
         </c:forEach>
         </tbody>
@@ -103,7 +127,7 @@
     <table class="table">
         <thead>
         <tr>
-            <th>ID</th>
+            <th>ID Aluno</th>
             <th>Matricula</th>
         </tr>
         </thead>
@@ -112,6 +136,12 @@
             <tr>
                 <td>${aluno.idAluno}</td>
                 <td>${aluno.matricula}</td>
+                <td>
+                    <form action="/delete-aluno" method="post">
+                        <input type="hidden" id="idAluno" name="idAluno" value="${aluno.idAluno}">
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
             </tr>
         </c:forEach>
         </tbody>
@@ -122,6 +152,7 @@
     <table class="table">
         <thead>
         <tr>
+            <th>ID Matéria</th>
             <th>Nome</th>
             <th>ID Curso</th>
             <th>ID Professor</th>
@@ -130,9 +161,17 @@
         <tbody>
         <c:forEach var="materia" items="${materias}">
             <tr>
+                <td>${materia.idMateria}</td>
                 <td>${materia.nome}</td>
                 <td>${materia.idCurso}</td>
                 <td>${materia.idProfessor}</td>
+                <td>
+                    <form action="/delete-materia" method="post">
+                        <input type="hidden" id="idMateria" name="idMateria" value="${materia.idMateria}">
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
+
             </tr>
         </c:forEach>
         </tbody>
@@ -156,6 +195,14 @@
                 <td>${alunoMateria.idMateria}</td>
                 <td>${alunoMateria.nota}</td>
                 <td>${alunoMateria.faltas}</td>
+                <td>
+                    <form action="/delete-aluno-materia" method="post">
+                        <input type="hidden" id="idAlunoMateria" name="idAluno" value="${alunoMateria.idAluno}">
+                        <input type="hidden" id="idMateriaAluno" name="idMateria" value="${alunoMateria.idMateria}">
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
+
             </tr>
         </c:forEach>
         </tbody>
@@ -166,6 +213,7 @@
     <table class="table">
         <thead>
         <tr>
+            <th>ID Post</th>
             <th>Conteúdo</th>
             <th>Data</th>
             <th>ID Professor</th>
@@ -175,10 +223,18 @@
         <tbody>
         <c:forEach var="postProfessor" items="${postProfessores}">
             <tr>
+                <td>postProfessor.idPost</td>
                 <td>${postProfessor.conteudo}</td>
                 <td>${postProfessor.data}</td>
                 <td>${postProfessor.idProfessor}</td>
                 <td>${postProfessor.idMateria}</td>
+                <td>
+                    <form action="/delete-post-professor" method="post">
+                        <input type="hidden" id="idPost" name="idPost" value="${postProfessor.idPost}">
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
+
             </tr>
         </c:forEach>
         </tbody>

@@ -45,11 +45,12 @@ public class MateriaDao {
             List<Materia> materias = new ArrayList<>();
 
             while (resultSet.next()) {
+                int idMateria = resultSet.getInt("ID_MATERIA");
                 String nome = resultSet.getString("NOME");
                 int idCurso = resultSet.getInt("ID_CURSO");
                 int idProfessor = resultSet.getInt("ID_PROFESSOR");
 
-                Materia materia = new Materia(nome, idCurso, idProfessor);
+                Materia materia = new Materia(idMateria, nome, idCurso, idProfessor);
                 materias.add(materia);
             }
 
@@ -64,4 +65,24 @@ public class MateriaDao {
             return Collections.emptyList();
         }
     }
+
+    public void deleteMateriaById(int idMateria) {
+        String SQL = "DELETE FROM MATERIA WHERE ID_MATERIA = ?";
+
+        try {
+            Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+            System.out.println("success in database connection");
+
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL);
+            preparedStatement.setInt(1, idMateria);
+            preparedStatement.execute();
+
+            System.out.println("success in delete materia with id " + idMateria);
+            connection.close();
+
+        } catch (Exception e) {
+            System.out.println("fail in database connection materia " + e.getMessage());
+        }
+    }
+
 }

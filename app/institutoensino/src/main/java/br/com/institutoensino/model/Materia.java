@@ -8,6 +8,13 @@ public class Materia {
 
     public Materia() {}
 
+    public Materia(int idMateria, String nome, int idCurso, int idProfessor) {
+        this.idMateria = idMateria;
+        this.nome = nome;
+        this.idCurso = idCurso;
+        this.idProfessor = idProfessor;
+    }
+
     public Materia(String nome, int idCurso, int idProfessor) {
         this.nome = nome;
         this.idCurso = idCurso;

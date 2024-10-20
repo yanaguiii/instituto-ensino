@@ -67,4 +67,25 @@ public class AlunoMateriaDao {
             return Collections.emptyList();
         }
     }
+
+    public void deleteAlunoMateriaById(int idAluno, int idMateria) {
+        String SQL = "DELETE FROM ALUNO_MATERIA WHERE ID_ALUNO = ? AND ID_MATERIA = ?";
+
+        try {
+            Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+            System.out.println("success in database connection");
+
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL);
+            preparedStatement.setInt(1, idAluno);
+            preparedStatement.setInt(2, idMateria);
+            preparedStatement.execute();
+
+            System.out.println("success in delete alunoMateria with idAluno " + idAluno + " and idMateria " + idMateria);
+            connection.close();
+
+        } catch (Exception e) {
+            System.out.println("fail in database connection alunoMateria " + e.getMessage());
+        }
+    }
+
 }

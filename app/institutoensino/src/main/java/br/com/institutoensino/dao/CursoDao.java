@@ -57,6 +57,7 @@ public class CursoDao {
             List<Curso> cursos = new ArrayList<>();
 
             while (resultSet.next()) {
+                int idCurso = resultSet.getInt("ID_CURSO");
                 String cursoNome = resultSet.getString("NOME");
                 String cursoModalidade = resultSet.getString("MODALIDADE");
                 float cursoDuracao = resultSet.getFloat("DURACAO");
@@ -64,7 +65,8 @@ public class CursoDao {
                 String cursoTurno = resultSet.getString("TURNO");
                 String cursoDescricao = resultSet.getString("DESCRICAO");
 
-                Curso curso = new Curso(cursoNome, cursoModalidade, cursoDuracao, cursoCampus, cursoTurno, cursoDescricao);
+
+                Curso curso = new Curso(idCurso, cursoNome, cursoModalidade, cursoDuracao, cursoCampus, cursoTurno, cursoDescricao);
                 cursos.add(curso);
             }
 
@@ -84,4 +86,24 @@ public class CursoDao {
         }
 
     }
+
+    public void deleteCursoById(int idCurso) {
+        String SQL = "DELETE FROM CURSO WHERE ID_CURSO = ?";
+
+        try {
+            Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+            System.out.println("success in database connection");
+
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL);
+            preparedStatement.setInt(1, idCurso);
+            preparedStatement.execute();
+
+            System.out.println("success in delete curso with id " + idCurso);
+            connection.close();
+
+        } catch (Exception e) {
+            System.out.println("fail in database connection curso " + e.getMessage());
+        }
+    }
+
 }

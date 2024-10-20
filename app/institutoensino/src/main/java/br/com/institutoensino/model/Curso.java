@@ -10,6 +10,16 @@ public class Curso {
 
     public Curso(){}
 
+    public Curso(int idCurso, String nome, String modalidade, float duracao, String campus, String turno, String descricao) {
+        this.idCurso = idCurso;
+        this.nome = nome;
+        this.modalidade = modalidade;
+        this.duracao = duracao;
+        this.campus = campus;
+        this.turno = turno;
+        this.descricao = descricao;
+    }
+
     public Curso(String nome, String modalidade, float duracao, String campus, String turno, String descricao) {
         this.nome = nome;
         this.modalidade = modalidade;

@@ -9,10 +9,17 @@ public class Professor {
 
     public Professor() {}
 
+    public Professor(int idProfessor, int idUsuario, BigDecimal salario) {
+        this.idProfessor = idProfessor;
+        this.idUsuario = idUsuario;
+        this.salario = salario;
+    }
+
     public Professor(int idUsuario, BigDecimal salario) {
         this.idUsuario = idUsuario;
         this.salario = salario;
     }
+
 
     public int getIdProfessor() {
         return idProfessor;

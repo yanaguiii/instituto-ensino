@@ -45,10 +45,11 @@ public class ProfessorDao {
             List<Professor> professores = new ArrayList<>();
 
             while (resultSet.next()) {
+                int idProfessor = resultSet.getInt("ID_PROFESSOR");
                 int idUsuario = resultSet.getInt("ID_USUARIO");
                 BigDecimal salario = resultSet.getBigDecimal("SALARIO");
 
-                Professor professor = new Professor(idUsuario, salario);
+                Professor professor = new Professor(idProfessor, idUsuario, salario);
                 professores.add(professor);
             }
 
@@ -63,4 +64,24 @@ public class ProfessorDao {
             return Collections.emptyList();
         }
     }
+
+    public void deleteProfessorById(int idProfessor) {
+        String SQL = "DELETE FROM PROFESSOR WHERE ID_PROFESSOR = ?";
+
+        try {
+            Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+            System.out.println("success in database connection");
+
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL);
+            preparedStatement.setInt(1, idProfessor);
+            preparedStatement.execute();
+
+            System.out.println("success in delete professor with id " + idProfessor);
+            connection.close();
+
+        } catch (Exception e) {
+            System.out.println("fail in database connection professor " + e.getMessage());
+        }
+    }
+
 }

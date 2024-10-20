@@ -7,6 +7,12 @@ public class Aluno {
 
     public Aluno() {}
 
+    public Aluno(int idAluno, int idUsuario, String matricula) {
+        this.idAluno = idAluno;
+        this.idUsuario = idUsuario;
+        this.matricula = matricula;
+    }
+
     public Aluno(int idUsuario, String matricula) {
         this.idUsuario = idUsuario;
         this.matricula = matricula;

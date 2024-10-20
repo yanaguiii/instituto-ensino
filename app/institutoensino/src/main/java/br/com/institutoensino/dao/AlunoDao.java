@@ -49,12 +49,12 @@ public class AlunoDao {
             List<Aluno> alunos = new ArrayList<>();
 
             while (resultSet.next()) {
-                String idUsuarioStr = resultSet.getString("ID_USUARIO"); // Ajuste aqui
+                int idAluno = resultSet.getInt("ID_ALUNO");
+                int idUsuario = resultSet.getInt("ID_USUARIO");
                 String matricula = resultSet.getString("MATRICULA");
 
-                int idUsuario = Integer.parseInt(idUsuarioStr);
 
-                Aluno aluno = new Aluno(idUsuario, matricula);
+                Aluno aluno = new Aluno(idAluno, idUsuario, matricula);
                 alunos.add(aluno);
             }
 
@@ -73,6 +73,24 @@ public class AlunoDao {
 
         }
 
+    }
+    public void deleteAlunoById(int idAluno) {
+        String SQL = "DELETE FROM ALUNO WHERE ID_ALUNO = ?";
+
+        try {
+            Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+            System.out.println("success in database connection");
+
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL);
+            preparedStatement.setInt(1, idAluno);
+            preparedStatement.execute();
+
+            System.out.println("success in delete aluno with id " + idAluno);
+            connection.close();
+
+        } catch (Exception e) {
+            System.out.println("fail in database connection aluno " + e.getMessage());
+        }
     }
 }
 

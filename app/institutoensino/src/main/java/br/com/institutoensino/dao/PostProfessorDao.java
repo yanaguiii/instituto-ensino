@@ -47,12 +47,14 @@ public class PostProfessorDao {
             List<PostProfessor> postProfessores = new ArrayList<>();
 
             while (resultSet.next()) {
+                int idPost = resultSet.getInt("ID_POST");
                 String conteudo = resultSet.getString("CONTEUDO");
                 Date data = resultSet.getDate("DATA");
                 int idProfessor = resultSet.getInt("ID_PROFESSOR");
                 int idMateria = resultSet.getInt("ID_MATERIA");
 
-                PostProfessor postProfessor = new PostProfessor(conteudo, data, idProfessor, idMateria);
+
+                PostProfessor postProfessor = new PostProfessor(idPost, conteudo, data, idProfessor, idMateria);
                 postProfessores.add(postProfessor);
             }
 
@@ -67,4 +69,24 @@ public class PostProfessorDao {
             return Collections.emptyList();
         }
     }
+
+    public void deletePostProfessorById(int idPost) {
+        String SQL = "DELETE FROM POST_PROFESSOR WHERE ID_POST = ?";
+
+        try {
+            Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+            System.out.println("success in database connection");
+
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL);
+            preparedStatement.setInt(1, idPost);
+            preparedStatement.execute();
+
+            System.out.println("success in delete postProfessor with id " + idPost);
+            connection.close();
+
+        } catch (Exception e) {
+            System.out.println("fail in database connection postProfessor " + e.getMessage());
+        }
+    }
+
 }
