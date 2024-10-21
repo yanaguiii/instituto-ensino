@@ -128,7 +128,6 @@ public class UsuarioDao {
                 existe = count > 0;  // Se o resultado for maior que 0, o email já existe
             }
 
-            con.close();
         } catch (SQLException e) {
             System.out.println("Erro ao verificar e-mail: " + e.getMessage());
         }

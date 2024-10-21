@@ -24,7 +24,7 @@ import java.io.IOException;
             if (usuario != null) {
                 // Login bem-sucedido
                 request.getSession().setAttribute("usuarioLogado", usuario);
-                response.sendRedirect("dashboard.jsp"); // Direciona para o dashboard após login
+                response.sendRedirect("/find-all-usuarios");
             } else {
                 // Falha no login
                 request.setAttribute("mensagemErro", "Email ou senha incorretos.");
