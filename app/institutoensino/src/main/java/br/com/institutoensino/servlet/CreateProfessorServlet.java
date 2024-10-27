@@ -30,7 +30,7 @@ public class CreateProfessorServlet extends HttpServlet {
             resp.sendRedirect("/find-all-professores");
         } catch (NumberFormatException e) {
             req.setAttribute("error", "Invalid input format.");
-            req.getRequestDispatcher("index.html").forward(req, resp);
+            req.getRequestDispatcher("home.jsp").forward(req, resp);
         }
     }
 }

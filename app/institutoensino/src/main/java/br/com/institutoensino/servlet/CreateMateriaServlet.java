@@ -30,7 +30,7 @@ public class CreateMateriaServlet extends HttpServlet {
             resp.sendRedirect("/find-all-materias");
         } catch (NumberFormatException e) {
             req.setAttribute("error", "Invalid input format.");
-            req.getRequestDispatcher("index.html").forward(req, resp);
+            req.getRequestDispatcher("home.jsp").forward(req, resp);
         }
     }
 }

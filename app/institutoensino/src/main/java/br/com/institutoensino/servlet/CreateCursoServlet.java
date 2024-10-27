@@ -34,10 +34,10 @@ public class CreateCursoServlet extends HttpServlet {
             resp.sendRedirect("/find-all-cursos");
         } catch (NumberFormatException e) {
             req.setAttribute("error", "Formato de duração inválido.");
-            req.getRequestDispatcher("index.html").forward(req, resp);
+            req.getRequestDispatcher("home.jsp").forward(req, resp);
         } catch (Exception e) {
             req.setAttribute("error", "Erro ao criar curso: " + e.getMessage());
-            req.getRequestDispatcher("index.html").forward(req, resp);
+            req.getRequestDispatcher("home.jsp").forward(req, resp);
         }
     }
 }
