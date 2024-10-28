@@ -19,7 +19,8 @@ public class Usuario {
     private String telefoneComercial;
     private String celular;
 
-    public Usuario() {}
+    public Usuario() {
+    }
 
     public Usuario(int idUsuario, String nome, String email, String senha, Date nascimento, String cpf, String rg,
                    String logradouro, int numero, String complemento, String bairro, String cidade,

@@ -1,7 +1,7 @@
 package br.com.institutoensino.servlet;
 
-import br.com.institutoensino.dao.AlunoDao; // Certifique-se de que existe um AlunoDao
-import br.com.institutoensino.model.Aluno; // Certifique-se de que existe um Aluno
+import br.com.institutoensino.dao.AlunoDao;
+import br.com.institutoensino.model.Aluno;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

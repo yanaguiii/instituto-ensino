@@ -88,4 +88,33 @@ public class AlunoMateriaDao {
         }
     }
 
+    public void updateAlunoMateria(AlunoMateria alunoMateria) {
+        String SQL = "UPDATE ALUNO_MATERIA SET NOTA = ?, FALTAS = ? WHERE ID_ALUNO = ? AND ID_MATERIA = ?";
+
+        try {
+            Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+            System.out.println("success in database connection");
+
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL);
+            preparedStatement.setObject(1, alunoMateria.getNota());
+            preparedStatement.setObject(2, alunoMateria.getFaltas());
+            preparedStatement.setInt(3, alunoMateria.getIdAluno());
+            preparedStatement.setInt(4, alunoMateria.getIdMateria());
+
+            int rowsAffected = preparedStatement.executeUpdate(); // Use executeUpdate para um UPDATE
+
+            if (rowsAffected > 0) {
+                System.out.println("success in update alunoMateria with idAluno " + alunoMateria.getIdAluno() + " and idMateria " + alunoMateria.getIdMateria());
+            } else {
+                System.out.println("No rows affected, check if the provided IDs are correct.");
+            }
+
+            connection.close();
+        } catch (Exception e) {
+            System.out.println("fail in database connection alunoMateria " + e.getMessage());
+        }
+    }
+
+
+
 }

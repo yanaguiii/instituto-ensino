@@ -143,17 +143,18 @@ p a:hover {
 
 /* estilos para a logo */
 
-.image-logo{
+.image-logo {
     position: absolute;
-    top: 10px;       /* Distância do topo da tela */
-    right: 10px;    /* Distância da borda direita da tela */
-    z-index: 20;    /* a logo fique acima dos outros elementos */
+    top: 10px; /* Distância do topo da tela */
+    right: 10px; /* Distância da borda direita da tela */
+    z-index: 20; /* a logo fique acima dos outros elementos */
 }
 
-.image-logo img{
-    width: 120px;   /* Ajuste do tamanho da logo */
+.image-logo img {
+    width: 120px; /* Ajuste do tamanho da logo */
     height: auto;
 }
+
 .error-message {
     background-color: #f8d7da; /* Fundo rosa claro */
     color: #721c24; /* Texto vermelho escuro */

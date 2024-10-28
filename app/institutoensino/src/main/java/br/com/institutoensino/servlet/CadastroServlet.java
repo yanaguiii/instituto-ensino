@@ -16,6 +16,7 @@ public class CadastroServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // Pega os parâmetros do formulário
+        String idUsuarioStr = req.getParameter("idUsuario");
         String nome = req.getParameter("usuario-nome");
         String email = req.getParameter("usuario-email");
         String senha = req.getParameter("usuario-senha");
@@ -35,31 +36,33 @@ public class CadastroServlet extends HttpServlet {
             // Conversão de parâmetros que podem gerar exceções
             Date nascimento = Date.valueOf(nascimentoStr);
             int numero = Integer.parseInt(numeroStr);
-
             UsuarioDao usuarioDao = new UsuarioDao();
+            Usuario usuario;
 
-            // Verifica se o e-mail já está cadastrado
-            if (usuarioDao.emailExiste(email)) {
-                // Se o e-mail já existe, define a mensagem de erro e redireciona para a página de cadastro
-                req.setAttribute("mensagemErro", "O e-mail já está cadastrado.");
-                req.getRequestDispatcher("cadastro.jsp").forward(req, resp);
-            } else {
-                // Se o e-mail não existe, cria um novo usuário
-                Usuario usuario = new Usuario(nome, email, senha, nascimento, cpf, rg, logradouro, numero, complemento, bairro, cidade, estado, telefoneComercial, celular);
-
-                // Insere o novo usuário no banco de dados
+            if (idUsuarioStr == null || idUsuarioStr.isBlank()) {
+                // Verifica se o e-mail já está cadastrado
+                if (usuarioDao.emailExiste(email)) {
+                    req.setAttribute("mensagemErro", "O e-mail já está cadastrado.");
+                    req.getRequestDispatcher("cadastro.jsp").forward(req, resp);
+                    return;
+                }
+                // Criação de um novo usuário se o idUsuario não estiver presente ou estiver em branco
+                usuario = new Usuario(nome, email, senha, nascimento, cpf, rg, logradouro, numero, complemento, bairro, cidade, estado, telefoneComercial, celular);
                 usuarioDao.createUsuario(usuario);
-
-                // Redireciona para a página de login após o cadastro
-                resp.sendRedirect("login.jsp");
+            } else {
+                // Atualização do usuário existente se o idUsuario estiver presente
+                int idUsuario = Integer.parseInt(idUsuarioStr);
+                usuario = new Usuario(idUsuario, nome, email, senha, nascimento, cpf, rg, logradouro, numero, complemento, bairro, cidade, estado, telefoneComercial, celular);
+                usuarioDao.updateUsuario(usuario);
             }
 
+            // Redireciona para a página de login após o cadastro ou atualização
+            resp.sendRedirect("login.jsp");
+
         } catch (NumberFormatException e) {
-            // Se ocorrer uma exceção de conversão, define uma mensagem de erro e redireciona para a página de cadastro
             req.setAttribute("error", "Formato de número inválido.");
             req.getRequestDispatcher("cadastro.jsp").forward(req, resp);
         } catch (IllegalArgumentException e) {
-            // Se ocorrer uma exceção relacionada ao formato da data, define uma mensagem de erro e redireciona para a página de cadastro
             req.setAttribute("error", "Formato de data inválido.");
             req.getRequestDispatcher("cadastro.jsp").forward(req, resp);
         }

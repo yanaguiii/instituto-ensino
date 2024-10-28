@@ -5,7 +5,8 @@ public class Aluno {
     private int idUsuario;
     private String matricula;
 
-    public Aluno() {}
+    public Aluno() {
+    }
 
     public Aluno(int idAluno, int idUsuario, String matricula) {
         this.idAluno = idAluno;

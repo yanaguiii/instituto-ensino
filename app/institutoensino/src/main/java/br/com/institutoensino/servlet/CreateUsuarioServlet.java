@@ -10,14 +10,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 
 @WebServlet("/create-usuario")
 public class CreateUsuarioServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String idUsuarioStr = req.getParameter("idUsuario");
         String nome = req.getParameter("usuario-nome");
         String email = req.getParameter("usuario-email");
         String senha = req.getParameter("usuario-senha");
@@ -36,12 +35,21 @@ public class CreateUsuarioServlet extends HttpServlet {
         try {
             Date nascimento = Date.valueOf(nascimentoStr);
             int numero = Integer.parseInt(numeroStr);
+            UsuarioDao usuarioDao = new UsuarioDao();
+            Usuario usuario;
 
-            Usuario usuario = new Usuario(nome, email, senha, nascimento, cpf, rg, logradouro, numero, complemento, bairro, cidade, estado, telefoneComercial, celular);
+            if (idUsuarioStr == null || idUsuarioStr.isBlank()) {
+                // Criação de um novo usuário se o idUsuario não estiver presente ou estiver em branco
+                usuario = new Usuario(nome, email, senha, nascimento, cpf, rg, logradouro, numero, complemento, bairro, cidade, estado, telefoneComercial, celular);
+                usuarioDao.createUsuario(usuario);
+            } else {
+                // Atualização do usuário existente se o idUsuario estiver presente
+                int idUsuario = Integer.parseInt(idUsuarioStr);
+                usuario = new Usuario(idUsuario, nome, email, senha, nascimento, cpf, rg, logradouro, numero, complemento, bairro, cidade, estado, telefoneComercial, celular);
+                usuarioDao.updateUsuario(usuario);
+            }
 
-            new UsuarioDao().createUsuario(usuario);
-
-            resp.sendRedirect("/find-all-usuarios");
+            resp.sendRedirect("/find-all");
         } catch (NumberFormatException e) {
             req.setAttribute("error", "Invalid input format.");
             req.getRequestDispatcher("home.jsp").forward(req, resp);

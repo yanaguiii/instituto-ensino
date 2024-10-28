@@ -8,7 +8,8 @@ public class AlunoMateria {
     private BigDecimal nota;
     private int faltas;
 
-    public AlunoMateria() {}
+    public AlunoMateria() {
+    }
 
     public AlunoMateria(int idAluno, int idMateria, BigDecimal nota, int faltas) {
         this.idAluno = idAluno;

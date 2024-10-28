@@ -84,5 +84,37 @@ public class MateriaDao {
             System.out.println("fail in database connection materia " + e.getMessage());
         }
     }
+    public void updateMateria(Materia materia) {
+        // String SQL para a atualização da matéria
+        String SQL = "UPDATE MATERIA SET NOME = ?, ID_CURSO = ?, ID_PROFESSOR = ? WHERE ID_MATERIA = ?";
+
+        try {
+            // Conexão ao banco de dados
+            Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+            System.out.println("success in database connection");
+
+            // Preparando o statement
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL);
+            preparedStatement.setObject(1, materia.getNome());
+            preparedStatement.setObject(2, materia.getIdCurso());
+            preparedStatement.setObject(3, materia.getIdProfessor());
+            preparedStatement.setInt(4, materia.getIdMateria()); // Adicionando o ID da matéria para a cláusula WHERE
+
+            // Executando a atualização
+            int rowsAffected = preparedStatement.executeUpdate(); // Use executeUpdate para um UPDATE
+
+            if (rowsAffected > 0) {
+                System.out.println("success in update materia with id " + materia.getIdMateria());
+            } else {
+                System.out.println("No rows affected, check if the provided ID is correct.");
+            }
+
+            connection.close(); // Fechando a conexão
+        } catch (Exception e) {
+            System.out.println("fail in database connection materia " + e.getMessage());
+        }
+    }
+
+
 
 }

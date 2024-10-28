@@ -1,6 +1,6 @@
 var swiper = new Swiper(".mySwiper", {
     slidesPerView: "auto",
-    spaceBetween:30,
+    spaceBetween: 30,
     loop: true,
     centeredSlides: true,
     pagination: {
@@ -20,13 +20,13 @@ function openPopup(popupId) {
 
 // Fechar popup ao clicar no botão de fechar
 document.querySelectorAll(".close").forEach(btn => {
-    btn.addEventListener("click", function() {
+    btn.addEventListener("click", function () {
         this.closest(".popup").style.display = "none";
     });
 });
 
 // Fechar popup ao clicar fora do conteúdo
-window.addEventListener("click", function(event) {
+window.addEventListener("click", function (event) {
     document.querySelectorAll(".popup").forEach(popup => {
         if (event.target === popup) {
             popup.style.display = "none";

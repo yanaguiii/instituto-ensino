@@ -7,7 +7,8 @@ public class Professor {
     private int idUsuario;
     private BigDecimal salario;
 
-    public Professor() {}
+    public Professor() {
+    }
 
     public Professor(int idProfessor, int idUsuario, BigDecimal salario) {
         this.idProfessor = idProfessor;

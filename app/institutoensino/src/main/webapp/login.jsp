@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -30,7 +30,8 @@
 
         <label for="password">Sua Senha</label>
         <div class="password-container">
-            <input type="password" name="password" id="password" placeholder="Digite sua senha" required aria-label="Senha">
+            <input type="password" name="password" id="password" placeholder="Digite sua senha" required
+                   aria-label="Senha">
             <i id="togglePassword" class="fa fa-eye" aria-hidden="true" title="Mostrar/Ocultar Senha"></i>
         </div>
 

@@ -92,27 +92,27 @@ public class UsuarioDao {
     }
 
 
-        public Usuario validarLogin(String email, String password) {
-            Usuario usuario = null;
-            try (Connection conn = ConnectionPoolConfig.getConnection()) {
-                String SQL = "SELECT * FROM USUARIO WHERE Email = ? AND Senha = ?";
-                PreparedStatement stmt = conn.prepareStatement(SQL);
-                stmt.setString(1, email);
-                stmt.setString(2, password);
-                ResultSet rs = stmt.executeQuery();
+    public Usuario validarLogin(String email, String password) {
+        Usuario usuario = null;
+        try (Connection conn = ConnectionPoolConfig.getConnection()) {
+            String SQL = "SELECT * FROM USUARIO WHERE Email = ? AND Senha = ?";
+            PreparedStatement stmt = conn.prepareStatement(SQL);
+            stmt.setString(1, email);
+            stmt.setString(2, password);
+            ResultSet rs = stmt.executeQuery();
 
-                if (rs.next()) {
-                    usuario = new Usuario();
-                    usuario.setIdUsuario(rs.getInt("ID_Usuario"));
-                    usuario.setNome(rs.getString("Nome"));
-                    usuario.setEmail(rs.getString("Email"));
-                    // Pegar outros campos se necessário
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
+            if (rs.next()) {
+                usuario = new Usuario();
+                usuario.setIdUsuario(rs.getInt("ID_Usuario"));
+                usuario.setNome(rs.getString("Nome"));
+                usuario.setEmail(rs.getString("Email"));
+                // Pegar outros campos se necessário
             }
-            return usuario;
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+        return usuario;
+    }
 
     public boolean emailExiste(String email) {
         String SQL = "SELECT COUNT(*) FROM USUARIO WHERE EMAIL = ?";
@@ -153,6 +153,51 @@ public class UsuarioDao {
             System.out.println("fail in database connection usuario " + e.getMessage());
         }
     }
+    public void updateUsuario(Usuario usuario) {
+        String SQL = "UPDATE USUARIO SET NOME = ?, EMAIL = ?, SENHA = ?, NASCIMENTO = ?, CPF = ?, RG = ?, " +
+                "LOGRADOURO = ?, NUMERO = ?, COMPLEMENTO = ?, BAIRRO = ?, CIDADE = ?, ESTADO = ?, " +
+                "TELEFONE_COMERCIAL = ?, CELULAR = ? WHERE ID_USUARIO = ?";
+
+        try {
+            // Conexão ao banco de dados
+            Connection connection = ConnectionPoolConfig.getConnection(); // Usando o pool de conexões
+            System.out.println("success in database connection");
+
+            // Preparando o statement
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL);
+
+            // Definindo os parâmetros, garantindo que os campos sejam válidos
+            preparedStatement.setObject(1, usuario.getNome() != null && !usuario.getNome().isEmpty() ? usuario.getNome() : null);
+            preparedStatement.setObject(2, usuario.getEmail() != null && !usuario.getEmail().isEmpty() ? usuario.getEmail() : null);
+            preparedStatement.setObject(3, usuario.getSenha() != null && !usuario.getSenha().isEmpty() ? usuario.getSenha() : null);
+            preparedStatement.setObject(4, usuario.getNascimento() != null ? new java.sql.Date(usuario.getNascimento().getTime()) : null);
+            preparedStatement.setObject(5, usuario.getCpf() != null && !usuario.getCpf().isEmpty() ? usuario.getCpf() : null);
+            preparedStatement.setObject(6, usuario.getRg() != null && !usuario.getRg().isEmpty() ? usuario.getRg() : null);
+            preparedStatement.setObject(7, usuario.getLogradouro() != null && !usuario.getLogradouro().isEmpty() ? usuario.getLogradouro() : null);
+            preparedStatement.setObject(8, usuario.getNumero() > 0 ? usuario.getNumero() : null);
+            preparedStatement.setObject(9, usuario.getComplemento() != null && !usuario.getComplemento().isEmpty() ? usuario.getComplemento() : null);
+            preparedStatement.setObject(10, usuario.getBairro() != null && !usuario.getBairro().isEmpty() ? usuario.getBairro() : null);
+            preparedStatement.setObject(11, usuario.getCidade() != null && !usuario.getCidade().isEmpty() ? usuario.getCidade() : null);
+            preparedStatement.setObject(12, usuario.getEstado() != null && !usuario.getEstado().isEmpty() ? usuario.getEstado() : null);
+            preparedStatement.setObject(13, usuario.getTelefoneComercial() != null && !usuario.getTelefoneComercial().isEmpty() ? usuario.getTelefoneComercial() : null);
+            preparedStatement.setObject(14, usuario.getCelular() != null && !usuario.getCelular().isEmpty() ? usuario.getCelular() : null);
+            preparedStatement.setInt(15, usuario.getIdUsuario()); // ID do usuário para a cláusula WHERE
+
+            // Executando a atualização
+            int rowsAffected = preparedStatement.executeUpdate(); // Use executeUpdate para um UPDATE
+
+            if (rowsAffected > 0) {
+                System.out.println("success in update usuario with id " + usuario.getIdUsuario());
+            } else {
+                System.out.println("No rows affected, check if the provided ID is correct.");
+            }
+
+            connection.close(); // Fechando a conexão
+        } catch (Exception e) {
+            System.out.println("fail in database connection usuario " + e.getMessage());
+        }
+    }
+
 
 
 }

@@ -16,18 +16,26 @@ public class CreateProfessorServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String idProfessorStr = req.getParameter("idProfessor");
         String idUsuarioStr = req.getParameter("professor-id-usuario");
         String salarioStr = req.getParameter("professor-salario");
 
         try {
             int idUsuario = Integer.parseInt(idUsuarioStr);
             BigDecimal salario = new BigDecimal(salarioStr);
+            ProfessorDao professorDao = new ProfessorDao();
+            Professor professor;
 
-            Professor professor = new Professor(idUsuario, salario);
+            if (idProfessorStr == null || idProfessorStr.isBlank()) {
+                professor = new Professor(idUsuario, salario);
+                professorDao.createProfessor(professor);
+            } else {
+                int idProfessor = Integer.parseInt(idProfessorStr);
+                professor = new Professor(idProfessor, idUsuario, salario);
+                professorDao.updateProfessor(professor);
+            }
 
-            new ProfessorDao().createProfessor(professor);
-
-            resp.sendRedirect("/find-all-professores");
+            resp.sendRedirect("/find-all");
         } catch (NumberFormatException e) {
             req.setAttribute("error", "Invalid input format.");
             req.getRequestDispatcher("home.jsp").forward(req, resp);

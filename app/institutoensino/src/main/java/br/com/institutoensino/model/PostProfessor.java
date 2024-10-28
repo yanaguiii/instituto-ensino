@@ -9,7 +9,8 @@ public class PostProfessor {
     private int idProfessor;
     private int idMateria;
 
-    public PostProfessor() {}
+    public PostProfessor() {
+    }
 
     public PostProfessor(int idPost, String conteudo, Date data, int idProfessor, int idMateria) {
         this.idPost = idPost;

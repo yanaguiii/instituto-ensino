@@ -1,4 +1,5 @@
 package br.com.institutoensino.model;
+
 public class Curso {
     private int idCurso;
     private String nome;
@@ -8,7 +9,8 @@ public class Curso {
     private String turno;
     private String descricao;
 
-    public Curso(){}
+    public Curso() {
+    }
 
     public Curso(int idCurso, String nome, String modalidade, float duracao, String campus, String turno, String descricao) {
         this.idCurso = idCurso;

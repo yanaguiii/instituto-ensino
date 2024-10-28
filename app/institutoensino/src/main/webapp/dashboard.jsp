@@ -1,18 +1,19 @@
 <!DOCTYPE html>
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <html>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <head>
     <meta charset="UTF-8">
     <title>Dashboard</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
 </head>
 <body>
-<h1>Cursos</h1>
-<br>
 
 <div class="container-fluid">
+    <h1>Cursos</h1>
+    <br>
     <table class="table">
         <thead>
         <tr>
@@ -36,15 +37,22 @@
                 <td>${curso.turno}</td>
                 <td>${curso.descricao}</td>
                 <td>
+                    <!-- Formulário de exclusão -->
                     <form action="/delete-curso" method="post">
-                        <input type="hidden" id="idCurso" name="idCurso" value="${curso.idCurso}">
+                        <input type="hidden" name="idCurso" value="${curso.idCurso}">
                         <button type="submit">Delete</button>
-                    </form>
-                </td>
 
+                        <span> | </span>
+
+                        <a href="index.jsp?idCurso=${curso.idCurso}&curso-nome=${curso.nome}&curso-modalidade=${curso.modalidade}&curso-duracao=${curso.duracao}&curso-campus=${curso.campus}&curso-turno=${curso.turno}&curso-descricao=${curso.descricao}">Update Curso</a>
+                    </form>
+
+                </td>
             </tr>
         </c:forEach>
         </tbody>
+
+
     </table>
 
     <h1>Usuários</h1>
@@ -61,6 +69,7 @@
             <th>Logradouro</th>
             <th>Número</th>
             <th>Complemento</th>
+            <th>Bairro</th>
             <th>Cidade</th>
             <th>Estado</th>
             <th>Celular</th>
@@ -88,9 +97,13 @@
                     <form action="/delete-usuario" method="post">
                         <input type="hidden" id="idUsuario" name="idUsuario" value="${usuario.idUsuario}">
                         <button type="submit">Delete</button>
+
+                    <span>|</span>
+
+                        <a href="index.jsp?idUsuario=${usuario.idUsuario}&usuario-nome=${usuario.nome}&usuario-email=${usuario.email}&usuario-senha=${usuario.senha}&usuario-nascimento=${usuario.nascimento}&usuario-cpf=${usuario.cpf}&usuario-rg=${usuario.rg}&usuario-logradouro=${usuario.logradouro}&usuario-numero=${usuario.numero}&usuario-complemento=${usuario.complemento}&usuario-bairro=${usuario.bairro}&usuario-cidade=${usuario.cidade}&usuario-estado=${usuario.estado}&usuario-telefone-comercial=${usuario.telefoneComercial}&usuario-celular=${usuario.celular}">Update User</a>
+
                     </form>
                 </td>
-
             </tr>
         </c:forEach>
         </tbody>
@@ -140,7 +153,12 @@
                     <form action="/delete-aluno" method="post">
                         <input type="hidden" id="idAluno" name="idAluno" value="${aluno.idAluno}">
                         <button type="submit">Delete</button>
+
+                        <span> | </span>
+
+                        <a href="index.jsp?idAluno=${aluno.idAluno}&aluno-matricula=${aluno.matricula}">Update Aluno</a>
                     </form>
+
                 </td>
             </tr>
         </c:forEach>

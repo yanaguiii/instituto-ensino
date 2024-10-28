@@ -15,6 +15,7 @@ public class CreateMateriaServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String idMateriaStr = req.getParameter("idMateria");
         String nome = req.getParameter("materia-nome");
         String idCursoStr = req.getParameter("materia-id-curso");
         String idProfessorStr = req.getParameter("materia-id-professor");
@@ -22,12 +23,19 @@ public class CreateMateriaServlet extends HttpServlet {
         try {
             int idCurso = Integer.parseInt(idCursoStr);
             int idProfessor = Integer.parseInt(idProfessorStr);
+            MateriaDao materiaDao = new MateriaDao();
+            Materia materia;
 
-            Materia materia = new Materia(nome, idCurso, idProfessor);
+            if (idMateriaStr == null || idMateriaStr.isBlank()) {
+                materia = new Materia(nome, idCurso, idProfessor);
+                materiaDao.createMateria(materia);
+            } else {
+                int idMateria = Integer.parseInt(idMateriaStr);
+                materia = new Materia(idMateria, nome, idCurso, idProfessor);
+                materiaDao.updateMateria(materia);
+            }
 
-            new MateriaDao().createMateria(materia);
-
-            resp.sendRedirect("/find-all-materias");
+            resp.sendRedirect("/find-all");
         } catch (NumberFormatException e) {
             req.setAttribute("error", "Invalid input format.");
             req.getRequestDispatcher("home.jsp").forward(req, resp);

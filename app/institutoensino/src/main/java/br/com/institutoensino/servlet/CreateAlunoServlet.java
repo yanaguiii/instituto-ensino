@@ -15,20 +15,32 @@ public class CreateAlunoServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        String idAlunoStr = req.getParameter("idAluno");
         String idUsuarioStr = req.getParameter("aluno-id-usuario");
         String matricula = req.getParameter("aluno-matricula");
 
         try {
             int idUsuario = Integer.parseInt(idUsuarioStr);
+            AlunoDao alunoDao = new AlunoDao();
+            Aluno aluno;
 
-            Aluno aluno = new Aluno(idUsuario, matricula);
+            if (idAlunoStr == null || idAlunoStr.isBlank()) {
+                // Criação de um novo aluno se o idAluno não estiver presente ou estiver em branco
+                aluno = new Aluno(idUsuario, matricula);
+                alunoDao.createAluno(aluno);
+            } else {
+                // Atualização do aluno existente se o idAluno estiver presente
+                int idAluno = Integer.parseInt(idAlunoStr);
+                aluno = new Aluno(idAluno, idUsuario, matricula); // Inclui o ID do aluno para atualização
+                alunoDao.updateAluno(aluno);
+            }
 
-            new AlunoDao().createAluno(aluno);
-
-            resp.sendRedirect("/find-all-alunos");
+            resp.sendRedirect("/find-all");
         } catch (NumberFormatException e) {
-            req.setAttribute("error", "Invalid input format.");
+            req.setAttribute("error", "Formato de entrada inválido.");
             req.getRequestDispatcher("home.jsp").forward(req, resp);
         }
     }
 }
+

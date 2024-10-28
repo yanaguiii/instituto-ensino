@@ -18,12 +18,12 @@ public class ListCursoServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-            CursoDao cursoDao = new CursoDao();
-            List<Curso> cursos = cursoDao.findAllCursos();
+        CursoDao cursoDao = new CursoDao();
+        List<Curso> cursos = cursoDao.findAllCursos();
 
-            req.setAttribute("cursos", cursos);
+        req.setAttribute("cursos", cursos);
 
-            req.getRequestDispatcher("/dashboard.jsp").forward(req, resp);
+        req.getRequestDispatcher("/dashboard.jsp").forward(req, resp);
 
     }
 }

@@ -1,7 +1,6 @@
 package br.com.institutoensino.dao;
 
 import br.com.institutoensino.model.Aluno;
-import br.com.institutoensino.model.Curso;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -74,6 +73,7 @@ public class AlunoDao {
         }
 
     }
+
     public void deleteAlunoById(int idAluno) {
         String SQL = "DELETE FROM ALUNO WHERE ID_ALUNO = ?";
 
@@ -90,6 +90,34 @@ public class AlunoDao {
 
         } catch (Exception e) {
             System.out.println("fail in database connection aluno " + e.getMessage());
+        }
+    }
+
+    public void updateAluno(Aluno aluno) {
+
+        String SQL = "UPDATE ALUNO SET MATRICULA = ? WHERE ID_ALUNO = ?";
+
+        try {
+
+            Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa","sa");
+
+            System.out.println("success in database connection");
+
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL);
+
+            preparedStatement.setString(1, aluno.getMatricula());
+            preparedStatement.setInt(2, aluno.getIdAluno());
+            preparedStatement.execute();
+
+            System.out.println("success in update aluno with id " + aluno.getIdAluno());
+
+            connection.close();
+
+        } catch (Exception e) {
+
+            System.out.println("fail in database connection");
+            System.out.println("Error: " + e.getMessage());
+
         }
     }
 }

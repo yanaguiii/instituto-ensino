@@ -84,4 +84,36 @@ public class ProfessorDao {
         }
     }
 
+    public void updateProfessor(Professor professor) {
+        // String SQL para a atualização do professor
+        String SQL = "UPDATE PROFESSOR SET ID_USUARIO = ?, SALARIO = ? WHERE ID_PROFESSOR = ?";
+
+        try {
+            // Conexão ao banco de dados
+            Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+            System.out.println("success in database connection");
+
+            // Preparando o statement
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL);
+            preparedStatement.setObject(1, professor.getIdUsuario() > 0 ? professor.getIdUsuario() : null);
+            preparedStatement.setObject(2, professor.getSalario() != null ? professor.getSalario() : null);
+            preparedStatement.setInt(3, professor.getIdProfessor()); // Adicionando o ID do professor para a cláusula WHERE
+
+            // Executando a atualização
+            int rowsAffected = preparedStatement.executeUpdate(); // Use executeUpdate para um UPDATE
+
+            if (rowsAffected > 0) {
+                System.out.println("success in update professor with id " + professor.getIdProfessor());
+            } else {
+                System.out.println("No rows affected, check if the provided ID is correct.");
+            }
+
+            connection.close(); // Fechando a conexão
+        } catch (Exception e) {
+            System.out.println("fail in database connection professor " + e.getMessage());
+        }
+    }
+
+
+
 }

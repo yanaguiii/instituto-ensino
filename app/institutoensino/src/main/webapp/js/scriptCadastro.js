@@ -29,7 +29,7 @@ document.querySelector('button[type="submit"]').addEventListener('click', functi
         const height = errorMsg.offsetHeight;
         errorMsg.style.height = `${height}px`; // Define a altura para o valor calculado
 
-        document.getElementById("confirm-email-group").scrollIntoView({ behavior: "smooth" });
+        document.getElementById("confirm-email-group").scrollIntoView({behavior: "smooth"});
         valid = false;
 
         // Adiciona o efeito de desvanecimento após 5 segundos
@@ -54,7 +54,7 @@ document.querySelector('button[type="submit"]').addEventListener('click', functi
         const height = errorMsg.offsetHeight;
         errorMsg.style.height = `${height}px`; // Define a altura para o valor calculado
 
-        document.getElementById("confirm-password-group").scrollIntoView({ behavior: "smooth" });
+        document.getElementById("confirm-password-group").scrollIntoView({behavior: "smooth"});
         valid = false;
 
         // Adiciona o efeito de desvanecimento após 5 segundos

@@ -12,7 +12,7 @@ import java.io.IOException;
 public class DeleteAlunoServlet extends HttpServlet {
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException{
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         int idAluno = Integer.parseInt(req.getParameter("idAluno"));
 
         new AlunoDao().deleteAlunoById(idAluno);

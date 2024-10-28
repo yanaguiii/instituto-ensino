@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     const togglePassword = document.querySelector("#togglePassword");
     const passwordField = document.querySelector("#password");
 

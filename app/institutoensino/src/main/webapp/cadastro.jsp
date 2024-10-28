@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -36,7 +36,8 @@
 
                 <div class="form-group" id="confirm-email-group">
                     <label for="confirm-email">Confirme seu email</label>
-                    <input type="email" id="confirm-email" name="confirm-email" placeholder="Confirme seu email" required>
+                    <input type="email" id="confirm-email" name="confirm-email" placeholder="Confirme seu email"
+                           required>
                     <span class="error-message" id="confirm-email-error"></span>
                 </div>
             </div>
@@ -51,7 +52,8 @@
 
                 <div class="form-group" id="confirm-password-group">
                     <label for="confirm-password">Confirme sua senha</label>
-                    <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirme sua senha" required>
+                    <input type="password" id="confirm-password" name="confirm-password"
+                           placeholder="Confirme sua senha" required>
                     <span class="error-message" id="confirm-password-error"></span>
                 </div>
             </div>
@@ -81,11 +83,13 @@
             <div class="form-row">
                 <div class="form-group">
                     <label>RG</label>
-                    <input type="text" id="rg" name="usuario-rg" placeholder="00.000.000-0" oninput="formatRG(this)" required maxlength="12">
+                    <input type="text" id="rg" name="usuario-rg" placeholder="00.000.000-0" oninput="formatRG(this)"
+                           required maxlength="12">
                 </div>
                 <div class="form-group">
                     <label>CPF</label>
-                    <input type="text" id="cpf" name="usuario-cpf" placeholder="000.000.000-00" oninput="formatCPF(this)" required maxlength="14">
+                    <input type="text" id="cpf" name="usuario-cpf" placeholder="000.000.000-00"
+                           oninput="formatCPF(this)" required maxlength="14">
                 </div>
             </div>
 

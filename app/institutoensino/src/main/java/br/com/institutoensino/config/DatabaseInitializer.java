@@ -1,7 +1,5 @@
 package br.com.institutoensino.config;
 
-import br.com.institutoensino.config.ConnectionPoolConfig;
-
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
