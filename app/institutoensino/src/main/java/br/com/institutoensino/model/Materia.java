@@ -2,24 +2,24 @@ package br.com.institutoensino.model;
 
 public class Materia {
     private int idMateria;
-    private String nome;
-    private int idCurso;
-    private int idProfessor;
+    private String nomeMateria;
+    private int materiaIdCurso;
+    private int materiaIdProfessor;
 
     public Materia() {
     }
 
-    public Materia(int idMateria, String nome, int idCurso, int idProfessor) {
+    public Materia(int idMateria, String nomeMateria, int materiaIdCurso, int materiaIdProfessor) {
         this.idMateria = idMateria;
-        this.nome = nome;
-        this.idCurso = idCurso;
-        this.idProfessor = idProfessor;
+        this.nomeMateria = nomeMateria;
+        this.materiaIdCurso = materiaIdCurso;
+        this.materiaIdProfessor = materiaIdProfessor;
     }
 
-    public Materia(String nome, int idCurso, int idProfessor) {
-        this.nome = nome;
-        this.idCurso = idCurso;
-        this.idProfessor = idProfessor;
+    public Materia(String nomeMateria, int materiaIdCurso, int materiaIdProfessor) {
+        this.nomeMateria = nomeMateria;
+        this.materiaIdCurso = materiaIdCurso;
+        this.materiaIdProfessor = materiaIdProfessor;
     }
 
     public int getIdMateria() {
@@ -30,27 +30,27 @@ public class Materia {
         this.idMateria = idMateria;
     }
 
-    public String getNome() {
-        return nome;
+    public String getNomeMateria() {
+        return nomeMateria;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setNomeMateria(String nomeMateria) {
+        this.nomeMateria = nomeMateria;
     }
 
-    public int getIdCurso() {
-        return idCurso;
+    public int getMateriaIdCurso() {
+        return materiaIdCurso;
     }
 
-    public void setIdCurso(int idCurso) {
-        this.idCurso = idCurso;
+    public void setMateriaIdCurso(int materiaIdCurso) {
+        this.materiaIdCurso = materiaIdCurso;
     }
 
-    public int getIdProfessor() {
-        return idProfessor;
+    public int getMateriaIdProfessor() {
+        return materiaIdProfessor;
     }
 
-    public void setIdProfessor(int idProfessor) {
-        this.idProfessor = idProfessor;
+    public void setMateriaIdProfessor(int materiaIdProfessor) {
+        this.materiaIdProfessor = materiaIdProfessor;
     }
 }

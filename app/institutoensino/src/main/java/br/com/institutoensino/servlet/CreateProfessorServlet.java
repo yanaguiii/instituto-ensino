@@ -22,7 +22,7 @@ public class CreateProfessorServlet extends HttpServlet {
 
         try {
             int idUsuario = Integer.parseInt(idUsuarioStr);
-            BigDecimal salario = new BigDecimal(salarioStr);
+            double salario = Double.parseDouble(salarioStr);
             ProfessorDao professorDao = new ProfessorDao();
             Professor professor;
 

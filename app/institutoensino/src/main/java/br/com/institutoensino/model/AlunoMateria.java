@@ -3,35 +3,35 @@ package br.com.institutoensino.model;
 import java.math.BigDecimal;
 
 public class AlunoMateria {
-    private int idAluno;
-    private int idMateria;
+    private int alunoMateriaIdAluno;
+    private int alunoMateriaIdMateria;
     private BigDecimal nota;
     private int faltas;
 
     public AlunoMateria() {
     }
 
-    public AlunoMateria(int idAluno, int idMateria, BigDecimal nota, int faltas) {
-        this.idAluno = idAluno;
-        this.idMateria = idMateria;
+    public AlunoMateria(int alunoMateriaIdAluno, int alunoMateriaIdMateria, BigDecimal nota, int faltas) {
+        this.alunoMateriaIdAluno = alunoMateriaIdAluno;
+        this.alunoMateriaIdMateria = alunoMateriaIdMateria;
         this.nota = nota;
         this.faltas = faltas;
     }
 
-    public int getIdAluno() {
-        return idAluno;
+    public int getAlunoMateriaIdAluno() {
+        return alunoMateriaIdAluno;
     }
 
-    public void setIdAluno(int idAluno) {
-        this.idAluno = idAluno;
+    public void setAlunoMateriaIdAluno(int alunoMateriaIdAluno) {
+        this.alunoMateriaIdAluno = alunoMateriaIdAluno;
     }
 
-    public int getIdMateria() {
-        return idMateria;
+    public int getAlunoMateriaIdMateria() {
+        return alunoMateriaIdMateria;
     }
 
-    public void setIdMateria(int idMateria) {
-        this.idMateria = idMateria;
+    public void setAlunoMateriaIdMateria(int alunoMateriaIdMateria) {
+        this.alunoMateriaIdMateria = alunoMateriaIdMateria;
     }
 
     public BigDecimal getNota() {

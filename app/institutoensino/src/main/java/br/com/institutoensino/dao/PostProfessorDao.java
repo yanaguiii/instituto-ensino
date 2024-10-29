@@ -23,8 +23,8 @@ public class PostProfessorDao {
             PreparedStatement preparedStatement = connection.prepareStatement(SQL);
             preparedStatement.setString(1, postProfessor.getConteudo());
             preparedStatement.setDate(2, new java.sql.Date(postProfessor.getData().getTime()));
-            preparedStatement.setInt(3, postProfessor.getIdProfessor());
-            preparedStatement.setInt(4, postProfessor.getIdMateria());
+            preparedStatement.setInt(3, postProfessor.getPostIdProfessor());
+            preparedStatement.setInt(4, postProfessor.getPostIdMateria());
             preparedStatement.execute();
 
             System.out.println("success in insert postProfessor");
@@ -102,8 +102,8 @@ public class PostProfessorDao {
             PreparedStatement preparedStatement = connection.prepareStatement(SQL);
             preparedStatement.setObject(1, postProfessor.getConteudo() != null && !postProfessor.getConteudo().isEmpty() ? postProfessor.getConteudo() : null);
             preparedStatement.setObject(2, postProfessor.getData() != null ? new java.sql.Date(postProfessor.getData().getTime()) : null);
-            preparedStatement.setObject(3, postProfessor.getIdProfessor() > 0 ? postProfessor.getIdProfessor() : null);
-            preparedStatement.setObject(4, postProfessor.getIdMateria() > 0 ? postProfessor.getIdMateria() : null);
+            preparedStatement.setObject(3, postProfessor.getPostIdProfessor() > 0 ? postProfessor.getPostIdProfessor() : null);
+            preparedStatement.setObject(4, postProfessor.getPostIdMateria() > 0 ? postProfessor.getPostIdMateria() : null);
             preparedStatement.setInt(5, postProfessor.getIdPost()); // Adicionando o ID do post para a cláusula WHERE
 
             // Executando a atualização

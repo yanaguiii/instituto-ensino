@@ -6,25 +6,25 @@ public class PostProfessor {
     private int idPost;
     private String conteudo;
     private Date data;
-    private int idProfessor;
-    private int idMateria;
+    private int postIdProfessor;
+    private int postIdMateria;
 
     public PostProfessor() {
     }
 
-    public PostProfessor(int idPost, String conteudo, Date data, int idProfessor, int idMateria) {
+    public PostProfessor(int idPost, String conteudo, Date data, int postIdProfessor, int postIdMateria) {
         this.idPost = idPost;
         this.conteudo = conteudo;
         this.data = data;
-        this.idProfessor = idProfessor;
-        this.idMateria = idMateria;
+        this.postIdProfessor = postIdProfessor;
+        this.postIdMateria = postIdMateria;
     }
 
-    public PostProfessor(String conteudo, Date data, int idProfessor, int idMateria) {
+    public PostProfessor(String conteudo, Date data, int postIdProfessor, int postIdMateria) {
         this.conteudo = conteudo;
         this.data = data;
-        this.idProfessor = idProfessor;
-        this.idMateria = idMateria;
+        this.postIdProfessor = postIdProfessor;
+        this.postIdMateria = postIdMateria;
     }
 
     public int getIdPost() {
@@ -51,20 +51,20 @@ public class PostProfessor {
         this.data = data;
     }
 
-    public int getIdProfessor() {
-        return idProfessor;
+    public int getPostIdProfessor() {
+        return postIdProfessor;
     }
 
-    public void setIdProfessor(int idProfessor) {
-        this.idProfessor = idProfessor;
+    public void setPostIdProfessor(int postIdProfessor) {
+        this.postIdProfessor = postIdProfessor;
     }
 
-    public int getIdMateria() {
-        return idMateria;
+    public int getPostIdMateria() {
+        return postIdMateria;
     }
 
-    public void setIdMateria(int idMateria) {
-        this.idMateria = idMateria;
+    public void setPostIdMateria(int postIdMateria) {
+        this.postIdMateria = postIdMateria;
     }
 }
 

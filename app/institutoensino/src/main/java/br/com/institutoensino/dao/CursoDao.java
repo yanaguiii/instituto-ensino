@@ -1,6 +1,5 @@
 package br.com.institutoensino.dao;
 
-import br.com.institutoensino.model.Aluno;
 import br.com.institutoensino.model.Curso;
 
 import java.sql.Connection;
@@ -26,7 +25,7 @@ public class CursoDao {
 
             preparedStatement = connection.prepareStatement(SQL);
 
-            preparedStatement.setString(1, curso.getNome());
+            preparedStatement.setString(1, curso.getNomeCurso());
             preparedStatement.setString(2, curso.getModalidade());
             preparedStatement.setFloat(3, curso.getDuracao());
             preparedStatement.setString(4, curso.getCampus());
@@ -113,20 +112,24 @@ public class CursoDao {
         // String SQL para a atualização do curso
         String SQL = "UPDATE CURSO SET NOME = ?, MODALIDADE = ?, DURACAO = ?, CAMPUS = ?, TURNO = ?, DESCRICAO = ? WHERE ID_CURSO = ?";
 
+        PreparedStatement preparedStatement = null;
+
         try {
             // Conexão ao banco de dados
             Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
             System.out.println("success in database connection");
 
             // Preparando o statement
-            PreparedStatement preparedStatement = connection.prepareStatement(SQL);
-            preparedStatement.setObject(1, curso.getNome());
-            preparedStatement.setObject(2, curso.getModalidade());
-            preparedStatement.setObject(3, curso.getDuracao());
-            preparedStatement.setObject(4, curso.getCampus());
-            preparedStatement.setObject(5, curso.getTurno());
-            preparedStatement.setObject(6, curso.getDescricao());
-            preparedStatement.setInt(7, curso.getIdCurso()); // Adicionando o ID do curso para a cláusula WHERE
+            preparedStatement = connection.prepareStatement(SQL);
+
+            preparedStatement.setString(1, curso.getNomeCurso());
+            preparedStatement.setString(2, curso.getModalidade());
+            preparedStatement.setFloat(3, curso.getDuracao());
+            preparedStatement.setString(4, curso.getCampus());
+            preparedStatement.setString(5, curso.getTurno());
+            preparedStatement.setString(6, curso.getDescricao());
+            preparedStatement.setInt(7, curso.getIdCurso());
+            preparedStatement.execute();
 
             // Executando a atualização
             int rowsAffected = preparedStatement.executeUpdate(); // Use executeUpdate para um UPDATE

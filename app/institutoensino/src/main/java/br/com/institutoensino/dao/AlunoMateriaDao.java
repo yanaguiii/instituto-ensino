@@ -21,8 +21,8 @@ public class AlunoMateriaDao {
             System.out.println("success in database connection");
 
             PreparedStatement preparedStatement = connection.prepareStatement(SQL);
-            preparedStatement.setInt(1, alunoMateria.getIdAluno());
-            preparedStatement.setInt(2, alunoMateria.getIdMateria());
+            preparedStatement.setInt(1, alunoMateria.getAlunoMateriaIdAluno());
+            preparedStatement.setInt(2, alunoMateria.getAlunoMateriaIdMateria());
             preparedStatement.setBigDecimal(3, alunoMateria.getNota());
             preparedStatement.setInt(4, alunoMateria.getFaltas());
             preparedStatement.execute();
@@ -98,13 +98,13 @@ public class AlunoMateriaDao {
             PreparedStatement preparedStatement = connection.prepareStatement(SQL);
             preparedStatement.setObject(1, alunoMateria.getNota());
             preparedStatement.setObject(2, alunoMateria.getFaltas());
-            preparedStatement.setInt(3, alunoMateria.getIdAluno());
-            preparedStatement.setInt(4, alunoMateria.getIdMateria());
+            preparedStatement.setInt(3, alunoMateria.getAlunoMateriaIdAluno());
+            preparedStatement.setInt(4, alunoMateria.getAlunoMateriaIdMateria());
 
             int rowsAffected = preparedStatement.executeUpdate(); // Use executeUpdate para um UPDATE
 
             if (rowsAffected > 0) {
-                System.out.println("success in update alunoMateria with idAluno " + alunoMateria.getIdAluno() + " and idMateria " + alunoMateria.getIdMateria());
+                System.out.println("success in update alunoMateria with idAluno " + alunoMateria.getAlunoMateriaIdAluno() + " and idMateria " + alunoMateria.getAlunoMateriaIdMateria());
             } else {
                 System.out.println("No rows affected, check if the provided IDs are correct.");
             }

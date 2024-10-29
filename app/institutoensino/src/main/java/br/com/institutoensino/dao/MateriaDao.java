@@ -20,9 +20,9 @@ public class MateriaDao {
             System.out.println("success in database connection");
 
             PreparedStatement preparedStatement = connection.prepareStatement(SQL);
-            preparedStatement.setString(1, materia.getNome());
-            preparedStatement.setInt(2, materia.getIdCurso());
-            preparedStatement.setInt(3, materia.getIdProfessor());
+            preparedStatement.setString(1, materia.getNomeMateria());
+            preparedStatement.setInt(2, materia.getMateriaIdCurso());
+            preparedStatement.setInt(3, materia.getMateriaIdProfessor());
             preparedStatement.execute();
 
             System.out.println("success in insert materia");
@@ -95,9 +95,9 @@ public class MateriaDao {
 
             // Preparando o statement
             PreparedStatement preparedStatement = connection.prepareStatement(SQL);
-            preparedStatement.setObject(1, materia.getNome());
-            preparedStatement.setObject(2, materia.getIdCurso());
-            preparedStatement.setObject(3, materia.getIdProfessor());
+            preparedStatement.setObject(1, materia.getNomeMateria());
+            preparedStatement.setObject(2, materia.getMateriaIdCurso());
+            preparedStatement.setObject(3, materia.getMateriaIdProfessor());
             preparedStatement.setInt(4, materia.getIdMateria()); // Adicionando o ID da matéria para a cláusula WHERE
 
             // Executando a atualização

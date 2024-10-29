@@ -20,7 +20,7 @@ public class AlunoDao {
             System.out.println("success in database connection");
 
             PreparedStatement preparedStatement = connection.prepareStatement(SQL);
-            preparedStatement.setInt(1, aluno.getIdUsuario());
+            preparedStatement.setInt(1, aluno.getAlunoIdUsuario());
             preparedStatement.setString(2, aluno.getMatricula());
             preparedStatement.execute();
 

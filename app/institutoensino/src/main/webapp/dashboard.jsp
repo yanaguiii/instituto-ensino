@@ -30,7 +30,7 @@
         <c:forEach var="curso" items="${cursos}">
             <tr>
                 <td>${curso.idCurso}</td>
-                <td>${curso.nome}</td>
+                <td>${curso.nomeCurso}</td>
                 <td>${curso.modalidade}</td>
                 <td>${curso.duracao}</td>
                 <td>${curso.campus}</td>
@@ -41,11 +41,11 @@
                     <form action="/delete-curso" method="post">
                         <input type="hidden" name="idCurso" value="${curso.idCurso}">
                         <button type="submit">Delete</button>
+                    </form>
 
                         <span> | </span>
 
-                        <a href="index.jsp?idCurso=${curso.idCurso}&curso-nome=${curso.nome}&curso-modalidade=${curso.modalidade}&curso-duracao=${curso.duracao}&curso-campus=${curso.campus}&curso-turno=${curso.turno}&curso-descricao=${curso.descricao}">Update Curso</a>
-                    </form>
+                    <a href="index.jsp?idCurso=${curso.idCurso}&nomeCurso=${curso.nomeCurso}&modalidade=${curso.modalidade}&duracao=${curso.duracao}&campus=${curso.campus}&turno=${curso.turno}&descricao=${curso.descricao}">Update</a>
 
                 </td>
             </tr>
@@ -80,7 +80,7 @@
         <c:forEach var="usuario" items="${usuarios}">
             <tr>
                 <td>${usuario.idUsuario}</td>
-                <td>${usuario.nome}</td>
+                <td>${usuario.nomeUsuario}</td>
                 <td>${usuario.email}</td>
                 <td>${usuario.nascimento}</td>
                 <td>${usuario.cpf}</td>
@@ -100,7 +100,7 @@
 
                     <span>|</span>
 
-                        <a href="index.jsp?idUsuario=${usuario.idUsuario}&usuario-nome=${usuario.nome}&usuario-email=${usuario.email}&usuario-senha=${usuario.senha}&usuario-nascimento=${usuario.nascimento}&usuario-cpf=${usuario.cpf}&usuario-rg=${usuario.rg}&usuario-logradouro=${usuario.logradouro}&usuario-numero=${usuario.numero}&usuario-complemento=${usuario.complemento}&usuario-bairro=${usuario.bairro}&usuario-cidade=${usuario.cidade}&usuario-estado=${usuario.estado}&usuario-telefone-comercial=${usuario.telefoneComercial}&usuario-celular=${usuario.celular}">Update User</a>
+                        <a href="index.jsp?idUsuario=${usuario.idUsuario}&nomeUsuario=${usuario.nomeUsuario}&email=${usuario.email}&senha=${usuario.senha}&nascimento=${usuario.nascimento}&cpf=${usuario.cpf}&rg=${usuario.rg}&logradouro=${usuario.logradouro}&numero=${usuario.numero}&complemento=${usuario.complemento}&bairro=${usuario.bairro}&cidade=${usuario.cidade}&estado=${usuario.estado}&telefoneComercial=${usuario.telefoneComercial}&celular=${usuario.celular}">Update User</a>
 
                     </form>
                 </td>
@@ -116,6 +116,7 @@
         <tr>
             <th>ID Professor</th>
             <th>Salário</th>
+            <th>ID Usuário associado</th>
         </tr>
         </thead>
         <tbody>
@@ -123,11 +124,17 @@
             <tr>
                 <td>${professor.idProfessor}</td>
                 <td>${professor.salario}</td>
+                <td>${professor.professorIdUsuario}</td>
                 <td>
                     <form action="/delete-professor" method="post">
                         <input type="hidden" id="idProfessor" name="idProfessor" value="${professor.idProfessor}">
                         <button type="submit">Delete</button>
                     </form>
+
+                    <span> | </span>
+
+                    <a href="index.jsp?idProfessor=${professor.idProfessor}&salario=${professor.salario}&professorIdUsuario=${professor.professorIdUsuario}">Update</a>
+
                 </td>
 
             </tr>
@@ -142,6 +149,7 @@
         <tr>
             <th>ID Aluno</th>
             <th>Matricula</th>
+            <th>ID Usuário associado</th>
         </tr>
         </thead>
         <tbody>
@@ -149,6 +157,7 @@
             <tr>
                 <td>${aluno.idAluno}</td>
                 <td>${aluno.matricula}</td>
+                <td>${aluno.alunoIdUsuario}</td>
                 <td>
                     <form action="/delete-aluno" method="post">
                         <input type="hidden" id="idAluno" name="idAluno" value="${aluno.idAluno}">
@@ -156,7 +165,7 @@
 
                         <span> | </span>
 
-                        <a href="index.jsp?idAluno=${aluno.idAluno}&aluno-matricula=${aluno.matricula}">Update Aluno</a>
+                        <a href="index.jsp?idAluno=${aluno.idAluno}&matricula=${aluno.matricula}&alunoIdUsuario=${aluno.alunoIdUsuario}">Update</a>
                     </form>
 
                 </td>
@@ -172,22 +181,27 @@
         <tr>
             <th>ID Matéria</th>
             <th>Nome</th>
-            <th>ID Curso</th>
-            <th>ID Professor</th>
+            <th>ID Curso associado</th>
+            <th>ID Professor associado</th>
         </tr>
         </thead>
         <tbody>
         <c:forEach var="materia" items="${materias}">
             <tr>
                 <td>${materia.idMateria}</td>
-                <td>${materia.nome}</td>
-                <td>${materia.idCurso}</td>
-                <td>${materia.idProfessor}</td>
+                <td>${materia.nomeMateria}</td>
+                <td>${materia.materiaIdCurso}</td>
+                <td>${materia.materiaIdProfessor}</td>
                 <td>
                     <form action="/delete-materia" method="post">
                         <input type="hidden" id="idMateria" name="idMateria" value="${materia.idMateria}">
                         <button type="submit">Delete</button>
                     </form>
+
+                    <span> | </span>
+
+                    <a href="index.jsp?idMateria=${materia.idMateria}&nomeMateria=${materia.nomeMateria}&materiaIdCurso=${materia.materiaIdCurso}&materiaIdProfessor=${materia.materiaIdProfessor}">Update</a>
+
                 </td>
 
             </tr>
@@ -200,8 +214,8 @@
     <table class="table">
         <thead>
         <tr>
-            <th>ID Aluno</th>
-            <th>ID Materia</th>
+            <th>ID Aluno associado</th>
+            <th>ID Materia associada</th>
             <th>Nota</th>
             <th>Faltas</th>
         </tr>
@@ -209,16 +223,21 @@
         <tbody>
         <c:forEach var="alunoMateria" items="${alunoMaterias}">
             <tr>
-                <td>${alunoMateria.idAluno}</td>
-                <td>${alunoMateria.idMateria}</td>
+                <td>${alunoMateria.alunoMateriaIdAluno}</td>
+                <td>${alunoMateria.alunoMateriaIdMateria}</td>
                 <td>${alunoMateria.nota}</td>
                 <td>${alunoMateria.faltas}</td>
                 <td>
                     <form action="/delete-aluno-materia" method="post">
-                        <input type="hidden" id="idAlunoMateria" name="idAluno" value="${alunoMateria.idAluno}">
-                        <input type="hidden" id="idMateriaAluno" name="idMateria" value="${alunoMateria.idMateria}">
+                        <input type="hidden" id="idAlunoMateria" name="alunoMateriaIdAluno" value="${alunoMateria.alunoMateriaIdAluno}">
+                        <input type="hidden" id="idMateriaAluno" name="alunoMateriaIdMateria" value="${alunoMateria.alunoMateriaIdMateria}">
                         <button type="submit">Delete</button>
                     </form>
+
+                    <span> | </span>
+
+                    <a href="index.jsp?alunoMateriaIdAluno=${alunoMateria.alunoMateriaIdAluno}&alunoMateriaIdMateria=${alunoMateria.alunoMateriaIdMateria}&nota=${alunoMateria.nota}&faltas=${alunoMateria.faltas}">Update</a>
+
                 </td>
 
             </tr>
@@ -234,23 +253,28 @@
             <th>ID Post</th>
             <th>Conteúdo</th>
             <th>Data</th>
-            <th>ID Professor</th>
-            <th>ID Materia</th>
+            <th>ID Professor associado</th>
+            <th>ID Materia associada</th>
         </tr>
         </thead>
         <tbody>
         <c:forEach var="postProfessor" items="${postProfessores}">
             <tr>
-                <td>postProfessor.idPost</td>
+                <td>${postProfessor.idPost}</td>
                 <td>${postProfessor.conteudo}</td>
                 <td>${postProfessor.data}</td>
-                <td>${postProfessor.idProfessor}</td>
-                <td>${postProfessor.idMateria}</td>
+                <td>${postProfessor.postIdProfessor}</td>
+                <td>${postProfessor.postIdMateria}</td>
                 <td>
                     <form action="/delete-post-professor" method="post">
                         <input type="hidden" id="idPost" name="idPost" value="${postProfessor.idPost}">
                         <button type="submit">Delete</button>
                     </form>
+
+                    <span> | </span>
+
+                    <a href="index.jsp?idPost=${postProfessor.idPost}&conteudo=${postProfessor.conteudo}&data=${postProfessor.data}&postIdProfessor=${postProfessor.postIdProfessor}postIdMateria=${postProfessor.postIdMateria}">Update</a>
+
                 </td>
 
             </tr>

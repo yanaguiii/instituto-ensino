@@ -24,7 +24,7 @@ public class CreateCursoServlet extends HttpServlet {
         String cursoDescricao = req.getParameter("curso-descricao");
 
         try {
-            float cursoDuracao = Float.parseFloat(cursoDuracaoStr);
+            Float cursoDuracao = Float.parseFloat(cursoDuracaoStr);
             CursoDao cursoDao = new CursoDao();
             Curso curso;
 

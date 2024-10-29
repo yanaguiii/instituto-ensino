@@ -4,20 +4,20 @@ import java.math.BigDecimal;
 
 public class Professor {
     private int idProfessor;
-    private int idUsuario;
-    private BigDecimal salario;
+    private int professorIdUsuario;
+    private double salario;
 
     public Professor() {
     }
 
-    public Professor(int idProfessor, int idUsuario, BigDecimal salario) {
+    public Professor(int idProfessor, int professorIdUsuario, double salario) {
         this.idProfessor = idProfessor;
-        this.idUsuario = idUsuario;
+        this.professorIdUsuario = professorIdUsuario;
         this.salario = salario;
     }
 
-    public Professor(int idUsuario, BigDecimal salario) {
-        this.idUsuario = idUsuario;
+    public Professor(int professorIdUsuario, double salario) {
+        this.professorIdUsuario = professorIdUsuario;
         this.salario = salario;
     }
 
@@ -30,19 +30,19 @@ public class Professor {
         this.idProfessor = idProfessor;
     }
 
-    public int getIdUsuario() {
-        return idUsuario;
+    public int getProfessorIdUsuario() {
+        return professorIdUsuario;
     }
 
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setProfessorIdUsuario(int professorIdUsuario) {
+        this.professorIdUsuario = professorIdUsuario;
     }
 
-    public BigDecimal getSalario() {
+    public double getSalario() {
         return salario;
     }
 
-    public void setSalario(BigDecimal salario) {
+    public void setSalario(double salario) {
         this.salario = salario;
     }
 }

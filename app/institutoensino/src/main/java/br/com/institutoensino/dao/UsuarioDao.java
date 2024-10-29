@@ -23,7 +23,7 @@ public class UsuarioDao {
             Connection con = ConnectionPoolConfig.getConnection();
 
             PreparedStatement preparedStatement = con.prepareStatement(SQL);
-            preparedStatement.setString(1, usuario.getNome());
+            preparedStatement.setString(1, usuario.getNomeUsuario());
             preparedStatement.setString(2, usuario.getEmail());
             preparedStatement.setString(3, usuario.getSenha());
             preparedStatement.setDate(4, new java.sql.Date(usuario.getNascimento().getTime()));
@@ -104,7 +104,7 @@ public class UsuarioDao {
             if (rs.next()) {
                 usuario = new Usuario();
                 usuario.setIdUsuario(rs.getInt("ID_Usuario"));
-                usuario.setNome(rs.getString("Nome"));
+                usuario.setNomeUsuario(rs.getString("Nome"));
                 usuario.setEmail(rs.getString("Email"));
                 // Pegar outros campos se necessário
             }
@@ -167,7 +167,7 @@ public class UsuarioDao {
             PreparedStatement preparedStatement = connection.prepareStatement(SQL);
 
             // Definindo os parâmetros, garantindo que os campos sejam válidos
-            preparedStatement.setObject(1, usuario.getNome() != null && !usuario.getNome().isEmpty() ? usuario.getNome() : null);
+            preparedStatement.setObject(1, usuario.getNomeUsuario() != null && !usuario.getNomeUsuario().isEmpty() ? usuario.getNomeUsuario() : null);
             preparedStatement.setObject(2, usuario.getEmail() != null && !usuario.getEmail().isEmpty() ? usuario.getEmail() : null);
             preparedStatement.setObject(3, usuario.getSenha() != null && !usuario.getSenha().isEmpty() ? usuario.getSenha() : null);
             preparedStatement.setObject(4, usuario.getNascimento() != null ? new java.sql.Date(usuario.getNascimento().getTime()) : null);

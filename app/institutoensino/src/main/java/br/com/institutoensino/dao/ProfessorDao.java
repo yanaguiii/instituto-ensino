@@ -21,8 +21,8 @@ public class ProfessorDao {
             System.out.println("success in database connection");
 
             PreparedStatement preparedStatement = connection.prepareStatement(SQL);
-            preparedStatement.setInt(1, professor.getIdUsuario());
-            preparedStatement.setBigDecimal(2, professor.getSalario());
+            preparedStatement.setInt(1, professor.getProfessorIdUsuario());
+            preparedStatement.setDouble(2, professor.getSalario());
             preparedStatement.execute();
 
             System.out.println("success in insert professor");
@@ -47,7 +47,7 @@ public class ProfessorDao {
             while (resultSet.next()) {
                 int idProfessor = resultSet.getInt("ID_PROFESSOR");
                 int idUsuario = resultSet.getInt("ID_USUARIO");
-                BigDecimal salario = resultSet.getBigDecimal("SALARIO");
+                double salario = resultSet.getDouble("SALARIO");
 
                 Professor professor = new Professor(idProfessor, idUsuario, salario);
                 professores.add(professor);
@@ -95,8 +95,8 @@ public class ProfessorDao {
 
             // Preparando o statement
             PreparedStatement preparedStatement = connection.prepareStatement(SQL);
-            preparedStatement.setObject(1, professor.getIdUsuario() > 0 ? professor.getIdUsuario() : null);
-            preparedStatement.setObject(2, professor.getSalario() != null ? professor.getSalario() : null);
+            preparedStatement.setObject(1, professor.getProfessorIdUsuario() > 0 ? professor.getProfessorIdUsuario() : null);
+            preparedStatement.setObject(2, professor.getSalario() != 0 ? professor.getSalario() : null);
             preparedStatement.setInt(3, professor.getIdProfessor()); // Adicionando o ID do professor para a cláusula WHERE
 
             // Executando a atualização

@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Usuario {
     private int idUsuario;
-    private String nome;
+    private String nomeUsuario;
     private String email;
     private String senha;
     private Date nascimento;
@@ -22,11 +22,11 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(int idUsuario, String nome, String email, String senha, Date nascimento, String cpf, String rg,
+    public Usuario(int idUsuario, String nomeUsuario, String email, String senha, Date nascimento, String cpf, String rg,
                    String logradouro, int numero, String complemento, String bairro, String cidade,
                    String estado, String telefoneComercial, String celular) {
         this.idUsuario = idUsuario;
-        this.nome = nome;
+        this.nomeUsuario = nomeUsuario;
         this.email = email;
         this.senha = senha;
         this.nascimento = nascimento;
@@ -42,10 +42,10 @@ public class Usuario {
         this.celular = celular;
     }
 
-    public Usuario(String nome, String email, String senha, Date nascimento, String cpf, String rg,
+    public Usuario(String nomeUsuario, String email, String senha, Date nascimento, String cpf, String rg,
                    String logradouro, int numero, String complemento, String bairro, String cidade,
                    String estado, String telefoneComercial, String celular) {
-        this.nome = nome;
+        this.nomeUsuario = nomeUsuario;
         this.email = email;
         this.senha = senha;
         this.nascimento = nascimento;
@@ -69,12 +69,12 @@ public class Usuario {
         this.idUsuario = idUsuario;
     }
 
-    public String getNome() {
-        return nome;
+    public String getNomeUsuario() {
+        return nomeUsuario;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setNomeUsuario(String nomeUsuario) {
+        this.nomeUsuario = nomeUsuario;
     }
 
     public String getEmail() {

@@ -2,9 +2,9 @@ package br.com.institutoensino.model;
 
 public class Curso {
     private int idCurso;
-    private String nome;
+    private String nomeCurso;
     private String modalidade;
-    private float duracao;
+    private Float duracao;
     private String campus;
     private String turno;
     private String descricao;
@@ -12,9 +12,9 @@ public class Curso {
     public Curso() {
     }
 
-    public Curso(int idCurso, String nome, String modalidade, float duracao, String campus, String turno, String descricao) {
+    public Curso(int idCurso, String nomeCurso, String modalidade, Float duracao, String campus, String turno, String descricao) {
         this.idCurso = idCurso;
-        this.nome = nome;
+        this.nomeCurso = nomeCurso;
         this.modalidade = modalidade;
         this.duracao = duracao;
         this.campus = campus;
@@ -22,8 +22,8 @@ public class Curso {
         this.descricao = descricao;
     }
 
-    public Curso(String nome, String modalidade, float duracao, String campus, String turno, String descricao) {
-        this.nome = nome;
+    public Curso(String nomeCurso, String modalidade, Float duracao, String campus, String turno, String descricao) {
+        this.nomeCurso = nomeCurso;
         this.modalidade = modalidade;
         this.duracao = duracao;
         this.campus = campus;
@@ -39,12 +39,12 @@ public class Curso {
         this.idCurso = idCurso;
     }
 
-    public String getNome() {
-        return nome;
+    public String getNomeCurso() {
+        return nomeCurso;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setNomeCurso(String nomeCurso) {
+        this.nomeCurso = nomeCurso;
     }
 
     public String getModalidade() {
@@ -55,11 +55,11 @@ public class Curso {
         this.modalidade = modalidade;
     }
 
-    public float getDuracao() {
+    public Float getDuracao() {
         return duracao;
     }
 
-    public void setDuracao(float duracao) {
+    public void setDuracao(Float duracao) {
         this.duracao = duracao;
     }
 

@@ -2,20 +2,20 @@ package br.com.institutoensino.model;
 
 public class Aluno {
     private int idAluno;
-    private int idUsuario;
+    private int alunoIdUsuario;
     private String matricula;
 
     public Aluno() {
     }
 
-    public Aluno(int idAluno, int idUsuario, String matricula) {
+    public Aluno(int idAluno, int alunoIdUsuario, String matricula) {
         this.idAluno = idAluno;
-        this.idUsuario = idUsuario;
+        this.alunoIdUsuario = alunoIdUsuario;
         this.matricula = matricula;
     }
 
-    public Aluno(int idUsuario, String matricula) {
-        this.idUsuario = idUsuario;
+    public Aluno(int alunoIdUsuario, String matricula) {
+        this.alunoIdUsuario = alunoIdUsuario;
         this.matricula = matricula;
     }
 
@@ -27,12 +27,12 @@ public class Aluno {
         this.idAluno = idAluno;
     }
 
-    public int getIdUsuario() {
-        return idUsuario;
+    public int getAlunoIdUsuario() {
+        return alunoIdUsuario;
     }
 
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setAlunoIdUsuario(int alunoIdUsuario) {
+        this.alunoIdUsuario = alunoIdUsuario;
     }
 
     public String getMatricula() {
