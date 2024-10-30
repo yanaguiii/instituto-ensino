@@ -115,6 +115,22 @@ public class AlunoMateriaDao {
         }
     }
 
+    public boolean existsByIds(int idAluno, int idMateria) {
+        String SQL = "SELECT COUNT(*) FROM ALUNO_MATERIA WHERE ID_ALUNO = ? AND ID_MATERIA = ?";
 
+        try (Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+             PreparedStatement preparedStatement = connection.prepareStatement(SQL)) {
+            preparedStatement.setInt(1, idAluno);
+            preparedStatement.setInt(2, idMateria);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getInt(1) > 0;
+            }
+        } catch (Exception e) {
+            System.out.println("fail in database connection alunoMateria " + e.getMessage());
+        }
+        return false;
+    }
 
 }

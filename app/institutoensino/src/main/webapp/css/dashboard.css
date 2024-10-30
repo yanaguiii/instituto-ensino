@@ -1,0 +1,150 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f4f4f9;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Cabeçalhos */
+h1 {
+    font-size: 24px;
+    color: #333;
+    margin-top: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Estilo das tabelas */
+.table {
+    width: 70%;
+    max-width: 1200px;
+    margin: 0 auto; /* Centraliza horizontalmente */
+    margin-bottom: 30px;
+    border-collapse: collapse;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    table-layout: auto; /* Permite ajuste conforme o conteúdo */
+}
+
+.table thead {
+    background-color: #007863;
+    color: white;
+}
+
+.table th, .table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.table tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Estilo dos botões Delete e Update */
+button[type="submit"], .table a, .menu {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+button[type="submit"] {
+    background-color: #ff4d4f;
+}
+
+button[type="submit"]:hover {
+    background-color: #d93c3e;
+}
+
+.menu {
+    margin: 0 auto;
+    background-color: #007863;
+    text-align: center;
+    width: fit-content;
+}
+
+.controle {
+    width: 300px; /* Defina uma largura desejada */
+    margin: 0 auto; /* Centraliza horizontalmente */
+    text-align: center; /* Centraliza o texto dentro da div */
+}
+
+.add:hover {
+    background-color: #005f4f;
+}
+
+.table a.update {
+    background-color:#004fcf
+}
+
+.table a.update:hover {
+    background-color: #013c9c
+}
+
+/* Estilização para alinhar os botões na mesma linha */
+.action-buttons {
+    display: flex;
+    gap: 8px; /* Espaço entre o botão Delete e o link Update */
+    float:right;
+}
+
+.action-buttons form {
+    margin: 0;
+}
+
+
+/* Ajuste para a responsividade */
+@media (max-width: 768px) {
+    .table thead {
+        display: none;
+    }
+
+    .table, .table tbody, .table tr, .table td {
+        display: block;
+        width: 100%;
+    }
+
+    .table tr {
+        margin-bottom: 15px;
+    }
+
+    .table td {
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+    }
+
+    .table td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        width: 50%;
+        padding-left: 15px;
+        font-weight: bold;
+        text-align: left;
+    }
+}

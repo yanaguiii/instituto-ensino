@@ -7,9 +7,12 @@
     <title>Formulários de Cadastro</title>
     <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" rel="stylesheet">
+    <link rel="stylesheet" href="css/index.css">
+
 </head>
 
-<body class="container">
+<body>
+<div class="container">
 <h1>Criar Usuário</h1>
 <form action="/create-usuario" method="post">
 
@@ -18,7 +21,7 @@
 
         <div class="col-md-4 mb-3">
             <label class="form-label" for="usuario-nome">Nome:</label>
-            <input class="form-control" id="usuario-nome" name="usuario-nome" placeholder="user" required type="text" value="${param.nomeUsuario}">
+            <input class="form-control" id="usuario-nome" name="usuario-nome" required type="text" value="${param.nomeUsuario}">
         </div>
 
         <div class="col-md-4 mb-3">
@@ -211,8 +214,6 @@
 <form action="/create-aluno-materia" method="post">
 
     <div class="row">
-        <input type="hidden" id="idAlunoMateria" name="idAlunoMateria" value="${param.idAlunoMateria}">
-
         <div class="col-md-3 mb-3">
             <label class="form-label" for="aluno-materia-id-aluno">ID do Aluno:</label>
             <input class="form-control" id="aluno-materia-id-aluno" name="aluno-materia-id-aluno" required type="number" value="${param.alunoMateriaIdAluno}">
@@ -241,16 +242,16 @@
 <form action="/create-post-professor" method="post">
 
     <div class="row">
-        <input type="hidden" id="idPostProfessor" name="idPostProfessor" value="${param.idPostProfessor}">
+        <input type="hidden" id="idPost" name="idPost" value="${param.idPost}">
 
         <div class="col-md-3 mb-3">
             <label class="form-label" for="post-conteudo">Conteúdo do Post:</label>
-            <textarea class="form-control" id="post-conteudo" name="post-conteudo" required></textarea>
+            <input class="form-control" id="post-conteudo" name="post-conteudo" required type="text" value="${param.conteudo}">
         </div>
 
         <div class="col-md-3 mb-3">
             <label class="form-label" for="post-data">Data:</label>
-            <input class="form-control" id="post-data" name="post-data" required type="date" value="${param.data}">
+            <input class="form-control" id="post-data" name="post-data" required type="date" value="${param.postData}">
         </div>
 
         <div class="col-md-3 mb-3">
@@ -267,12 +268,15 @@
     <button class="btn btn-primary" type="submit">Enviar</button>
 </form>
 
-<form action="find-all" method="get">
-    <button class="btn btn-primary" type="submit">Carregar Todas as Tabelas</button>
+<br>
+
+<form class="load" action="find-all" method="get">
+    <button class="btn btn-primary" type="submit">Carregar todas as tabelas</button>
 </form>
 
 <script crossorigin="anonymous"
         integrity="sha384-rp+3U+I8dFO29EtG2vFI0g9MHLh4sPLQJ7bBn3fLphfh5dfufJrdl4zrcAM7G8kC"
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</div>
 </body>
 </html>

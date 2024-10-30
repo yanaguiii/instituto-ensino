@@ -5,24 +5,24 @@ import java.util.Date;
 public class PostProfessor {
     private int idPost;
     private String conteudo;
-    private Date data;
+    private Date postData;
     private int postIdProfessor;
     private int postIdMateria;
 
     public PostProfessor() {
     }
 
-    public PostProfessor(int idPost, String conteudo, Date data, int postIdProfessor, int postIdMateria) {
+    public PostProfessor(int idPost, String conteudo, Date postData, int postIdProfessor, int postIdMateria) {
         this.idPost = idPost;
         this.conteudo = conteudo;
-        this.data = data;
+        this.postData = postData;
         this.postIdProfessor = postIdProfessor;
         this.postIdMateria = postIdMateria;
     }
 
-    public PostProfessor(String conteudo, Date data, int postIdProfessor, int postIdMateria) {
+    public PostProfessor(String conteudo, Date postData, int postIdProfessor, int postIdMateria) {
         this.conteudo = conteudo;
-        this.data = data;
+        this.postData = postData;
         this.postIdProfessor = postIdProfessor;
         this.postIdMateria = postIdMateria;
     }
@@ -43,12 +43,12 @@ public class PostProfessor {
         this.conteudo = conteudo;
     }
 
-    public Date getData() {
-        return data;
+    public Date getPostData() {
+        return postData;
     }
 
-    public void setData(Date data) {
-        this.data = data;
+    public void setPostData(Date postData) {
+        this.postData = postData;
     }
 
     public int getPostIdProfessor() {
