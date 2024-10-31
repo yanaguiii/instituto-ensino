@@ -1,5 +1,6 @@
 package br.com.institutoensino.dao;
 
+import br.com.institutoensino.config.ConnectionPoolConfig;
 import br.com.institutoensino.model.AlunoMateria;
 
 import java.math.BigDecimal;
@@ -17,8 +18,8 @@ public class AlunoMateriaDao {
         String SQL = "INSERT INTO ALUNO_MATERIA (ID_ALUNO, ID_MATERIA, NOTA, FALTAS) VALUES (?, ?, ?, ?)";
 
         try {
-            Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
-            System.out.println("success in database connection");
+            Connection connection = ConnectionPoolConfig.getConnection();
+
 
             PreparedStatement preparedStatement = connection.prepareStatement(SQL);
             preparedStatement.setInt(1, alunoMateria.getAlunoMateriaIdAluno());
@@ -38,8 +39,8 @@ public class AlunoMateriaDao {
         String SQL = "SELECT * FROM ALUNO_MATERIA";
 
         try {
-            Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
-            System.out.println("success in database connection");
+            Connection connection = ConnectionPoolConfig.getConnection();
+
 
             PreparedStatement preparedStatement = connection.prepareStatement(SQL);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -72,8 +73,8 @@ public class AlunoMateriaDao {
         String SQL = "DELETE FROM ALUNO_MATERIA WHERE ID_ALUNO = ? AND ID_MATERIA = ?";
 
         try {
-            Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
-            System.out.println("success in database connection");
+            Connection connection = ConnectionPoolConfig.getConnection();
+
 
             PreparedStatement preparedStatement = connection.prepareStatement(SQL);
             preparedStatement.setInt(1, idAluno);
@@ -92,8 +93,8 @@ public class AlunoMateriaDao {
         String SQL = "UPDATE ALUNO_MATERIA SET NOTA = ?, FALTAS = ? WHERE ID_ALUNO = ? AND ID_MATERIA = ?";
 
         try {
-            Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
-            System.out.println("success in database connection");
+            Connection connection = ConnectionPoolConfig.getConnection();
+
 
             PreparedStatement preparedStatement = connection.prepareStatement(SQL);
             preparedStatement.setObject(1, alunoMateria.getNota());
@@ -118,7 +119,8 @@ public class AlunoMateriaDao {
     public boolean existsByIds(int idAluno, int idMateria) {
         String SQL = "SELECT COUNT(*) FROM ALUNO_MATERIA WHERE ID_ALUNO = ? AND ID_MATERIA = ?";
 
-        try (Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+        // Use o ConnectionPoolConfig para obter a conexão
+        try (Connection connection = ConnectionPoolConfig.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SQL)) {
             preparedStatement.setInt(1, idAluno);
             preparedStatement.setInt(2, idMateria);
@@ -128,9 +130,10 @@ public class AlunoMateriaDao {
                 return resultSet.getInt(1) > 0;
             }
         } catch (Exception e) {
-            System.out.println("fail in database connection alunoMateria " + e.getMessage());
+            System.out.println("Falha na conexão com o banco de dados em existsByIds: " + e.getMessage());
         }
         return false;
     }
+
 
 }

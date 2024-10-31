@@ -1,5 +1,6 @@
 package br.com.institutoensino.dao;
 
+import br.com.institutoensino.config.ConnectionPoolConfig;
 import br.com.institutoensino.model.Curso;
 
 import java.sql.Connection;
@@ -19,9 +20,8 @@ public class CursoDao {
         Connection connection = null;
         try {
 
-            connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+            connection = ConnectionPoolConfig.getConnection();
 
-            System.out.println("success in database connection");
 
             preparedStatement = connection.prepareStatement(SQL);
 
@@ -48,10 +48,8 @@ public class CursoDao {
         String SQL = "SELECT * FROM CURSO";
 
         try {
+            Connection connection = ConnectionPoolConfig.getConnection();
 
-            Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
-
-            System.out.println("success in database connection");
 
             PreparedStatement preparedStatement = connection.prepareStatement(SQL);
 
@@ -94,8 +92,8 @@ public class CursoDao {
         String SQL = "DELETE FROM CURSO WHERE ID_CURSO = ?";
 
         try {
-            Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
-            System.out.println("success in database connection");
+            Connection connection = ConnectionPoolConfig.getConnection();
+
 
             PreparedStatement preparedStatement = connection.prepareStatement(SQL);
             preparedStatement.setInt(1, idCurso);
@@ -116,8 +114,8 @@ public class CursoDao {
 
         try {
             // Conexão ao banco de dados
-            Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
-            System.out.println("success in database connection");
+            Connection connection = ConnectionPoolConfig.getConnection();
+
 
             // Preparando o statement
             preparedStatement = connection.prepareStatement(SQL);

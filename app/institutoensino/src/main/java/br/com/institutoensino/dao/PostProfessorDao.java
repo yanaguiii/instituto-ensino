@@ -1,5 +1,6 @@
 package br.com.institutoensino.dao;
 
+import br.com.institutoensino.config.ConnectionPoolConfig;
 import br.com.institutoensino.model.PostProfessor;
 
 import java.sql.Connection;
@@ -17,8 +18,8 @@ public class PostProfessorDao {
         String SQL = "INSERT INTO POST_PROFESSOR (CONTEUDO, DATA, ID_PROFESSOR, ID_MATERIA) VALUES (?, ?, ?, ?)";
 
         try {
-            Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
-            System.out.println("success in database connection");
+            Connection connection = ConnectionPoolConfig.getConnection();
+
 
             PreparedStatement preparedStatement = connection.prepareStatement(SQL);
             preparedStatement.setString(1, postProfessor.getConteudo());
@@ -38,8 +39,8 @@ public class PostProfessorDao {
         String SQL = "SELECT * FROM POST_PROFESSOR";
 
         try {
-            Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
-            System.out.println("success in database connection");
+            Connection connection = ConnectionPoolConfig.getConnection();
+
 
             PreparedStatement preparedStatement = connection.prepareStatement(SQL);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -74,8 +75,7 @@ public class PostProfessorDao {
         String SQL = "DELETE FROM POST_PROFESSOR WHERE ID_POST = ?";
 
         try {
-            Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
-            System.out.println("success in database connection");
+            Connection connection = ConnectionPoolConfig.getConnection();
 
             PreparedStatement preparedStatement = connection.prepareStatement(SQL);
             preparedStatement.setInt(1, idPost);
@@ -94,9 +94,8 @@ public class PostProfessorDao {
         String SQL = "UPDATE POST_PROFESSOR SET CONTEUDO = ?, DATA = ?, ID_PROFESSOR = ?, ID_MATERIA = ? WHERE ID_POST = ?";
 
         try {
-            // Conexão ao banco de dados
-            Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
-            System.out.println("success in database connection");
+            Connection connection = ConnectionPoolConfig.getConnection();
+
 
             // Preparando o statement
             PreparedStatement preparedStatement = connection.prepareStatement(SQL);

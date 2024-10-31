@@ -1,75 +1,80 @@
-document.querySelector('button[type="submit"]').addEventListener('click', function (event) {
+document.querySelector('button[type="submit"]').addEventListener('click', async function (event) {
     const email = document.querySelector('#email').value;
     const confirmEmail = document.querySelector('#confirm-email').value;
     const password = document.querySelector('#password').value;
     const confirmPassword = document.querySelector('#confirm-password').value;
 
-    let valid = true; // Flag para checar se o formulário é válido
+    let valid = true;
 
     // Limpar mensagens de erro
     const errorMessages = document.querySelectorAll('.error-message');
     errorMessages.forEach(msg => {
-        msg.classList.remove('visible'); // Remove a classe visível
-        msg.style.height = '0'; // Define a altura para 0
-        msg.style.opacity = '0'; // Torna invisível
-        msg.style.visibility = 'hidden'; // Torna invisível
+        msg.classList.remove('visible');
+        msg.style.opacity = '0';
+        msg.style.visibility = 'hidden';
+        msg.textContent = '';
     });
 
     // Validação dos e-mails
+    const emailErrorMsg = document.getElementById("email-error");
+
     if (email !== confirmEmail) {
-        const errorMsg = document.getElementById("confirm-email-error");
-        errorMsg.textContent = 'Os e-mails não coincidem.';
-
-        // Define a altura correta e visibilidade
-        errorMsg.style.visibility = 'visible';
-        errorMsg.style.opacity = '1';
-        errorMsg.style.height = 'auto'; // Ajusta para a altura automática
-
-        // Espera o navegador calcular a altura antes de aplicar
-        const height = errorMsg.offsetHeight;
-        errorMsg.style.height = `${height}px`; // Define a altura para o valor calculado
-
-        document.getElementById("confirm-email-group").scrollIntoView({behavior: "smooth"});
+        emailErrorMsg.textContent = 'Os e-mails não coincidem.';
+        emailErrorMsg.style.visibility = 'visible';
+        emailErrorMsg.style.opacity = '1';
+        document.getElementById("email-group").scrollIntoView({ behavior: "smooth" });
         valid = false;
-
-        // Adiciona o efeito de desvanecimento após 5 segundos
-        setTimeout(() => {
-            errorMsg.style.height = '0'; // Define a altura para 0
-            errorMsg.style.opacity = '0'; // Torna invisível
-            errorMsg.style.visibility = 'hidden'; // Torna invisível
-        }, 5000);
+    } else {
+        // Verificar se o e-mail já está registrado
+        try {
+            const response = await fetch(`/cadastro?email=${encodeURIComponent(email)}`);
+            const data = await response.json();
+            if (data.emailExiste) {
+                emailErrorMsg.textContent = 'Este e-mail já está registrado.';
+                emailErrorMsg.style.visibility = 'visible';
+                emailErrorMsg.style.opacity = '1';
+                document.getElementById("email-group").scrollIntoView({ behavior: "smooth" });
+                valid = false;
+            }
+        } catch (error) {
+            console.error('Erro ao verificar e-mail:', error);
+        }
     }
 
     // Validação das senhas
     if (password !== confirmPassword) {
-        const errorMsg = document.getElementById("confirm-password-error");
-        errorMsg.textContent = 'As senhas não coincidem.';
-
-        // Define a altura correta e visibilidade
-        errorMsg.style.visibility = 'visible';
-        errorMsg.style.opacity = '1';
-        errorMsg.style.height = 'auto'; // Ajusta para a altura automática
-
-        // Espera o navegador calcular a altura antes de aplicar
-        const height = errorMsg.offsetHeight;
-        errorMsg.style.height = `${height}px`; // Define a altura para o valor calculado
-
-        document.getElementById("confirm-password-group").scrollIntoView({behavior: "smooth"});
+        const passwordErrorMsg = document.getElementById("confirm-password-error");
+        passwordErrorMsg.textContent = 'As senhas não coincidem.';
+        passwordErrorMsg.style.visibility = 'visible';
+        passwordErrorMsg.style.opacity = '1';
+        document.getElementById("confirm-password-group").scrollIntoView({ behavior: "smooth" });
         valid = false;
-
-        // Adiciona o efeito de desvanecimento após 5 segundos
-        setTimeout(() => {
-            errorMsg.style.height = '0'; // Define a altura para 0
-            errorMsg.style.opacity = '0'; // Torna invisível
-            errorMsg.style.visibility = 'hidden'; // Torna invisível
-        }, 5000);
     }
 
-    // Previne o envio do formulário se houver erros
     if (!valid) {
         event.preventDefault();
     }
 });
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    const serverErrorMessage = document.getElementById("server-error-message");
+
+    // Verifica se há mensagem de erro do servidor
+    if (serverErrorMessage && serverErrorMessage.textContent.trim() !== "") {
+        serverErrorMessage.style.visibility = 'visible';
+        serverErrorMessage.style.opacity = '1';
+
+        // Define um timeout para ocultar a mensagem após 5 segundos
+        setTimeout(() => {
+            serverErrorMessage.style.opacity = '0'; // Torna invisível
+            serverErrorMessage.style.visibility = 'hidden'; // Torna invisível
+            serverErrorMessage.textContent = ''; // Limpa o texto para liberar espaço
+        }, 5000);
+    }
+});
+
 
 function formatRG(input) {
     // Remove todos os caracteres não numéricos

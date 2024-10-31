@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.sql.Date;
 
 @WebServlet("/create-usuario")
-public class CreateUsuarioServlet extends HttpServlet {
+public class    CreateUsuarioServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

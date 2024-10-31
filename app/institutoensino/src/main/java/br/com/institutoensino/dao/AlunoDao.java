@@ -1,5 +1,6 @@
 package br.com.institutoensino.dao;
 
+import br.com.institutoensino.config.ConnectionPoolConfig;
 import br.com.institutoensino.model.Aluno;
 
 import java.sql.Connection;
@@ -16,8 +17,8 @@ public class AlunoDao {
         String SQL = "INSERT INTO ALUNO (ID_USUARIO, MATRICULA) VALUES (?, ?)";
 
         try {
-            Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
-            System.out.println("success in database connection");
+            Connection connection = ConnectionPoolConfig.getConnection();
+
 
             PreparedStatement preparedStatement = connection.prepareStatement(SQL);
             preparedStatement.setInt(1, aluno.getAlunoIdUsuario());
@@ -37,9 +38,8 @@ public class AlunoDao {
 
         try {
 
-            Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+            Connection connection = ConnectionPoolConfig.getConnection();
 
-            System.out.println("success in database connection");
 
             PreparedStatement preparedStatement = connection.prepareStatement(SQL);
 
@@ -78,8 +78,8 @@ public class AlunoDao {
         String SQL = "DELETE FROM ALUNO WHERE ID_ALUNO = ?";
 
         try {
-            Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
-            System.out.println("success in database connection");
+            Connection connection = ConnectionPoolConfig.getConnection();
+
 
             PreparedStatement preparedStatement = connection.prepareStatement(SQL);
             preparedStatement.setInt(1, idAluno);
@@ -98,10 +98,8 @@ public class AlunoDao {
         String SQL = "UPDATE ALUNO SET MATRICULA = ? WHERE ID_ALUNO = ?";
 
         try {
+            Connection connection = ConnectionPoolConfig.getConnection();
 
-            Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa","sa");
-
-            System.out.println("success in database connection");
 
             PreparedStatement preparedStatement = connection.prepareStatement(SQL);
 

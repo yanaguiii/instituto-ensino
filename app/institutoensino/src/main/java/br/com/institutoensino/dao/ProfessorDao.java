@@ -1,5 +1,6 @@
 package br.com.institutoensino.dao;
 
+import br.com.institutoensino.config.ConnectionPoolConfig;
 import br.com.institutoensino.model.Professor;
 
 import java.math.BigDecimal;
@@ -17,8 +18,8 @@ public class ProfessorDao {
         String SQL = "INSERT INTO PROFESSOR (ID_USUARIO, SALARIO) VALUES (?, ?)";
 
         try {
-            Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
-            System.out.println("success in database connection");
+            Connection connection = ConnectionPoolConfig.getConnection();
+
 
             PreparedStatement preparedStatement = connection.prepareStatement(SQL);
             preparedStatement.setInt(1, professor.getProfessorIdUsuario());
@@ -36,8 +37,8 @@ public class ProfessorDao {
         String SQL = "SELECT * FROM PROFESSOR";
 
         try {
-            Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
-            System.out.println("success in database connection");
+            Connection connection = ConnectionPoolConfig.getConnection();
+
 
             PreparedStatement preparedStatement = connection.prepareStatement(SQL);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -69,8 +70,8 @@ public class ProfessorDao {
         String SQL = "DELETE FROM PROFESSOR WHERE ID_PROFESSOR = ?";
 
         try {
-            Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
-            System.out.println("success in database connection");
+            Connection connection = ConnectionPoolConfig.getConnection();
+
 
             PreparedStatement preparedStatement = connection.prepareStatement(SQL);
             preparedStatement.setInt(1, idProfessor);
@@ -89,9 +90,8 @@ public class ProfessorDao {
         String SQL = "UPDATE PROFESSOR SET ID_USUARIO = ?, SALARIO = ? WHERE ID_PROFESSOR = ?";
 
         try {
-            // Conexão ao banco de dados
-            Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
-            System.out.println("success in database connection");
+            Connection connection = ConnectionPoolConfig.getConnection();
+
 
             // Preparando o statement
             PreparedStatement preparedStatement = connection.prepareStatement(SQL);

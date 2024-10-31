@@ -89,6 +89,7 @@ html, body {
 .form-row {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 20px;
 }
 
 .form-group {
@@ -151,26 +152,21 @@ button {
 
 /* Estilos para mensagens de erro */
 .error-message {
-    height: 0; /* Começa com altura 0 */
-    overflow: hidden; /* Oculta o conteúdo excedente */
-    background-color: #f8d7da; /* Fundo rosa claro */
-    color: #721c24; /* Texto vermelho escuro */
-    border: 1px solid #f5c6cb; /* Borda rosa mais escura */
-    padding: 0 15px; /* Espaçamento interno */
-    margin: 15px 0; /* Margem superior e inferior */
-    border-radius: 5px; /* Bordas arredondadas */
-    font-size: 16px; /* Tamanho da fonte */
-    text-align: center; /* Centraliza o texto */
-    transition: height 0.5s ease, opacity 0.5s ease; /* Transições suaves */
-    visibility: hidden; /* Começa invisível */
-    opacity: 0; /* Começa invisível */
+    height: auto;
+    visibility: hidden;
+    opacity: 0;
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 10px 15px;
+    text-align: center;
+    border: 1px solid #f5c6cb;
+    border-radius: 5px;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
 }
 
-/* Classe para mostrar a mensagem de erro */
 .error-message.visible {
-    height: auto; /* Ajusta para a altura automática */
-    visibility: visible; /* Torna a mensagem visível */
-    opacity: 1; /* Torna a mensagem opaca */
-    padding: 10px 15px; /* Define padding quando visível */
+    visibility: visible;
+    opacity: 1;
 }
+
 

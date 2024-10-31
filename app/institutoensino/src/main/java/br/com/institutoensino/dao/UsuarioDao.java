@@ -139,8 +139,7 @@ public class UsuarioDao {
         String SQL = "DELETE FROM USUARIO WHERE ID_USUARIO = ?";
 
         try {
-            Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
-            System.out.println("success in database connection");
+            Connection connection = ConnectionPoolConfig.getConnection();
 
             PreparedStatement preparedStatement = connection.prepareStatement(SQL);
             preparedStatement.setInt(1, idUsuario);
@@ -159,9 +158,8 @@ public class UsuarioDao {
                 "TELEFONE_COMERCIAL = ?, CELULAR = ? WHERE ID_USUARIO = ?";
 
         try {
-            // Conexão ao banco de dados
-            Connection connection = ConnectionPoolConfig.getConnection(); // Usando o pool de conexões
-            System.out.println("success in database connection");
+            Connection connection = ConnectionPoolConfig.getConnection();
+
 
             // Preparando o statement
             PreparedStatement preparedStatement = connection.prepareStatement(SQL);

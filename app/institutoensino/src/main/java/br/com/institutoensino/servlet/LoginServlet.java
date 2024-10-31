@@ -24,7 +24,7 @@ public class LoginServlet extends HttpServlet {
         if (usuario != null) {
             // Login bem-sucedido
             request.getSession().setAttribute("usuarioLogado", usuario);
-            response.sendRedirect("/find-all-usuarios");
+            response.sendRedirect("/home.jsp");
         } else {
             // Falha no login
             request.setAttribute("mensagemErro", "Email ou senha incorretos.");
