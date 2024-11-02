@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <title>Tela de cadastro</title>
-    <link rel="stylesheet" type="text/css" href="css/cadastro.css?v=2.8">
+    <link rel="stylesheet" type="text/css" href="css/cadastro.css?v=4.0">
 </head>
 
 <body>
@@ -18,9 +18,9 @@
 <div class="form-container">
     <h1>Cadastre-se</h1>
 
-    <form action="${pageContext.request.contextPath}/cadastro" method="post">
+    <form action="/cadastro" method="post">
         <!-- Bloco de Dados Cadastrais -->
-        <div class="block">
+        <div class="block" id="login">
             <div class="block-title">
                 <i class='bx bx-envelope icon'></i>
                 Dados para login
@@ -32,15 +32,15 @@
                     <label for="email">Email</label>
                     <input type="email" id="email" name="usuario-email" placeholder="Digite seu email" required
                            value="<%= request.getAttribute("usuarioEmail") != null ? request.getAttribute("usuarioEmail") : "" %>">
-                    <span class="error-message" id="email-error"></span>
-
+                    <div class="form-group-erro">
+                           <span class="error-message" id="email-error"></span>
+                    </div>
                 </div>
 
                 <div class="form-group" id="confirm-email-group">
                     <label for="confirm-email">Confirme seu email</label>
                     <input type="email" id="confirm-email" name="confirm-email" placeholder="Confirme seu email"
                            required value="<%= request.getAttribute("usuarioEmail") != null ? request.getAttribute("usuarioEmail") : "" %>">
-                    <span class="error-message" id="confirm-email-error"></span>
                 </div>
             </div>
 
@@ -49,14 +49,16 @@
                 <div class="form-group">
                     <label for="password">Senha</label>
                     <input type="password" id="password" name="usuario-senha" placeholder="Digite sua senha" required>
-                    <span class="error-message" id="password-error"></span>
+                    <div class="form-group-erro">
+                        <span class="error-message" id="password-error"></span>
+                    </div>
                 </div>
+
 
                 <div class="form-group" id="confirm-password-group">
                     <label for="confirm-password">Confirme sua senha</label>
                     <input type="password" id="confirm-password" name="confirm-password"
                            placeholder="Confirme sua senha" required>
-                    <span class="error-message" id="confirm-password-error"></span>
                 </div>
             </div>
         </div>
@@ -194,7 +196,7 @@
     <img src="images/logo.png" alt="Logo Instituto Ensino">
 </div>
 
-<script src="js/scriptCadastro.js?v=3.0"></script>
+<script src="js/scriptCadastro.js?v=3.7"></script>
 
 </body>
 </html>

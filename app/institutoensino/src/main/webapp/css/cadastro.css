@@ -93,7 +93,20 @@ html, body {
 }
 
 .form-group {
-    width: 48%; /* Para que dois inputs caibam lado a lado */
+    width: 48%;
+}
+
+.form-group-erro{
+    margin-top:15px;
+    width:300px;
+}
+
+#email-group,
+#password-group{
+    margin-bottom:0;
+}
+#login{
+    margin-bottom:0px;
 }
 
 .block-title {
@@ -152,12 +165,12 @@ button {
 
 /* Estilos para mensagens de erro */
 .error-message {
-    height: auto;
+    height: 15px;
     visibility: hidden;
     opacity: 0;
     background-color: #f8d7da;
     color: #721c24;
-    padding: 10px 15px;
+    padding: 10px 11px;
     text-align: center;
     border: 1px solid #f5c6cb;
     border-radius: 5px;

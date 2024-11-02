@@ -1,79 +1,51 @@
-document.querySelector('button[type="submit"]').addEventListener('click', async function (event) {
-    const email = document.querySelector('#email').value;
-    const confirmEmail = document.querySelector('#confirm-email').value;
-    const password = document.querySelector('#password').value;
-    const confirmPassword = document.querySelector('#confirm-password').value;
+    document.addEventListener("DOMContentLoaded", function () {
+        const form = document.querySelector("form");
 
-    let valid = true;
+        form.addEventListener("submit", function (event) {
+            const email = document.getElementById("email").value;
+            const confirmEmail = document.getElementById("confirm-email").value;
+            const password = document.getElementById("password").value;
+            const confirmPassword = document.getElementById("confirm-password").value;
+            let isValid = true;
 
-    // Limpar mensagens de erro
-    const errorMessages = document.querySelectorAll('.error-message');
-    errorMessages.forEach(msg => {
-        msg.classList.remove('visible');
-        msg.style.opacity = '0';
-        msg.style.visibility = 'hidden';
-        msg.textContent = '';
-    });
+            // Limpa mensagens de erro anteriores
+            document.getElementById("email-error").textContent = "";
+            document.getElementById("password-error").textContent = "";
 
-    // Validação dos e-mails
-    const emailErrorMsg = document.getElementById("email-error");
-
-    if (email !== confirmEmail) {
-        emailErrorMsg.textContent = 'Os e-mails não coincidem.';
-        emailErrorMsg.style.visibility = 'visible';
-        emailErrorMsg.style.opacity = '1';
-        document.getElementById("email-group").scrollIntoView({ behavior: "smooth" });
-        valid = false;
-    } else {
-        // Verificar se o e-mail já está registrado
-        try {
-            const response = await fetch(`/cadastro?email=${encodeURIComponent(email)}`);
-            const data = await response.json();
-            if (data.emailExiste) {
-                emailErrorMsg.textContent = 'Este e-mail já está registrado.';
-                emailErrorMsg.style.visibility = 'visible';
-                emailErrorMsg.style.opacity = '1';
-                document.getElementById("email-group").scrollIntoView({ behavior: "smooth" });
-                valid = false;
+            // Verifica se os emails coincidem
+            if (email !== confirmEmail) {
+                const errorMsgEmail = document.getElementById("email-error");
+                errorMsgEmail.textContent = 'Os emails não coincidem.';
+                errorMsgEmail.style.visibility = 'visible';
+                errorMsgEmail.style.opacity = '1';
+                document.getElementById("confirm-email-group").scrollIntoView({ behavior: "smooth" });
+                isValid = false;
+                setTimeout(() => {
+                    errorMsgEmail.style.opacity = '0';
+                    errorMsgEmail.style.visibility = 'hidden';
+                    }, 5000);
             }
-        } catch (error) {
-            console.error('Erro ao verificar e-mail:', error);
-        }
-    }
 
-    // Validação das senhas
-    if (password !== confirmPassword) {
-        const passwordErrorMsg = document.getElementById("confirm-password-error");
-        passwordErrorMsg.textContent = 'As senhas não coincidem.';
-        passwordErrorMsg.style.visibility = 'visible';
-        passwordErrorMsg.style.opacity = '1';
-        document.getElementById("confirm-password-group").scrollIntoView({ behavior: "smooth" });
-        valid = false;
-    }
+            // Verifica se as senhas coincidem
+            if (password !== confirmPassword) {
+                const errorMsgPassword = document.getElementById("password-error");
+                errorMsgPassword.textContent = 'As senhas não coincidem.';
+                errorMsgPassword.style.visibility = 'visible';
+                errorMsgPassword.style.opacity = '1';
+                document.getElementById("confirm-password-group").scrollIntoView({ behavior: "smooth" });
+                isValid = false;
+                setTimeout(() => {
+                    errorMsgPassword.style.opacity = '0';
+                    errorMsgPassword.style.visibility = 'hidden';
+                    }, 5000);
+            }
 
-    if (!valid) {
-        event.preventDefault();
-    }
-});
-
-
-
-document.addEventListener("DOMContentLoaded", function () {
-    const serverErrorMessage = document.getElementById("server-error-message");
-
-    // Verifica se há mensagem de erro do servidor
-    if (serverErrorMessage && serverErrorMessage.textContent.trim() !== "") {
-        serverErrorMessage.style.visibility = 'visible';
-        serverErrorMessage.style.opacity = '1';
-
-        // Define um timeout para ocultar a mensagem após 5 segundos
-        setTimeout(() => {
-            serverErrorMessage.style.opacity = '0'; // Torna invisível
-            serverErrorMessage.style.visibility = 'hidden'; // Torna invisível
-            serverErrorMessage.textContent = ''; // Limpa o texto para liberar espaço
-        }, 5000);
-    }
-});
+            // Se não for válido, impede o envio do formulário
+            if (!isValid) {
+                event.preventDefault();
+            }
+        });
+    });
 
 
 function formatRG(input) {
