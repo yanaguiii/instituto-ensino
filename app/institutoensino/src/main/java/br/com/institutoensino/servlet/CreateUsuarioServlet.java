@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.sql.Date;
 
 @WebServlet("/create-usuario")
-public class    CreateUsuarioServlet extends HttpServlet {
+public class CreateUsuarioServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -39,11 +39,9 @@ public class    CreateUsuarioServlet extends HttpServlet {
             Usuario usuario;
 
             if (idUsuarioStr == null || idUsuarioStr.isBlank()) {
-                // Criação de um novo usuário se o idUsuario não estiver presente ou estiver em branco
                 usuario = new Usuario(nome, email, senha, nascimento, cpf, rg, logradouro, numero, complemento, bairro, cidade, estado, telefoneComercial, celular);
                 usuarioDao.createUsuario(usuario);
             } else {
-                // Atualização do usuário existente se o idUsuario estiver presente
                 int idUsuario = Integer.parseInt(idUsuarioStr);
                 usuario = new Usuario(idUsuario, nome, email, senha, nascimento, cpf, rg, logradouro, numero, complemento, bairro, cidade, estado, telefoneComercial, celular);
                 usuarioDao.updateUsuario(usuario);

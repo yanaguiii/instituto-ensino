@@ -16,8 +16,8 @@ import java.sql.Date;
 @WebServlet("/cadastro")
 public class CadastroServlet extends HttpServlet {
 
+    @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // Pega os parâmetros do formulário
         String nome = req.getParameter("usuario-nome");
         String email = req.getParameter("usuario-email");
         String senha = req.getParameter("usuario-senha");
@@ -34,17 +34,14 @@ public class CadastroServlet extends HttpServlet {
         String celular = req.getParameter("usuario-celular");
 
         try {
-            // Conversão de parâmetros que podem gerar exceções
             Date nascimento = Date.valueOf(nascimentoStr);
             int numero = Integer.parseInt(numeroStr);
 
             UsuarioDao usuarioDao = new UsuarioDao();
 
-            // Verifica se o e-mail já está cadastrado
             if (usuarioDao.emailExiste(email)) {
                 req.setAttribute("mensagemErro", "O e-mail já está cadastrado.");
 
-                // Passa os dados já digitados para que sejam preservados
                 req.setAttribute("usuarioNome", nome);
                 req.setAttribute("usuarioEmail", email);
                 req.setAttribute("usuarioSenha", senha);
@@ -63,33 +60,20 @@ public class CadastroServlet extends HttpServlet {
                 req.getRequestDispatcher("cadastro.jsp").forward(req, resp);
 
             }else {
-                // Se o e-mail não existe, cria um novo usuário
                 Usuario usuario = new Usuario(nome, email, senha, nascimento, cpf, rg, logradouro, numero, complemento, bairro, cidade, estado, telefoneComercial, celular);
 
                 usuarioDao.createUsuario(usuario);
 
-                // Redireciona para a página de login após o cadastro
                 resp.sendRedirect("login.jsp");
             }
 
         }catch(NumberFormatException e){
-                // Se ocorrer uma exceção de conversão, define uma mensagem de erro e redireciona para a página de cadastro
                 req.setAttribute("error", "Formato de número inválido.");
                 req.getRequestDispatcher("cadastro.jsp").forward(req, resp);
             }catch(IllegalArgumentException e){
-                // Se ocorrer uma exceção relacionada ao formato da data, define uma mensagem de erro e redireciona para a página de cadastro
                 req.setAttribute("error", "Formato de data inválido.");
                 req.getRequestDispatcher("cadastro.jsp").forward(req, resp);
             }
         }
-
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String email = req.getParameter("email");
-        UsuarioDao usuarioDao = new UsuarioDao();
-        boolean emailExiste = usuarioDao.emailExiste(email);
-
-        resp.setContentType("application/json");
-        resp.getWriter().write("{\"emailExiste\": " + emailExiste + "}");
-    }
 
 }

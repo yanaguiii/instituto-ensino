@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <title>Tela de cadastro</title>
-    <link rel="stylesheet" type="text/css" href="css/cadastro.css?v=4.0">
+    <link rel="stylesheet" type="text/css" href="css/cadastro.css?v=4.2">
 </head>
 
 <body>
@@ -27,14 +27,16 @@
             </div>
 
             <!-- Grupo de Email -->
-            <div class="form-row" id="email-group">
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="usuario-email" placeholder="Digite seu email" required
-                           value="<%= request.getAttribute("usuarioEmail") != null ? request.getAttribute("usuarioEmail") : "" %>">
-                    <div class="form-group-erro">
-                           <span class="error-message" id="email-error"></span>
-                    </div>
+                <div class="form-row" id="email-group">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="usuario-email" placeholder="Digite seu email" required
+                               value="<%= request.getAttribute("usuarioEmail") != null ? request.getAttribute("usuarioEmail") : "" %>">
+                        <div class="form-group-erro">
+                            <span class="error-message" id="email-error">
+                                <%= request.getAttribute("mensagemErro") != null ? request.getAttribute("mensagemErro") : "" %>
+                            </span>
+                        </div>
                 </div>
 
                 <div class="form-group" id="confirm-email-group">
@@ -121,7 +123,7 @@
                 </div>
                 <div class="form-group">
                     <label>Número</label>
-                    <input type="text" name="usuario-numero" placeholder="Número" required
+                    <input type="number" name="usuario-numero" placeholder="Número" required
                            value="<%= request.getAttribute("usuarioNumero") != null ? request.getAttribute("usuarioNumero") : "" %>">
                 </div>
             </div>
@@ -196,7 +198,7 @@
     <img src="images/logo.png" alt="Logo Instituto Ensino">
 </div>
 
-<script src="js/scriptCadastro.js?v=3.7"></script>
+<script src="js/scriptCadastro.js?v=3.8"></script>
 
 </body>
 </html>

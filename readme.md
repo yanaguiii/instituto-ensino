@@ -27,6 +27,13 @@ A tela do aluno será a partir do login, que só será acessada caso digitado as
 -Adicionar e organizar alunos
 -Adicionar e organizar aulas
 
+
+Telas ja implementadas (01/11/2024)
+-Tela de home: contém um carrossel dos cursos, que podem ser clicados para exibir detalhes. Botão de login no canto superior direito (que leva a tela de login), seguido do botão da área administrativa (que leva para a index.jsp).
+-Tela de login: contem dois inputs para login, hyperlink no título (provisório) para voltar a home, e botão para voltar a tela de cadastro.
+-Tela de cadastro: cadastro de usuário, com botão para tela de login.
+-Tela de index: para criação de qualquer elemento das tabelas pertinentes a instituição. Contém botões embaixo para fácil acesso.
+-Tela de dashboard: exibe todas as tabelas e seus elementos. Contém botões embaixo para fácil acesso.
 #Diagramas
 
 ![Diagrama DER](/images/DER.png)

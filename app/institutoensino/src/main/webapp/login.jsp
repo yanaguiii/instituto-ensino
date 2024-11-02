@@ -17,6 +17,7 @@
     <!-- Logo -->
     <div class="image-logo">
         <img src="images/logo.png" alt="Logo Instituto Ensino" style="border: none;">
+        <a href="home.jsp">
     </div>
 </div>
 

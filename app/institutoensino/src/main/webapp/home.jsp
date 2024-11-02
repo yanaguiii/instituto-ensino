@@ -27,6 +27,8 @@
         <i class='bx bx-log-in'></i>
         <a href="login.jsp" class="login-link">
             <button class="sign-in-btn">Login</button>
+            <a href="index.jsp" class="adm-link">
+            <button class="adm-btn">Administrativo</button>
         </a>
     </div>
 </header>
