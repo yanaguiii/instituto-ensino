@@ -27,6 +27,12 @@ A tela do aluno será a partir do login, que só será acessada caso digitado as
 -Adicionar e organizar alunos
 -Adicionar e organizar aulas
 
+-tela do professor pré implementada: 
+-adicionar funcionalida nos botoes de editar e salvar, para que o professor consiga realizar alterações nas informações dos alunos.
+-adicionar funcionalidade que só permita que o professor altere as informações quando clicar no botao "editar"
+-adicionar funcionalidade para que os botoes "editar" e "salvar" peguem todos os campos ou se for o caso, adicionar os botoes "editar" e "salvar" em todos os campos
+-adicionar funcionalidade no botao de enviar no quadro de avisos para que o aluno receba quando o professor enviar
+
 
 Telas ja implementadas (01/11/2024)
 -Tela de home: contém um carrossel dos cursos, que podem ser clicados para exibir detalhes. Botão de login no canto superior direito (que leva a tela de login), seguido do botão da área administrativa (que leva para a index.jsp).
