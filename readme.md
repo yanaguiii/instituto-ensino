@@ -32,6 +32,7 @@ A tela do aluno será a partir do login, que só será acessada caso digitado as
 -adicionar funcionalidade que só permita que o professor altere as informações quando clicar no botao "editar"
 -adicionar funcionalidade para que os botoes "editar" e "salvar" peguem todos os campos ou se for o caso, adicionar os botoes "editar" e "salvar" em todos os campos
 -adicionar funcionalidade no botao de enviar no quadro de avisos para que o aluno receba quando o professor enviar
+-adicionar funcionalidade para quando o professor clicar na materia que ele deseja aparecer os alunos cadastrados daquele curso em especifico
 
 
 Telas ja implementadas (01/11/2024)
