@@ -34,6 +34,10 @@ A tela do aluno será a partir do login, que só será acessada caso digitado as
 -adicionar funcionalidade no botao de enviar no quadro de avisos para que o aluno receba quando o professor enviar
 -adicionar funcionalidade para quando o professor clicar na materia que ele deseja aparecer os alunos cadastrados daquele curso em especifico
 
+-tela do aluno pré implementada:
+-adicionar funcionalidade para que quando o aluno clicar na materia que ele cursa e mostrar os dados relacionados, pré implementado com javascript
+-adicionar funcionalidade para quando o professor escrever no quadro de avisos, ser enviado para o quadro de avisos do aluno
+
 
 Telas ja implementadas (01/11/2024)
 -Tela de home: contém um carrossel dos cursos, que podem ser clicados para exibir detalhes. Botão de login no canto superior direito (que leva a tela de login), seguido do botão da área administrativa (que leva para a index.jsp).
