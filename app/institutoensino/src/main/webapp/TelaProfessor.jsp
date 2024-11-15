@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <title>CodePen - Navbar Pure CSS</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../css/styleProfessor.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="script.js">
+    <link rel="stylesheet" href="../js/scriptEdit.js">
     
 
 </head>
@@ -43,7 +43,7 @@
     </div>
 
     <div class="textoBoasVindas">
-        <h1><span class="hand"><img src="hand.png" alt="icone"></span> Bem Vindo, Professor!</h1>
+        <h1><span class="hand"><img src="../images/hand.png" alt="icone"></span> Bem Vindo, Professor!</h1>
     </div>
 
 
@@ -56,7 +56,7 @@
 
     <!-- Logo no canto superior direito -->
     <div class="image-logo">
-        <img src="Pedro Eduardo's team library.png" alt="Logo">
+        <img src="../images/logo.png" alt="Logo">
     </div>
 
     <!-- Exemplo de um participante / <div class="participant-list"></div> -->
@@ -250,7 +250,7 @@
             </div>
         </div>
     
-        <script src="scriptQuadro.js"></script> <!--Só funciona assim não sei pq-->
+        <script src="../js/scriptQuadro.js"></script> <!--Só funciona assim não sei pq-->
 
     </div>                            
 </body>

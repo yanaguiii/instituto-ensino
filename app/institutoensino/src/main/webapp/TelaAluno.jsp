@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>tela do aluno</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../css/styleAluno.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     
 
@@ -45,7 +45,7 @@
     </div>
 
     <div class="textoBoasVindas">
-        <h1><span class="hand"><img src="hand.png" alt="icone"></span> Bem-vindo à área do aluno!</h1>
+        <h1><span class="hand"><img src="../images/hand.png" alt="icone"></span> Bem-vindo à área do aluno!</h1>
     </div>
 
 
@@ -58,7 +58,7 @@
 
     <!-- Logo no canto superior direito -->
     <div class="image-logo">
-        <img src="Pedro Eduardo's team library.png" alt="Logo">
+        <img src="../images/logo.png" alt="Logo">
     </div>
 
     <!-- Exemplo de um participante / <div class="participant-list"></div> -->
@@ -130,6 +130,6 @@
 
     </div>
 
-    <script src="script.js"></script>
+    <script src="../js/scriptAluno.js"></script>
 </body>
 </html>
