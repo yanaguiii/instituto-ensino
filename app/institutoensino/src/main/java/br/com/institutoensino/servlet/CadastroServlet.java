@@ -1,7 +1,10 @@
 package br.com.institutoensino.servlet;
 
+import br.com.institutoensino.dao.AlunoDao;
+import br.com.institutoensino.dao.AlunoMateriaDao;
+import br.com.institutoensino.dao.CursoDao;
 import br.com.institutoensino.dao.UsuarioDao;
-import br.com.institutoensino.model.Usuario;
+import br.com.institutoensino.model.*;
 
 
 import javax.servlet.ServletException;
@@ -11,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Date;
+import java.util.List;
 
 
 @WebServlet("/cadastro")
@@ -32,6 +36,7 @@ public class CadastroServlet extends HttpServlet {
         String estado = req.getParameter("usuario-estado");
         String telefoneComercial = req.getParameter("usuario-telefone-comercial");
         String celular = req.getParameter("usuario-celular");
+        String cursoNome = req.getParameter("curso-nome");  // Captura o nome do curso;
 
         try {
             Date nascimento = Date.valueOf(nascimentoStr);
@@ -41,7 +46,6 @@ public class CadastroServlet extends HttpServlet {
 
             if (usuarioDao.emailExiste(email)) {
                 req.setAttribute("mensagemErro", "O e-mail já está cadastrado.");
-
                 req.setAttribute("usuarioNome", nome);
                 req.setAttribute("usuarioEmail", email);
                 req.setAttribute("usuarioSenha", senha);
@@ -56,24 +60,42 @@ public class CadastroServlet extends HttpServlet {
                 req.setAttribute("usuarioEstado", estado);
                 req.setAttribute("usuarioTelefoneComercial", telefoneComercial);
                 req.setAttribute("usuarioCelular", celular);
-
                 req.getRequestDispatcher("cadastro.jsp").forward(req, resp);
-
-            }else {
+            } else {
                 Usuario usuario = new Usuario(nome, email, senha, nascimento, cpf, rg, logradouro, numero, complemento, bairro, cidade, estado, telefoneComercial, celular);
-
                 usuarioDao.createUsuario(usuario);
+
+                int idUsuario = usuarioDao.findByEmail(email).getIdUsuario();
+                AlunoDao alunoDao = new AlunoDao();
+                Aluno aluno = new Aluno(idUsuario);
+                alunoDao.createAluno(aluno);
+
+                int idAluno = alunoDao.getIdAlunoByIdUsuario(idUsuario);
+
+                // Obter o curso pelo nome
+                CursoDao cursoDao = new CursoDao();
+                Curso curso = cursoDao.getCursoByNome(cursoNome);  // Buscar o curso pelo nome
+
+                if (curso != null) {
+                    // Buscar as matérias relacionadas ao curso
+                    List<Materia> materias = cursoDao.getMateriasPorCurso(curso.getIdCurso());
+                    // Criar instâncias de AlunoMateria para cada matéria
+                    AlunoMateriaDao alunoMateriaDao = new AlunoMateriaDao();
+                    for (Materia materia : materias) {
+                        AlunoMateria alunoMateria = new AlunoMateria(idAluno, materia.getIdMateria());
+                        alunoMateriaDao.createAlunoMateria(alunoMateria);  // Associar o aluno à matéria
+                    }
+                }
 
                 resp.sendRedirect("login.jsp");
             }
-
-        }catch(NumberFormatException e){
-                req.setAttribute("error", "Formato de número inválido.");
-                req.getRequestDispatcher("cadastro.jsp").forward(req, resp);
-            }catch(IllegalArgumentException e){
-                req.setAttribute("error", "Formato de data inválido.");
-                req.getRequestDispatcher("cadastro.jsp").forward(req, resp);
-            }
+        } catch (NumberFormatException e) {
+            req.setAttribute("error", "Formato de número inválido.");
+            req.getRequestDispatcher("cadastro.jsp").forward(req, resp);
+        } catch (IllegalArgumentException e) {
+            req.setAttribute("error", "Formato de data inválido.");
+            req.getRequestDispatcher("cadastro.jsp").forward(req, resp);
         }
-
+    }
 }
+

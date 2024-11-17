@@ -122,11 +122,6 @@ CREATE TABLE IF NOT EXISTS ALUNO
     AUTO_INCREMENT,
     ID_Usuario
     INT,
-    Matricula
-    VARCHAR
-(
-    50
-),
     FOREIGN KEY
 (
     ID_Usuario

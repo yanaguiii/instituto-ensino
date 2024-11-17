@@ -4,9 +4,9 @@ import br.com.institutoensino.config.ConnectionPoolConfig;
 import br.com.institutoensino.model.Aluno;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -14,32 +14,24 @@ import java.util.List;
 public class AlunoDao {
 
     public void createAluno(Aluno aluno) {
-        String SQL = "INSERT INTO ALUNO (ID_USUARIO, MATRICULA) VALUES (?, ?)";
-
-        try {
-            Connection connection = ConnectionPoolConfig.getConnection();
-
-
-            PreparedStatement preparedStatement = connection.prepareStatement(SQL);
+        String SQL = "INSERT INTO ALUNO (ID_USUARIO) VALUES (?)";
+        try (Connection con = ConnectionPoolConfig.getConnection();
+             PreparedStatement preparedStatement = con.prepareStatement(SQL)) {
             preparedStatement.setInt(1, aluno.getAlunoIdUsuario());
-            preparedStatement.setString(2, aluno.getMatricula());
             preparedStatement.execute();
-
-            System.out.println("success in insert aluno");
-            connection.close();
-        } catch (Exception e) {
-            System.out.println("fail in database connection aluno " + e.getMessage());
+            System.out.println("Aluno inserido com sucesso.");
+        } catch (SQLException e) {
+            System.out.println("Erro ao inserir aluno: " + e.getMessage());
         }
     }
+
 
     public List<Aluno> findAllAlunos() {
 
         String SQL = "SELECT * FROM ALUNO";
 
         try {
-
             Connection connection = ConnectionPoolConfig.getConnection();
-
 
             PreparedStatement preparedStatement = connection.prepareStatement(SQL);
 
@@ -50,15 +42,14 @@ public class AlunoDao {
             while (resultSet.next()) {
                 int idAluno = resultSet.getInt("ID_ALUNO");
                 int idUsuario = resultSet.getInt("ID_USUARIO");
-                String matricula = resultSet.getString("MATRICULA");
 
 
-                Aluno aluno = new Aluno(idAluno, idUsuario, matricula);
+                Aluno aluno = new Aluno(idAluno, idUsuario);
                 alunos.add(aluno);
             }
 
 
-            System.out.println("success in select * curso");
+            System.out.println("success in select * aluno");
 
             connection.close();
 
@@ -66,7 +57,7 @@ public class AlunoDao {
 
         } catch (Exception e) {
 
-            System.out.println("fail in database connection");
+            System.out.println("fail in database connection aluno");
 
             return Collections.emptyList();
 
@@ -93,30 +84,26 @@ public class AlunoDao {
         }
     }
 
-    public void updateAluno(Aluno aluno) {
+    public Integer getIdAlunoByIdUsuario(int idUsuario) {
+        String sql = "SELECT ID_ALUNO FROM ALUNO WHERE ID_USUARIO = ?";
+        Integer idAluno = null;
 
-        String SQL = "UPDATE ALUNO SET MATRICULA = ? WHERE ID_ALUNO = ?";
+        try (Connection conn = ConnectionPoolConfig.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-        try {
-            Connection connection = ConnectionPoolConfig.getConnection();
+            stmt.setInt(1, idUsuario);
 
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    idAluno = rs.getInt("ID_ALUNO");
+                }
+            }
 
-            PreparedStatement preparedStatement = connection.prepareStatement(SQL);
-
-            preparedStatement.setString(1, aluno.getMatricula());
-            preparedStatement.setInt(2, aluno.getIdAluno());
-            preparedStatement.execute();
-
-            System.out.println("success in update aluno with id " + aluno.getIdAluno());
-
-            connection.close();
-
-        } catch (Exception e) {
-
-            System.out.println("fail in database connection");
-            System.out.println("Error: " + e.getMessage());
-
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+
+        return idAluno; // Pode retornar null se não encontrar o ID_ALUNO
     }
 }
 

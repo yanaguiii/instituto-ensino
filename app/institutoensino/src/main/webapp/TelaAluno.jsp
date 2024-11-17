@@ -56,12 +56,10 @@
 
     <div class="separator1"></div>
 
-    <!-- Logo no canto superior direito -->
+
     <div class="image-logo">
         <img src="../images/logo.png" alt="Logo">
     </div>
-
-    <!-- Exemplo de um participante / <div class="participant-list"></div> -->
 
     <div class="table-container">
 
@@ -130,6 +128,6 @@
 
     </div>
 
-    <script src="../js/scriptAluno.js"></script>
+    <script src="js/scriptAluno.js"></script>
 </body>
 </html>

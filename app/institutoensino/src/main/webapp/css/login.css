@@ -153,6 +153,7 @@ p a:hover {
 .image-logo img {
     width: 120px; /* Ajuste do tamanho da logo */
     height: auto;
+    border:none;
 }
 
 .error-message {

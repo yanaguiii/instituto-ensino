@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <title>Tela de cadastro</title>
-    <link rel="stylesheet" type="text/css" href="css/cadastro.css?v=4.2">
+    <link rel="stylesheet" type="text/css" href="css/cadastro.css?v=4.3">
 </head>
 
 <body>
@@ -158,6 +158,8 @@
                 </div>
             </div>
 
+            <input type="hidden" id="curso" name="curso">
+
         </div>
 
         <div class="separator"></div>
@@ -180,11 +182,15 @@
                            value="<%= request.getAttribute("usuarioCelular") != null ? request.getAttribute("usuarioCelular") : "" %>">
                 </div>
             </div>
-        </div> <!-- Aqui fecha a div do bloco de Contato -->
+        </div>
 
         <div class="separator"></div>
 
-        <button type="submit">Registrar-se</button>
+        <div class="menu">
+            <input type="hidden" id="curso-nome" name="curso-nome" value="${param.cursoNome}">
+        <button type="submit">Registrar-se em ${param.cursoNome}?</button>
+            <a href="home.jsp" class="button-home">Voltar a Home</a>
+        </div>
     </form>
 </div>
 
@@ -195,7 +201,9 @@
 </div>
 
 <div class="image-logo">
+    <a href="home.jsp">
     <img src="images/logo.png" alt="Logo Instituto Ensino">
+    </a>
 </div>
 
 <script src="js/scriptCadastro.js?v=3.8"></script>

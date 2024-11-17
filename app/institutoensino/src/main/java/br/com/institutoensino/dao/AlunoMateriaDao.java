@@ -15,7 +15,7 @@ import java.util.List;
 public class AlunoMateriaDao {
 
     public void createAlunoMateria(AlunoMateria alunoMateria) {
-        String SQL = "INSERT INTO ALUNO_MATERIA (ID_ALUNO, ID_MATERIA, NOTA, FALTAS) VALUES (?, ?, ?, ?)";
+        String SQL = "INSERT INTO ALUNO_MATERIA (ID_ALUNO, ID_MATERIA) VALUES (?, ?)";
 
         try {
             Connection connection = ConnectionPoolConfig.getConnection();
@@ -24,8 +24,6 @@ public class AlunoMateriaDao {
             PreparedStatement preparedStatement = connection.prepareStatement(SQL);
             preparedStatement.setInt(1, alunoMateria.getAlunoMateriaIdAluno());
             preparedStatement.setInt(2, alunoMateria.getAlunoMateriaIdMateria());
-            preparedStatement.setBigDecimal(3, alunoMateria.getNota());
-            preparedStatement.setInt(4, alunoMateria.getFaltas());
             preparedStatement.execute();
 
             System.out.println("success in insert alunoMateria");

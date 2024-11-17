@@ -18,6 +18,11 @@ public class AlunoMateria {
         this.faltas = faltas;
     }
 
+    public AlunoMateria(int alunoMateriaIdAluno, int alunoMateriaIdMateria) {
+        this.alunoMateriaIdAluno = alunoMateriaIdAluno;
+        this.alunoMateriaIdMateria = alunoMateriaIdMateria;
+    }
+
     public int getAlunoMateriaIdAluno() {
         return alunoMateriaIdAluno;
     }

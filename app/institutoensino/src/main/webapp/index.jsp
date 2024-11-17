@@ -177,10 +177,6 @@
             <input class="form-control" id="aluno-id-usuario" name="aluno-id-usuario" required type="number" value="${param.alunoIdUsuario}">
         </div>
 
-        <div class="col-md-4 mb-3">
-            <label class="form-label" for="aluno-matricula">Matrícula:</label>
-            <input class="form-control" id="aluno-matricula" name="aluno-matricula" required type="text" value="${param.matricula}">
-        </div>
     </div>
 
     <button class="btn btn-primary" type="submit">Enviar</button>

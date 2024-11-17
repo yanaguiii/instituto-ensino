@@ -3,20 +3,17 @@ package br.com.institutoensino.model;
 public class Aluno {
     private int idAluno;
     private int alunoIdUsuario;
-    private String matricula;
 
     public Aluno() {
     }
 
-    public Aluno(int idAluno, int alunoIdUsuario, String matricula) {
+    public Aluno(int idAluno, int alunoIdUsuario) {
         this.idAluno = idAluno;
         this.alunoIdUsuario = alunoIdUsuario;
-        this.matricula = matricula;
     }
 
-    public Aluno(int alunoIdUsuario, String matricula) {
+    public Aluno(int alunoIdUsuario) {
         this.alunoIdUsuario = alunoIdUsuario;
-        this.matricula = matricula;
     }
 
     public int getIdAluno() {
@@ -35,11 +32,4 @@ public class Aluno {
         this.alunoIdUsuario = alunoIdUsuario;
     }
 
-    public String getMatricula() {
-        return matricula;
-    }
-
-    public void setMatricula(String matricula) {
-        this.matricula = matricula;
-    }
 }

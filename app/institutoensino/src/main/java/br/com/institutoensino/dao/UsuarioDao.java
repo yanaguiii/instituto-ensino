@@ -3,11 +3,13 @@ package br.com.institutoensino.dao;
 import br.com.institutoensino.config.ConnectionPoolConfig;
 import br.com.institutoensino.model.Usuario;
 
+import java.net.ConnectException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+
 
 public class UsuarioDao {
 
@@ -194,6 +196,45 @@ public class UsuarioDao {
         } catch (Exception e) {
             System.out.println("fail in database connection usuario " + e.getMessage());
         }
+    }
+
+
+    public Usuario findByEmail(String email) {
+        String sql = "SELECT * FROM USUARIO WHERE email = ?";
+        try (Connection conn = ConnectionPoolConfig.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            System.out.println("Tentando achar email " + email);
+            stmt.setString(1, email);  // Define o parâmetro do email na consulta.
+
+            try (ResultSet rs = stmt.executeQuery()) {  // Usamos try-with-resources para ResultSet.
+                if (rs.next()) {
+                    System.out.println("Achou");
+                    // Se encontrar um usuário, cria o objeto.
+                    return new Usuario(
+                            rs.getInt("ID_USUARIO"),
+                            rs.getString("NOME"),
+                            rs.getString("EMAIL"),
+                            rs.getString("SENHA"),
+                            rs.getDate("NASCIMENTO"),
+                            rs.getString("CPF"),
+                            rs.getString("RG"),
+                            rs.getString("LOGRADOURO"),
+                            rs.getInt("NUMERO"),
+                            rs.getString("COMPLEMENTO"),
+                            rs.getString("BAIRRO"),
+                            rs.getString("CIDADE"),
+                            rs.getString("ESTADO"),
+                            rs.getString("TELEFONE_COMERCIAL"),
+                            rs.getString("CELULAR")
+                    );
+                }
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 

@@ -8,7 +8,7 @@
     <title>Instituto Ensino - Home</title>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
-    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/home.css?v=1.0">
 </head>
 
 <body>
@@ -27,6 +27,7 @@
         <i class='bx bx-log-in'></i>
         <a href="login.jsp" class="login-link">
             <button class="sign-in-btn">Login</button>
+        </a>
             <a href="index.jsp" class="adm-link">
             <button class="adm-btn">Administrativo</button>
         </a>
@@ -125,11 +126,12 @@
                 <ul>
                     <li>Introdução ao Marketing Digital</li>
                     <li>Google e Mídias Sociais</li>
-                    <li>SEO (Otimização para Motores de Busca)</li>
+                    <li>SEO</li>
                     <li>Marketing e Métricas</li>
                 </ul>
             </div>
         </div>
+        <a href="cadastro.jsp?cursoNome=Marketing%20Digital" class="cadastro-btn">Cadastre-se</a>
     </div>
 </div>
 
@@ -163,13 +165,14 @@
                 <ul>
                     <li>Introdução ao Excel</li>
                     <li>Formatação de Células e Planilhas</li>
-                    <li>Funções Básicas (SOMA, MÉDIA, etc.)</li>
-                    <li>Funções Avançadas (PROCV, ÍNDICE, CORRESP, etc.)</li>
+                    <li>Funções Básicas</li>
+                    <li>Funções Avançadas</li>
                     <li>Tabelas e Gráficos Dinâmicos</li>
                     <li>Análise de Dados</li>
                 </ul>
             </div>
         </div>
+        <a href="cadastro.jsp?cursoNome=Excel" class="cadastro-btn">Cadastre-se</a>
     </div>
 </div>
 
@@ -213,6 +216,7 @@
                 </ul>
             </div>
         </div>
+        <a href="cadastro.jsp?cursoNome=Direito" class="cadastro-btn">Cadastre-se</a>
     </div>
 </div>
 
@@ -251,11 +255,11 @@
                     <li>Economia Internacional</li>
                     <li>Economia Monetária</li>
                     <li>Econometria</li>
-                    <li>História do Pensamento Econômico</li>
                     <li>Economia do Setor Público</li>
                 </ul>
             </div>
         </div>
+        <a href="cadastro.jsp?cursoNome=Economia" class="cadastro-btn">Cadastre-se</a>
     </div>
 </div>
 

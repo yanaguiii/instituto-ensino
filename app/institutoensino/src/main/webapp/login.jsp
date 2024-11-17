@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tela de Login</title>
     <link rel="stylesheet" href="css/login.css">
-    <!-- Adicione o link para o Font Awesome, se necessário -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
@@ -16,9 +15,11 @@
 
     <!-- Logo -->
     <div class="image-logo">
-        <img src="images/logo.png" alt="Logo Instituto Ensino" style="border: none;">
         <a href="home.jsp">
+            <img src="images/logo.png" alt="Logo Instituto Ensino" style="border: none;">
+        </a>
     </div>
+
 </div>
 
 <div class="login-container">
@@ -51,7 +52,7 @@
         }
     %>
 
-    <p>Ainda não tem conta? <a href="${pageContext.request.contextPath}/cadastro.jsp">Cadastre-se</a></p>
+    <p>Ainda não tem conta? <a href="${pageContext.request.contextPath}/home.jsp"><br>Escolha um curso e cadastre-se!</a></p>
 </div>
 
 <script src="js/scriptLogin.js"></script>

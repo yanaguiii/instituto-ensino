@@ -2,11 +2,9 @@ package br.com.institutoensino.dao;
 
 import br.com.institutoensino.config.ConnectionPoolConfig;
 import br.com.institutoensino.model.Curso;
+import br.com.institutoensino.model.Materia;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -106,6 +104,7 @@ public class CursoDao {
             System.out.println("fail in database connection curso " + e.getMessage());
         }
     }
+
     public void updateCurso(Curso curso) {
         // String SQL para a atualização do curso
         String SQL = "UPDATE CURSO SET NOME = ?, MODALIDADE = ?, DURACAO = ?, CAMPUS = ?, TURNO = ?, DESCRICAO = ? WHERE ID_CURSO = ?";
@@ -144,6 +143,94 @@ public class CursoDao {
         }
     }
 
+    public Curso getCursoById(int idCurso) {
+        String SQL = "SELECT * FROM CURSO WHERE ID_CURSO = ?";
 
+        try (Connection connection = ConnectionPoolConfig.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(SQL)) {
+
+            preparedStatement.setInt(1, idCurso);
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    String cursoNome = resultSet.getString("NOME");
+                    String cursoModalidade = resultSet.getString("MODALIDADE");
+                    float cursoDuracao = resultSet.getFloat("DURACAO");
+                    String cursoCampus = resultSet.getString("CAMPUS");
+                    String cursoTurno = resultSet.getString("TURNO");
+                    String cursoDescricao = resultSet.getString("DESCRICAO");
+
+                    Curso curso = new Curso(idCurso, cursoNome, cursoModalidade, cursoDuracao, cursoCampus, cursoTurno, cursoDescricao);
+
+                    System.out.println("Success in select curso: " + cursoNome);
+
+                    return curso;
+                } else {
+                    System.out.println("No curso found with ID: " + idCurso);
+                    return null;
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Fail in database connection: " + e.getMessage());
+            return null;
+        }
+    }
+
+    public Curso getCursoByNome(String nome) {
+        String SQL = "SELECT * FROM CURSO WHERE NOME = ?";
+
+        try (Connection connection = ConnectionPoolConfig.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(SQL)) {
+
+            preparedStatement.setString(1, nome);
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    int idCurso = resultSet.getInt("ID_CURSO");
+                    String cursoNome = resultSet.getString("NOME");
+                    String cursoModalidade = resultSet.getString("MODALIDADE");
+                    float cursoDuracao = resultSet.getFloat("DURACAO");
+                    String cursoCampus = resultSet.getString("CAMPUS");
+                    String cursoTurno = resultSet.getString("TURNO");
+                    String cursoDescricao = resultSet.getString("DESCRICAO");
+
+                    Curso curso = new Curso(idCurso, cursoNome, cursoModalidade, cursoDuracao, cursoCampus, cursoTurno, cursoDescricao);
+
+                    System.out.println("Success in selecting curso: " + cursoNome);
+
+                    return curso;
+                } else {
+                    System.out.println("No curso found with name: " + nome);
+                    return null;
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Fail in database connection: " + e.getMessage());
+            return null;
+        }
+    }
+
+    public List<Materia> getMateriasPorCurso(int idCurso) {
+        List<Materia> materias = new ArrayList<>();
+        String sql = "SELECT * FROM MATERIA WHERE ID_CURSO = ?";
+
+        try (Connection conn = ConnectionPoolConfig.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, idCurso);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Materia materia = new Materia();
+                materia.setIdMateria(rs.getInt("ID_MATERIA"));
+                materia.setNomeMateria(rs.getString("NOME"));
+                materia.setMateriaIdCurso(rs.getInt("ID_CURSO"));
+                materia.setMateriaIdProfessor(rs.getInt("ID_PROFESSOR"));
+                materias.add(materia);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return materias;
+    }
 
 }

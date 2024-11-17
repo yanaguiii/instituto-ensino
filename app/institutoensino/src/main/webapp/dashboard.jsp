@@ -152,7 +152,6 @@
         <thead>
         <tr>
             <th>ID Aluno</th>
-            <th>Matricula</th>
             <th>ID Usuário associado</th>
         </tr>
         </thead>
@@ -160,12 +159,11 @@
         <c:forEach var="aluno" items="${alunos}">
             <tr>
                 <td>${aluno.idAluno}</td>
-                <td>${aluno.matricula}</td>
                 <td>${aluno.alunoIdUsuario}</td>
                 <td>
                     <div class="action-buttons">
 
-                        <a class="update" href="index.jsp?idAluno=${aluno.idAluno}&matricula=${aluno.matricula}&alunoIdUsuario=${aluno.alunoIdUsuario}">Update</a>
+                        <a class="update" href="index.jsp?idAluno=${aluno.idAluno}&alunoIdUsuario=${aluno.alunoIdUsuario}">Update</a>
 
                         <form action="/delete-aluno" method="post">
                         <input type="hidden" id="idAluno" name="idAluno" value="${aluno.idAluno}">
