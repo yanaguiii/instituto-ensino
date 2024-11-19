@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Date;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
@@ -17,14 +18,17 @@ public class LoginServlet extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
 
-        // Aqui você pode verificar as credenciais no banco de dados
         UsuarioDao usuarioDao = new UsuarioDao();
         Usuario usuario = usuarioDao.validarLogin(email, password);
 
         if (usuario != null) {
             // Login bem-sucedido
             request.getSession().setAttribute("usuarioLogado", usuario);
-            response.sendRedirect("/home.jsp");
+            if (usuario.isAdmin()) {
+                response.sendRedirect("/admin.jsp");
+            } else {
+                response.sendRedirect("/home.jsp");
+            }
         } else {
             // Falha no login
             request.setAttribute("mensagemErro", "Email ou senha incorretos.");

@@ -36,13 +36,6 @@ header {
     color: white; /* Cor do ícone */
 }
 
-.sign-in-btn {
-    background-color: transparent; /* Para ter fundo transparente */
-    border: 1px solid white; /* Borda branca para o botão */
-    color: white; /* Cor do texto do botão */
-    cursor: pointer; /* Muda o cursor ao passar sobre o botão */
-}
-
 .logo img {
     height: 100%; /* Faz a imagem ocupar 100% da altura do header */
     width: auto; /* Mantém a proporção da imagem */
@@ -101,16 +94,70 @@ header {
     font-size: 24px;
 }
 
+.user-actions {
+    display: flex;
+    align-items: center;
+}
+
+.button-container {
+    display: flex;
+    gap: 10px; /* Espaço entre os botões */
+}
+
+.admin-btn, .sign-out-btn, .sign-in-btn, .materias-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+    margin: 10px;
+}
+
+.admin-btn {
+    background-color: #4CAF50; /* Cor verde para o botão de Admin */
+    color: white;
+}
+
+.sign-out-btn {
+    background-color: #f44336; /* Cor vermelha para o botão de Logout */
+    color: white;
+}
+
 .sign-in-btn {
     background-color: #D4AC0D;
-    border: none;
     color: white;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 30px;
-    transition: background-color 0.3s;
 }
+
+.materias-btn {
+    background-color: #4A90E2; /* Cor azul para o botão de Materias */
+    color: white;
+}
+
+.materias-btn:hover {
+    background-color: #3A78C2;
+}
+
+.admin-btn i, .sign-out-btn i, .sign-in-btn i, .materias-btn i {
+    margin-right: 5px;
+}
+
+.user-actions a {
+    text-decoration: none;
+}
+
+/* Você pode manter ou ajustar estes estilos existentes */
+.sign-in-btn:hover, .sign-out-btn:hover, .admin-btn:hover {
+    background-color: #B58600;
+}
+
+.user-actions a {
+    text-decoration: none;
+}
+
 
 .search-container {
     display: flex;
@@ -121,11 +168,6 @@ header {
     position: relative;
     text-align: center;
 }
-
-.sign-in-btn:hover {
-    background-color: #B58600;
-}
-
 
 .swiper {
     width: 80%;

@@ -1,5 +1,6 @@
-<!DOCTYPE html>
+<%@ page import="br.com.institutoensino.model.Usuario" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
@@ -8,7 +9,7 @@
     <title>Instituto Ensino - Home</title>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
-    <link rel="stylesheet" href="css/home.css?v=1.0">
+    <link rel="stylesheet" href="css/home.css?v=1.7">
 </head>
 
 <body>
@@ -23,14 +24,51 @@
         </div>
     </div>
 
-    <div class="login">
-        <i class='bx bx-log-in'></i>
+    <div class="user-actions">
+        <%
+            Usuario usuarioLogado = null;
+            Object usuarioObj = session.getAttribute("usuarioLogado");
+            if (usuarioObj instanceof Usuario) {
+                usuarioLogado = (Usuario) usuarioObj;
+            }
+        %>
+        <% if (usuarioLogado != null) { %>
+        <!-- Usuário está logado -->
+        <div class="button-container">
+            <% if (usuarioLogado.isAdmin()) { %>
+            <!-- Usuário é admin -->
+            <a href="admin.jsp" class="admin-link">
+                <button class="admin-btn">
+                    <i class='bx bx-cog'></i>
+                    Admin
+                </button>
+            </a>
+            <% } %>
+
+            <!-- Novo botão Materias -->
+            <a href="javascript:void(0);" onclick="redirecionarMaterias(<%= usuarioLogado.getIdUsuario() %>)" class="materias-link">
+                <button class="materias-btn">
+                    <i class='bx bx-book'></i>
+                    Materias
+                </button>
+            </a>
+
+            <a href="logout.jsp" class="logout-link">
+                <button class="sign-out-btn">
+                    <i class='bx bx-log-out'></i>
+                    Logout
+                </button>
+            </a>
+        </div>
+        <% } else { %>
+        <!-- Usuário não está logado -->
         <a href="login.jsp" class="login-link">
-            <button class="sign-in-btn">Login</button>
+            <button class="sign-in-btn">
+                <i class='bx bx-log-in'></i>
+                Login
+            </button>
         </a>
-            <a href="index.jsp" class="adm-link">
-            <button class="adm-btn">Administrativo</button>
-        </a>
+        <% } %>
     </div>
 </header>
 
@@ -299,7 +337,7 @@
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-<script src="js/home.js"></script>
+<script src="js/home.js?v=1.2"></script>
 
 </body>
 

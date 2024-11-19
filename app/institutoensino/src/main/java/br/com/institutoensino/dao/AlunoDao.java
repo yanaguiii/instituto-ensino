@@ -2,14 +2,13 @@ package br.com.institutoensino.dao;
 
 import br.com.institutoensino.config.ConnectionPoolConfig;
 import br.com.institutoensino.model.Aluno;
+import br.com.institutoensino.model.Materia;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class AlunoDao {
 
@@ -105,5 +104,35 @@ public class AlunoDao {
 
         return idAluno; // Pode retornar null se não encontrar o ID_ALUNO
     }
+
+    public List<Map<String, Object>> buscarMateriasDoAluno(int idUsuario) {
+        List<Map<String, Object>> materiaInfos = new ArrayList<>();
+        String SQL = "SELECT m.ID_Materia, m.Nome, am.Faltas, am.Nota " +
+                "FROM MATERIA m " +
+                "JOIN ALUNO_MATERIA am ON m.ID_Materia = am.ID_Materia " +
+                "JOIN ALUNO a ON am.ID_Aluno = a.ID_Aluno " +
+                "WHERE a.ID_Usuario = ?";
+
+        try (Connection conn = ConnectionPoolConfig.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(SQL)) {
+
+            stmt.setInt(1, idUsuario);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    Map<String, Object> materiaInfo = new HashMap<>();
+                    materiaInfo.put("idMateria", rs.getInt("ID_Materia"));
+                    materiaInfo.put("nomeMateria", rs.getString("Nome"));
+                    materiaInfo.put("faltas", rs.getInt("Faltas"));
+                    materiaInfo.put("nota", rs.getBigDecimal("Nota"));
+                    materiaInfos.add(materiaInfo);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return materiaInfos;
+    }
 }
+
 

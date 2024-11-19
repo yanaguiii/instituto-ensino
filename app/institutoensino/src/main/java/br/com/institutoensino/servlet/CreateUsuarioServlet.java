@@ -31,6 +31,7 @@ public class CreateUsuarioServlet extends HttpServlet {
         String estado = req.getParameter("usuario-estado");
         String telefoneComercial = req.getParameter("usuario-telefone-comercial");
         String celular = req.getParameter("usuario-celular");
+        boolean isAdmin = "true".equals(req.getParameter("isAdmin"));
 
         try {
             Date nascimento = Date.valueOf(nascimentoStr);
@@ -40,10 +41,12 @@ public class CreateUsuarioServlet extends HttpServlet {
 
             if (idUsuarioStr == null || idUsuarioStr.isBlank()) {
                 usuario = new Usuario(nome, email, senha, nascimento, cpf, rg, logradouro, numero, complemento, bairro, cidade, estado, telefoneComercial, celular);
+                usuario.setAdmin(isAdmin);
                 usuarioDao.createUsuario(usuario);
             } else {
                 int idUsuario = Integer.parseInt(idUsuarioStr);
                 usuario = new Usuario(idUsuario, nome, email, senha, nascimento, cpf, rg, logradouro, numero, complemento, bairro, cidade, estado, telefoneComercial, celular);
+                usuario.setAdmin(isAdmin);
                 usuarioDao.updateUsuario(usuario);
             }
 

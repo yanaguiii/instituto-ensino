@@ -224,7 +224,31 @@ label[for=nav-toggle] {
   gap: 8px;
 }
 
-.nav-button span {
+.nav-item {
+  position: relative;
+  margin-left: 16px;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  color: var(--navbar-light-secondary);
+  direction: ltr;
+  z-index: 1;
+  transition: color 0.2s;
+  gap: 8px;
+}
+
+.title{
+  font-weight: bold;
+}
+
+#nav-toggle:checked~#nav-content .nav-item {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.1s;
+}
+
+
+.nav-button span{
 
   transition: opacity 1s;
 }
@@ -326,6 +350,10 @@ label[for=nav-footer-toggle] {
 #nav-footer-content::-webkit-scrollbar-thumb {
   border-radius: 99px;
   background-color: #D62929;
+}
+
+.bx{
+  font-size: 35px;
 }
 
 .separator,

@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <html lang="pt-BR">
@@ -96,6 +98,15 @@
             <label class="form-label" for="usuario-celular">Celular:</label>
             <input class="form-control" id="usuario-celular" name="usuario-celular" required type="text" value="${param.celular}">
             </div>
+
+        <div class="col-md-4 mb-3">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="isAdmin" name="isAdmin" value="true">
+                <label class="form-check-label" for="isAdmin">
+                    Admin?
+                </label>
+            </div>
+        </div>
     </div>
 
     <button class="btn btn-primary" type="submit">Enviar</button>

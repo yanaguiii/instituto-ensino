@@ -19,7 +19,7 @@ public class UsuarioDao {
             return;
         }
 
-        String SQL = "INSERT INTO USUARIO (NOME, EMAIL, SENHA, NASCIMENTO, CPF, RG, LOGRADOURO, NUMERO, COMPLEMENTO, BAIRRO, CIDADE, ESTADO, TELEFONE_COMERCIAL, CELULAR) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String SQL = "INSERT INTO USUARIO (NOME, EMAIL, SENHA, NASCIMENTO, CPF, RG, LOGRADOURO, NUMERO, COMPLEMENTO, BAIRRO, CIDADE, ESTADO, TELEFONE_COMERCIAL, CELULAR, IS_ADMIN) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try {
             Connection con = ConnectionPoolConfig.getConnection();
@@ -28,7 +28,7 @@ public class UsuarioDao {
             preparedStatement.setString(1, usuario.getNomeUsuario());
             preparedStatement.setString(2, usuario.getEmail());
             preparedStatement.setString(3, usuario.getSenha());
-            preparedStatement.setDate(4, new java.sql.Date(usuario.getNascimento().getTime()));
+            preparedStatement.setDate(4, null);
             preparedStatement.setString(5, usuario.getCpf());
             preparedStatement.setString(6, usuario.getRg());
             preparedStatement.setString(7, usuario.getLogradouro());
@@ -39,6 +39,7 @@ public class UsuarioDao {
             preparedStatement.setString(12, usuario.getEstado());
             preparedStatement.setString(13, usuario.getTelefoneComercial());
             preparedStatement.setString(14, usuario.getCelular());
+            preparedStatement.setBoolean(15, usuario.isAdmin());
             preparedStatement.execute();
 
             System.out.println("Usuário inserido com sucesso.");
@@ -76,8 +77,9 @@ public class UsuarioDao {
                 String estado = resultSet.getString("ESTADO");
                 String telefoneComercial = resultSet.getString("TELEFONE_COMERCIAL");
                 String celular = resultSet.getString("CELULAR");
+                boolean admin = resultSet.getBoolean("IS_ADMIN");
 
-                Usuario usuario = new Usuario(idUsuario, nome, email, senha, nascimento, cpf, rg, logradouro, numero, complemento, bairro, cidade, estado, telefoneComercial, celular);
+                Usuario usuario = new Usuario(idUsuario, nome, email, senha, nascimento, cpf, rg, logradouro, numero, complemento, bairro, cidade, estado, telefoneComercial, celular, admin);
                 usuarios.add(usuario);
             }
 
@@ -108,7 +110,7 @@ public class UsuarioDao {
                 usuario.setIdUsuario(rs.getInt("ID_Usuario"));
                 usuario.setNomeUsuario(rs.getString("Nome"));
                 usuario.setEmail(rs.getString("Email"));
-                // Pegar outros campos se necessário
+                usuario.setAdmin(rs.getBoolean("is_admin"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -237,8 +239,48 @@ public class UsuarioDao {
         return null;
     }
 
+    public boolean existsAdmin() {
+        String SQL = "SELECT COUNT(*) FROM USUARIO WHERE Is_Admin = TRUE";
+        try (Connection conn = ConnectionPoolConfig.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(SQL);
+             ResultSet rs = stmt.executeQuery()) {
+            if (rs.next()) {
+                return rs.getInt(1) > 0;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 
 
+    public String verificarTipoUsuario(int idUsuario) {
+        String SQL = "SELECT " +
+                "CASE " +
+                "  WHEN a.ID_Aluno IS NOT NULL THEN 'ALUNO' " +
+                "  WHEN p.ID_Professor IS NOT NULL THEN 'PROFESSOR' " +
+                "  ELSE 'USUARIO' " +
+                "END AS tipo " +
+                "FROM USUARIO u " +
+                "LEFT JOIN ALUNO a ON u.ID_Usuario = a.ID_Usuario " +
+                "LEFT JOIN PROFESSOR p ON u.ID_Usuario = p.ID_Usuario " +
+                "WHERE u.ID_Usuario = ?";
+
+        try (Connection conn = ConnectionPoolConfig.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(SQL)) {
+
+            stmt.setInt(1, idUsuario);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getString("tipo");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return "DESCONHECIDO";
+    }
 }
 
 

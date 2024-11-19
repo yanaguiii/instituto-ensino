@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <html>
@@ -34,6 +35,7 @@
             <th>Estado</th>
             <th>Celular</th>
             <th>Telefone Comercial</th>
+            <th>Admin</th>
         </tr>
         </thead>
         <tbody>
@@ -54,9 +56,14 @@
                 <td>${usuario.celular}</td>
                 <td>${usuario.telefoneComercial}</td>
                 <td>
+                    <c:choose>
+                        <c:when test="${usuario.admin}">Sim</c:when>
+                        <c:otherwise>Não</c:otherwise>
+                    </c:choose></td>
+                <td>
                     <div class="action-buttons">
 
-                        <a class="update" href="index.jsp?idUsuario=${usuario.idUsuario}&nomeUsuario=${usuario.nomeUsuario}&email=${usuario.email}&senha=${usuario.senha}&nascimento=${usuario.nascimento}&cpf=${usuario.cpf}&rg=${usuario.rg}&logradouro=${usuario.logradouro}&numero=${usuario.numero}&complemento=${usuario.complemento}&bairro=${usuario.bairro}&cidade=${usuario.cidade}&estado=${usuario.estado}&telefoneComercial=${usuario.telefoneComercial}&celular=${usuario.celular}">Update</a>
+                        <a class="update" href="admin.jsp?idUsuario=${usuario.idUsuario}&nomeUsuario=${usuario.nomeUsuario}&email=${usuario.email}&senha=${usuario.senha}&nascimento=${usuario.nascimento}&cpf=${usuario.cpf}&rg=${usuario.rg}&logradouro=${usuario.logradouro}&numero=${usuario.numero}&complemento=${usuario.complemento}&bairro=${usuario.bairro}&cidade=${usuario.cidade}&estado=${usuario.estado}&telefoneComercial=${usuario.telefoneComercial}&celular=${usuario.celular}&isAdmin=${usuario.admin}">Update</a>
 
                         <form action="/delete-usuario" method="post">
                         <input type="hidden" id="idUsuario" name="idUsuario" value="${usuario.idUsuario}">
@@ -97,7 +104,7 @@
                 <td>
                     <div class="action-buttons">
 
-                        <a class="update" href="index.jsp?idCurso=${curso.idCurso}&nomeCurso=${curso.nomeCurso}&modalidade=${curso.modalidade}&duracao=${curso.duracao}&campus=${curso.campus}&turno=${curso.turno}&descricao=${curso.descricao}">Update</a>
+                        <a class="update" href="admin.jsp?idCurso=${curso.idCurso}&nomeCurso=${curso.nomeCurso}&modalidade=${curso.modalidade}&duracao=${curso.duracao}&campus=${curso.campus}&turno=${curso.turno}&descricao=${curso.descricao}">Update</a>
 
                         <form action="/delete-curso" method="post">
                         <input type="hidden" name="idCurso" value="${curso.idCurso}">
@@ -132,7 +139,7 @@
                 <td>
                     <div class="action-buttons">
 
-                        <a class="update" href="index.jsp?idProfessor=${professor.idProfessor}&salario=${professor.salario}&professorIdUsuario=${professor.professorIdUsuario}">Update</a>
+                        <a class="update" href="admin.jsp?idProfessor=${professor.idProfessor}&salario=${professor.salario}&professorIdUsuario=${professor.professorIdUsuario}">Update</a>
 
                         <form action="/delete-professor" method="post">
                         <input type="hidden" id="idProfessor" name="idProfessor" value="${professor.idProfessor}">
@@ -163,7 +170,7 @@
                 <td>
                     <div class="action-buttons">
 
-                        <a class="update" href="index.jsp?idAluno=${aluno.idAluno}&alunoIdUsuario=${aluno.alunoIdUsuario}">Update</a>
+                        <a class="update" href="admin.jsp?idAluno=${aluno.idAluno}&alunoIdUsuario=${aluno.alunoIdUsuario}">Update</a>
 
                         <form action="/delete-aluno" method="post">
                         <input type="hidden" id="idAluno" name="idAluno" value="${aluno.idAluno}">
@@ -198,7 +205,7 @@
                 <td>
                     <div class="action-buttons">
 
-                        <a class="update" href="index.jsp?idMateria=${materia.idMateria}&nomeMateria=${materia.nomeMateria}&materiaIdCurso=${materia.materiaIdCurso}&materiaIdProfessor=${materia.materiaIdProfessor}">Update</a>
+                        <a class="update" href="admin.jsp?idMateria=${materia.idMateria}&nomeMateria=${materia.nomeMateria}&materiaIdCurso=${materia.materiaIdCurso}&materiaIdProfessor=${materia.materiaIdProfessor}">Update</a>
 
                         <form action="/delete-materia" method="post">
                         <input type="hidden" id="idMateria" name="idMateria" value="${materia.idMateria}">
@@ -233,7 +240,7 @@
                 <td>
                     <div class="action-buttons">
 
-                        <a class="update" href="index.jsp?alunoMateriaIdAluno=${alunoMateria.alunoMateriaIdAluno}&alunoMateriaIdMateria=${alunoMateria.alunoMateriaIdMateria}&nota=${alunoMateria.nota}&faltas=${alunoMateria.faltas}">Update</a>
+                        <a class="update" href="admin.jsp?alunoMateriaIdAluno=${alunoMateria.alunoMateriaIdAluno}&alunoMateriaIdMateria=${alunoMateria.alunoMateriaIdMateria}&nota=${alunoMateria.nota}&faltas=${alunoMateria.faltas}">Update</a>
 
                         <form action="/delete-aluno-materia" method="post">
                         <input type="hidden" id="idAlunoMateria" name="idAlunoMateria" value="${alunoMateria.alunoMateriaIdAluno}">
@@ -272,7 +279,7 @@
                 <td>
                     <div class="action-buttons">
 
-                        <a class="update" href="index.jsp?idPost=${postProfessor.idPost}&conteudo=${postProfessor.conteudo}&postData=${postProfessor.postData}&postIdProfessor=${postProfessor.postIdProfessor}&postIdMateria=${postProfessor.postIdMateria}">Update</a>
+                        <a class="update" href="admin.jsp?idPost=${postProfessor.idPost}&conteudo=${postProfessor.conteudo}&postData=${postProfessor.postData}&postIdProfessor=${postProfessor.postIdProfessor}&postIdMateria=${postProfessor.postIdMateria}">Update</a>
 
                         <form action="/delete-post-professor" method="post">
                         <input type="hidden" id="idPost" name="idPost" value="${postProfessor.idPost}">
@@ -287,7 +294,7 @@
     </table>
 
     <div class="controle">
-    <a class="menu" href="index.jsp">Adicionar elemento</a>
+    <a class="menu" href="admin.jsp">Adicionar elemento</a>
     <a class="menu" href="home.jsp">Home</a>
         <a class="menu" href="login.jsp">Login</a>
     </div>

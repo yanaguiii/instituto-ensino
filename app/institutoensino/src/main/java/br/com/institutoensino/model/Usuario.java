@@ -18,6 +18,15 @@ public class Usuario {
     private String estado;
     private String telefoneComercial;
     private String celular;
+    private boolean isAdmin;
+
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+
+    public void setAdmin(boolean admin) {
+        isAdmin = admin;
+    }
 
     public Usuario() {
     }
@@ -42,6 +51,27 @@ public class Usuario {
         this.celular = celular;
     }
 
+    public Usuario(int idUsuario, String nomeUsuario, String email, String senha, Date nascimento, String cpf, String rg,
+                   String logradouro, int numero, String complemento, String bairro, String cidade,
+                   String estado, String telefoneComercial, String celular, boolean isAdmin) {
+        this.idUsuario = idUsuario;
+        this.nomeUsuario = nomeUsuario;
+        this.email = email;
+        this.senha = senha;
+        this.nascimento = nascimento;
+        this.cpf = cpf;
+        this.rg = rg;
+        this.logradouro = logradouro;
+        this.numero = numero;
+        this.complemento = complemento;
+        this.bairro = bairro;
+        this.cidade = cidade;
+        this.estado = estado;
+        this.telefoneComercial = telefoneComercial;
+        this.celular = celular;
+        this.isAdmin = isAdmin;
+    }
+
     public Usuario(String nomeUsuario, String email, String senha, Date nascimento, String cpf, String rg,
                    String logradouro, int numero, String complemento, String bairro, String cidade,
                    String estado, String telefoneComercial, String celular) {
@@ -59,6 +89,26 @@ public class Usuario {
         this.estado = estado;
         this.telefoneComercial = telefoneComercial;
         this.celular = celular;
+    }
+
+    public Usuario(String nomeUsuario, String email, String senha, Date nascimento, String cpf, String rg,
+                   String logradouro, int numero, String complemento, String bairro, String cidade,
+                   String estado, String telefoneComercial, String celular, boolean isAdmin) {
+        this.nomeUsuario = nomeUsuario;
+        this.email = email;
+        this.senha = senha;
+        this.nascimento = nascimento;
+        this.cpf = cpf;
+        this.rg = rg;
+        this.logradouro = logradouro;
+        this.numero = numero;
+        this.complemento = complemento;
+        this.bairro = bairro;
+        this.cidade = cidade;
+        this.estado = estado;
+        this.telefoneComercial = telefoneComercial;
+        this.celular = celular;
+        this.isAdmin = isAdmin;
     }
 
     public int getIdUsuario() {

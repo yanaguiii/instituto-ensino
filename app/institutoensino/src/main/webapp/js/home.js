@@ -34,3 +34,15 @@ window.addEventListener("click", function (event) {
     });
 });
 
+function redirecionarMaterias(idUsuario) {
+    fetch('verificarTipoUsuario?idUsuario=' + idUsuario)
+        .then(response => response.text())
+        .then(pagina => {
+            window.location.href = pagina;
+        })
+        .catch(error => {
+            console.error('Erro:', error);
+            alert('Ocorreu um erro ao verificar o tipo de usuário');
+        });
+}
+

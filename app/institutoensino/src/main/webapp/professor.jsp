@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <html lang="en">
 
 <head>
@@ -82,7 +83,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td><input type="text" value="Lucas Andrade"></td>
+                    <td>value="Lucas Andrade"</td>
                     <td><input type="text" value="Marketing"></td>
                     <td><input type="text" value="25 de Jan, 2024"></td>
                     <td><input type="text" value="14:30 PM"></td>
