@@ -13,10 +13,11 @@ import java.util.*;
 public class AlunoDao {
 
     public void createAluno(Aluno aluno) {
-        String SQL = "INSERT INTO ALUNO (ID_USUARIO) VALUES (?)";
+        String SQL = "INSERT INTO ALUNO (ID_USUARIO, ID_CURSO) VALUES (?, ?)";
         try (Connection con = ConnectionPoolConfig.getConnection();
              PreparedStatement preparedStatement = con.prepareStatement(SQL)) {
             preparedStatement.setInt(1, aluno.getAlunoIdUsuario());
+            preparedStatement.setInt(2, aluno.getAlunoIdCurso());
             preparedStatement.execute();
             System.out.println("Aluno inserido com sucesso.");
         } catch (SQLException e) {
@@ -41,9 +42,10 @@ public class AlunoDao {
             while (resultSet.next()) {
                 int idAluno = resultSet.getInt("ID_ALUNO");
                 int idUsuario = resultSet.getInt("ID_USUARIO");
+                int idCurso = resultSet.getInt("ID_CURSO");
 
 
-                Aluno aluno = new Aluno(idAluno, idUsuario);
+                Aluno aluno = new Aluno(idAluno, idUsuario, idCurso);
                 alunos.add(aluno);
             }
 
@@ -105,6 +107,58 @@ public class AlunoDao {
         return idAluno; // Pode retornar null se não encontrar o ID_ALUNO
     }
 
+
+    public void updateAluno(Aluno aluno) {
+        // String SQL para a atualização do aluno
+        String SQL = "UPDATE ALUNO SET ID_USUARIO = ?, ID_CURSO = ? WHERE ID_ALUNO = ?";
+
+        try {
+            // Estabelecendo a conexão
+            Connection connection = ConnectionPoolConfig.getConnection();
+
+            // Preparando o statement
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL);
+            preparedStatement.setInt(1, aluno.getAlunoIdUsuario());
+            preparedStatement.setInt(2, aluno.getAlunoIdCurso());
+            preparedStatement.setInt(3, aluno.getIdAluno()); // Adicionando o ID do aluno para a cláusula WHERE
+
+            // Executando a atualização
+            int rowsAffected = preparedStatement.executeUpdate(); // Use executeUpdate para um UPDATE
+
+            if (rowsAffected > 0) {
+                System.out.println("Success in update aluno with id " + aluno.getIdAluno());
+            } else {
+                System.out.println("No rows affected, check if the provided ID is correct.");
+            }
+
+            // Fechando a conexão
+            connection.close();
+        } catch (SQLException e) {
+            System.out.println("Fail in database connection aluno " + e.getMessage());
+        }
+    }
+
+    public Aluno findAlunoById(int idAluno) {
+        String SQL = "SELECT * FROM ALUNO WHERE ID_ALUNO = ?";
+        try (Connection conn = ConnectionPoolConfig.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(SQL)) {
+
+            stmt.setInt(1, idAluno);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    int idUsuario = rs.getInt("ID_USUARIO");
+                    int idCurso = rs.getInt("ID_CURSO");
+
+                    return new Aluno(idAluno, idUsuario, idCurso);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public List<Map<String, Object>> buscarMateriasDoAluno(int idUsuario) {
         List<Map<String, Object>> materiaInfos = new ArrayList<>();
         String SQL = "SELECT m.ID_Materia, m.Nome, am.Faltas, am.Nota " +
@@ -132,6 +186,24 @@ public class AlunoDao {
             e.printStackTrace();
         }
         return materiaInfos;
+    }
+
+    public List<Integer> buscarIdMateriasPorAluno(int idAluno) {
+        List<Integer> idMaterias = new ArrayList<>();
+        String SQL = "SELECT ID_Materia FROM ALUNO_MATERIA WHERE ID_Aluno = ?";
+
+        try (Connection conn = ConnectionPoolConfig.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(SQL)) {
+            stmt.setInt(1, idAluno);
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    idMaterias.add(rs.getInt("ID_Materia"));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return idMaterias;
     }
 }
 

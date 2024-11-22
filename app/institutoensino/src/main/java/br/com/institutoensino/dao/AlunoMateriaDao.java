@@ -4,13 +4,8 @@ import br.com.institutoensino.config.ConnectionPoolConfig;
 import br.com.institutoensino.model.AlunoMateria;
 
 import java.math.BigDecimal;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.sql.*;
+import java.util.*;
 
 public class AlunoMateriaDao {
 

@@ -179,7 +179,6 @@
 
 <h1>Criar Aluno</h1>
 <form action="/create-aluno" method="post">
-
     <div class="row">
         <input type="hidden" id="idAluno" name="idAluno" value="${param.idAluno}">
 
@@ -188,10 +187,15 @@
             <input class="form-control" id="aluno-id-usuario" name="aluno-id-usuario" required type="number" value="${param.alunoIdUsuario}">
         </div>
 
+        <div class="col-md-4 mb-3">
+            <label class="form-label" for="aluno-id-curso">ID do Curso:</label>
+            <input class="form-control" id="aluno-id-curso" name="aluno-id-curso" required type="number" value="${param.alunoIdCurso}">
+        </div>
     </div>
 
     <button class="btn btn-primary" type="submit">Enviar</button>
 </form>
+
 
 <h1>Criar Matéria</h1>
 <form action="/create-materia" method="post">

@@ -159,7 +159,8 @@
         <thead>
         <tr>
             <th>ID Aluno</th>
-            <th>ID Usuário associado</th>
+            <th>ID Usuário Associado</th>
+            <th>ID Curso</th>
         </tr>
         </thead>
         <tbody>
@@ -167,22 +168,21 @@
             <tr>
                 <td>${aluno.idAluno}</td>
                 <td>${aluno.alunoIdUsuario}</td>
+                <td>${aluno.alunoIdCurso}</td>
                 <td>
                     <div class="action-buttons">
-
-                        <a class="update" href="admin.jsp?idAluno=${aluno.idAluno}&alunoIdUsuario=${aluno.alunoIdUsuario}">Update</a>
-
+                        <a class="update" href="admin.jsp?idAluno=${aluno.idAluno}&alunoIdUsuario=${aluno.alunoIdUsuario}&alunoIdCurso=${aluno.alunoIdCurso}">Update</a>
                         <form action="/delete-aluno" method="post">
-                        <input type="hidden" id="idAluno" name="idAluno" value="${aluno.idAluno}">
-                        <button type="submit">Delete</button>
-
-                    </form>
+                            <input type="hidden" id="idAluno" name="idAluno" value="${aluno.idAluno}">
+                            <button type="submit">Delete</button>
+                        </form>
                     </div>
                 </td>
             </tr>
         </c:forEach>
         </tbody>
     </table>
+
 
     <h1>Matérias</h1>
     <br>

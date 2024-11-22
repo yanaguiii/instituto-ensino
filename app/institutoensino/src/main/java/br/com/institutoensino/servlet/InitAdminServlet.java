@@ -20,8 +20,8 @@ public class InitAdminServlet extends HttpServlet {
             // Cria um novo usuário admin
             Usuario adminUser = new Usuario();
             adminUser.setNomeUsuario("Admin");
-            adminUser.setEmail("admin@example.com");
-            adminUser.setSenha("senha_segura"); // Use uma senha forte e considere hash
+            adminUser.setEmail("admin@admin.com");
+            adminUser.setSenha("senha"); // Use uma senha forte e considere hash
             adminUser.setAdmin(true);
 
             usuarioDao.createUsuario(adminUser);

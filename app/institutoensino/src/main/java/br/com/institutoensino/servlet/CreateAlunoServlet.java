@@ -16,16 +16,26 @@ public class CreateAlunoServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        String idAlunoStr = req.getParameter("idAluno");
         String idUsuarioStr = req.getParameter("aluno-id-usuario");
+        String idCursoStr = req.getParameter("aluno-id-curso");
 
         try {
             int idUsuario = Integer.parseInt(idUsuarioStr);
+            int idCurso = Integer.parseInt(idCursoStr);
             AlunoDao alunoDao = new AlunoDao();
             Aluno aluno;
-            
-                aluno = new Aluno(idUsuario);
-                alunoDao.createAluno(aluno);
 
+            if (idAlunoStr == null || idAlunoStr.isBlank()) {
+                // Create new Aluno if idAluno is not present
+                aluno = new Aluno(idUsuario, idCurso);
+                alunoDao.createAluno(aluno);
+            } else {
+                // Update existing Aluno if idAluno is present
+                int idAluno = Integer.parseInt(idAlunoStr);
+                aluno = new Aluno(idAluno, idUsuario, idCurso);
+                alunoDao.updateAluno(aluno);
+            }
 
             resp.sendRedirect("/find-all");
         } catch (NumberFormatException e) {
@@ -34,4 +44,3 @@ public class CreateAlunoServlet extends HttpServlet {
         }
     }
 }
-

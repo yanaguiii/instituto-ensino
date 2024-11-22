@@ -124,12 +124,21 @@ CREATE TABLE IF NOT EXISTS ALUNO
     AUTO_INCREMENT,
     ID_Usuario
     INT,
+    ID_Curso
+    INT,
     FOREIGN KEY
 (
     ID_Usuario
 ) REFERENCES USUARIO
 (
     ID_Usuario
+),
+    FOREIGN KEY
+(
+    ID_Curso
+) REFERENCES CURSO
+(
+    ID_Curso
 )
     );
 

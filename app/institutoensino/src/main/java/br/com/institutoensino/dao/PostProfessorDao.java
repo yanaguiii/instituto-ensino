@@ -3,10 +3,7 @@ package br.com.institutoensino.dao;
 import br.com.institutoensino.config.ConnectionPoolConfig;
 import br.com.institutoensino.model.PostProfessor;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -120,6 +117,33 @@ public class PostProfessorDao {
         }
     }
 
+    public List<PostProfessor> buscarPostsPorMaterias(List<Integer> idMaterias) {
+        List<PostProfessor> posts = new ArrayList<>();
+        String SQL = "SELECT * FROM POST_PROFESSOR WHERE ID_Materia IN (" +
+                String.join(",", Collections.nCopies(idMaterias.size(), "?")) +
+                ") ORDER BY DATA DESC";
 
+        try (Connection conn = ConnectionPoolConfig.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(SQL)) {
+            for (int i = 0; i < idMaterias.size(); i++) {
+                stmt.setInt(i + 1, idMaterias.get(i));
+            }
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    PostProfessor post = new PostProfessor(
+                            rs.getInt("ID_Post"),
+                            rs.getString("Conteudo"),
+                            rs.getDate("Data"),
+                            rs.getInt("ID_Professor"),
+                            rs.getInt("ID_Materia")
+                    );
+                    posts.add(post);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return posts;
+    }
 
 }

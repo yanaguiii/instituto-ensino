@@ -65,16 +65,18 @@ public class CadastroServlet extends HttpServlet {
                 Usuario usuario = new Usuario(nome, email, senha, nascimento, cpf, rg, logradouro, numero, complemento, bairro, cidade, estado, telefoneComercial, celular);
                 usuarioDao.createUsuario(usuario);
 
-                int idUsuario = usuarioDao.findByEmail(email).getIdUsuario();
+                CursoDao cursoDao = new CursoDao();
+                Curso curso = cursoDao.getCursoByNome(cursoNome);
+
+                int idUsuario = usuarioDao.findUserByEmail(email).getIdUsuario();
                 AlunoDao alunoDao = new AlunoDao();
-                Aluno aluno = new Aluno(idUsuario);
-                alunoDao.createAluno(aluno);
+
+                if(curso != null){
+                    Aluno aluno = new Aluno(idUsuario, curso.getIdCurso());
+                    alunoDao.createAluno(aluno);
+                }
 
                 int idAluno = alunoDao.getIdAlunoByIdUsuario(idUsuario);
-
-                // Obter o curso pelo nome
-                CursoDao cursoDao = new CursoDao();
-                Curso curso = cursoDao.getCursoByNome(cursoNome);  // Buscar o curso pelo nome
 
                 if (curso != null) {
                     // Buscar as matérias relacionadas ao curso

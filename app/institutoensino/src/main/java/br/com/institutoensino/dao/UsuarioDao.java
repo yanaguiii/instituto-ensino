@@ -3,7 +3,6 @@ package br.com.institutoensino.dao;
 import br.com.institutoensino.config.ConnectionPoolConfig;
 import br.com.institutoensino.model.Usuario;
 
-import java.net.ConnectException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -201,7 +200,7 @@ public class UsuarioDao {
     }
 
 
-    public Usuario findByEmail(String email) {
+    public Usuario findUserByEmail(String email) {
         String sql = "SELECT * FROM USUARIO WHERE email = ?";
         try (Connection conn = ConnectionPoolConfig.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -281,6 +280,78 @@ public class UsuarioDao {
         }
         return "DESCONHECIDO";
     }
+
+    public Usuario findUserById(int idUsuario) {
+        Usuario usuario = null;
+
+        try (Connection connection = ConnectionPoolConfig.getConnection();
+             PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Usuario WHERE id_Usuario = ?")) {
+            stmt.setInt(1, idUsuario);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                System.out.println("Achou");
+                // Se encontrar um usuário, cria o objeto.
+                return new Usuario(
+                        rs.getInt("ID_USUARIO"),
+                        rs.getString("NOME"),
+                        rs.getString("EMAIL"),
+                        rs.getString("SENHA"),
+                        rs.getDate("NASCIMENTO"),
+                        rs.getString("CPF"),
+                        rs.getString("RG"),
+                        rs.getString("LOGRADOURO"),
+                        rs.getInt("NUMERO"),
+                        rs.getString("COMPLEMENTO"),
+                        rs.getString("BAIRRO"),
+                        rs.getString("CIDADE"),
+                        rs.getString("ESTADO"),
+                        rs.getString("TELEFONE_COMERCIAL"),
+                        rs.getString("CELULAR")
+                );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return usuario;
+    }
+
+
+    public Integer getIdAlunoByIdUsuario(int idUsuario) {
+        String SQL = "SELECT ID_ALUNO FROM ALUNO WHERE ID_USUARIO = ?";
+        try (Connection conn = ConnectionPoolConfig.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(SQL)) {
+
+            stmt.setInt(1, idUsuario);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt("ID_ALUNO");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null; // Caso não encontre o ID_ALUNO
+    }
+
+    public Integer getIdProfessorByIdUsuario(int idUsuario) {
+        String SQL = "SELECT ID_PROFESSOR FROM PROFESSOR WHERE ID_USUARIO = ?";
+        try (Connection conn = ConnectionPoolConfig.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(SQL)) {
+
+            stmt.setInt(1, idUsuario);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt("ID_PROFESSOR");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null; // Caso não encontre o ID_PROFESSOR
+    }
+
 }
 
 
