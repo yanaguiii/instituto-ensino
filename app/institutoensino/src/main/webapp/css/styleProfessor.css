@@ -68,7 +68,7 @@ body {
 }
 
 #nav-bar {
-  position: absolute; /*caso eu queira deixar a sidebar fixa para acompanhar a tela posisiton: fixed; */
+  position: fixed;
   left: 1vw;
   top: 1vw;
   height: calc(100% - 2vw);
@@ -224,7 +224,31 @@ label[for=nav-toggle] {
   gap: 8px;
 }
 
-.nav-button span {
+.nav-item {
+  position: relative;
+  margin-left: 16px;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  color: var(--navbar-light-secondary);
+  direction: ltr;
+  z-index: 1;
+  transition: color 0.2s;
+  gap: 8px;
+}
+
+.title{
+  font-weight: bold;
+}
+
+#nav-toggle:checked~#nav-content .nav-item {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.1s;
+}
+
+
+.nav-button span{
 
   transition: opacity 1s;
 }
@@ -328,6 +352,10 @@ label[for=nav-footer-toggle] {
   background-color: #D62929;
 }
 
+.bx{
+  font-size: 30px;
+}
+
 .separator,
 hr {
   border-top: 2px solid #ccc;
@@ -339,12 +367,10 @@ hr {
   position: absolute;
   top: 10px;
   /* Distância do topo da tela */
-  right: -500px;
-  
+  right: 40px;
   /* Distância da borda direita da tela */
   z-index: 20;
   /* a logo fique acima dos outros elementos */
-
 }
 
 .image-logo img {
@@ -379,7 +405,7 @@ hr {
   /* Alinha o conteúdo na horizontal */
   align-items: center;
   /* Alinha o ícone e o texto verticalmente */
-  font-size: 11.5px;
+  font-size: 11.9px;
   margin-left: 300px;
   margin-top: 50px;
 }
@@ -390,7 +416,7 @@ hr {
 }
 
 .gestao i {
-  font-size: 1.5em;
+  font-size: 2.5em;
   /* Ajuste o tamanho do ícone */
   color: #000000;
   /* Ajuste a cor do ícone */
@@ -398,9 +424,8 @@ hr {
 
 .separator1 {
   border-top: 0.5px solid #CED8E5;
-  margin: 1px 0;
+  margin: 1px 30px;
   margin-left: 260px;
-  width: calc(119.5%); /* Ajusta para compensar o margin-left */
 }
 
 .participant-list {
@@ -434,18 +459,6 @@ hr {
   gap: 8px;
 }
 
-.edit-button,
-.remove-button {
-  padding: 6px 12px;
-  font-size: small;
-  color: #007863;
-  /* Exemplo de cor, ajuste conforme necessário */
-  background-color: transparent;
-  border: 1px solid #CED8E5;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
 body {
   font-family: Arial, sans-serif;
 }
@@ -456,6 +469,7 @@ body {
   margin: auto;
   margin-top: 20px;
   border-collapse: collapse;
+  padding: 50px;
 }
 
 .h2escrita {
@@ -472,7 +486,6 @@ h2 img {
 }
 
 table {
-  
   width: 100%;
   border-collapse: collapse;
   margin-top: 10px;
@@ -483,6 +496,7 @@ td {
   padding: 12px;
   text-align: left;
   border-bottom: 1px solid #dddddd;
+
 }
 
 th {
@@ -524,9 +538,9 @@ tr:nth-child(even) {
   gap: 10px;
 }
 .quadro-avisos {
-  width: 80%;
-  max-width: 700px;
-  height: 200px;
+  width: 100%;
+  max-width: 2000px; /*sepa diminuir para ficar melhor visivelmente*/
+  height: 300px;
   background-color: #D3EFD8; /* Verde claro */
   border: 2px solid #B5D8B0; /* Bordas em verde suave */
   border-radius: 15px;
@@ -538,35 +552,34 @@ tr:nth-child(even) {
   resize: none; /* Impede o redimensionamento da área */
   outline: none; /* Remove o contorno ao clicar */
 }
-.icon1{
-  color: #000000;
-  gap: 5px;
-}
-.BotaoEnviar{
-  font-size: 11px;
-  display: flex;
-  align-items: center;
-  gap: 410px;
-  margin-bottom: 20px;
-}
-.botao{
-  padding: 4px 5px;
-  font-size: 16px;
-  background-color: #007863;
-  color: #ffffff;
-  border: none;
-  margin-bottom: 20px;
+.fundo{
+  background-color: #D3EFD8; /* Verde claro */
+
   border-radius: 10px;
-}
-.botao-editar, .botao-salvar {
-  background-color: #007863; /* Cor de fundo verde */
-  color: white; /* Cor do texto */
-  border: none;
-  padding: 10px 20px;
-  cursor: pointer;
+
 }
 
-.botao-editar:hover, .botao-salvar:hover {
-  background-color: #005f50; /* Cor de fundo ao passar o mouse */
+.quadro-avisos {
+  max-height: 300px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 20px;
 }
+
+.post {
+  border-bottom: 1px solid #eee;
+  padding: 10px 0;
+}
+
+.post-content {
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.post-date {
+  font-size: 12px;
+  color: #666;
+}
+
 

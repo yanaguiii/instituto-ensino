@@ -4,13 +4,8 @@ import br.com.institutoensino.config.ConnectionPoolConfig;
 import br.com.institutoensino.model.Professor;
 
 import java.math.BigDecimal;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.sql.*;
+import java.util.*;
 
 public class ProfessorDao {
 
@@ -114,6 +109,69 @@ public class ProfessorDao {
         }
     }
 
+    public Integer getIdProfessorByIdUsuario(int idUsuario) {
+        String SQL = "SELECT ID_Professor FROM PROFESSOR WHERE ID_Usuario = ?";
+        Integer idProfessor = null;
 
+        try (Connection conn = ConnectionPoolConfig.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(SQL)) {
+            stmt.setInt(1, idUsuario);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    idProfessor = rs.getInt("ID_Professor");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return idProfessor;
+    }
+
+
+    public List<Map<String, Object>> getMateriasByIdProfessor(int idProfessor) {
+        List<Map<String, Object>> materias = new ArrayList<>();
+        String SQL = "SELECT m.ID_Materia, m.Nome, a.Nome AS NomeAluno, am.Faltas, am.Nota " +
+                "FROM MATERIA m " +
+                "JOIN ALUNO_MATERIA am ON m.ID_Materia = am.ID_Materia " +
+                "JOIN ALUNO al ON am.ID_Aluno = al.ID_Aluno " +
+                "JOIN USUARIO a ON al.ID_Usuario = a.ID_Usuario " +
+                "WHERE m.ID_Professor = ?";
+
+        try (Connection conn = ConnectionPoolConfig.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(SQL)) {
+            stmt.setInt(1, idProfessor);
+            try (ResultSet rs = stmt.executeQuery()) {
+                Map<Integer, Map<String, Object>> materiaMap = new HashMap<>();
+                while (rs.next()) {
+                    int idMateria = rs.getInt("ID_Materia");
+                    Map<String, Object> materia = materiaMap.computeIfAbsent(idMateria, k -> {
+                        Map<String, Object> m = new HashMap<>();
+                        m.put("idMateria", idMateria);
+                        try {
+                            m.put("nomeMateria", rs.getString("Nome"));
+                        } catch (SQLException e) {
+                            throw new RuntimeException(e);
+                        }
+                        m.put("alunos", new ArrayList<Map<String, Object>>());
+                        return m;
+                    });
+
+                    Map<String, Object> aluno = new HashMap<>();
+                    aluno.put("nomeAluno", rs.getString("NomeAluno"));
+                    aluno.put("faltas", rs.getInt("Faltas"));
+                    aluno.put("nota", rs.getBigDecimal("Nota"));
+                    ((List<Map<String, Object>>) materia.get("alunos")).add(aluno);
+                }
+                System.out.println("Executando query para idProfessor: " + idProfessor);
+                    // ... após o while loop
+                System.out.println("Número de matérias encontradas: " + materiaMap.size());
+
+                materias.addAll(materiaMap.values());
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return materias;
+    }
 
 }

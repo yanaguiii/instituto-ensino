@@ -12,8 +12,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Notas/Faltas</title>
-    <link rel="stylesheet" href=css/styleAluno.css?v=0.07">
+    <title>Área do Aluno</title>
+    <link rel="stylesheet" href=css/styleAluno.css?v=0.08">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
@@ -58,7 +58,10 @@
 
             <div class="separator"></div>
 
-            <div class="nav-button"><i class="bx bx-log-out"></i><span>Logout</span></div>
+            <a href="logout.jsp">
+                <div class="nav-button"><i class="bx bx-log-out"></i><span>Logout</span></div>
+            </a>
+
         </div>
 
     </div>

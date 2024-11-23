@@ -353,7 +353,7 @@ label[for=nav-footer-toggle] {
 }
 
 .bx{
-  font-size: 35px;
+  font-size: 30px;
 }
 
 .separator,
@@ -457,18 +457,6 @@ hr {
 .participant-actions {
   display: flex;
   gap: 8px;
-}
-
-.edit-button,
-.remove-button {
-  padding: 6px 12px;
-  font-size: small;
-  color: #007863;
-  /* Exemplo de cor, ajuste conforme necessário */
-  background-color: transparent;
-  border: 1px solid #CED8E5;
-  border-radius: 4px;
-  cursor: pointer;
 }
 
 body {

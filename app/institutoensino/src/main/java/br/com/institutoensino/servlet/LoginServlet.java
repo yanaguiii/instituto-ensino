@@ -25,7 +25,7 @@ public class LoginServlet extends HttpServlet {
             // Login bem-sucedido
             request.getSession().setAttribute("usuarioLogado", usuario);
             if (usuario.isAdmin()) {
-                response.sendRedirect("/admin.jsp");
+                response.sendRedirect("/home.jsp");
             } else {
                 response.sendRedirect("/home.jsp");
             }
