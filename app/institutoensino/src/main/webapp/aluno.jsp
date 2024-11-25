@@ -2,9 +2,10 @@
 <%@ page import="br.com.institutoensino.model.Aluno" %>
 <%@ page import="br.com.institutoensino.model.Curso" %>
 <%@ page import="br.com.institutoensino.dao.*" %>
-<%@ page import="br.com.institutoensino.model.AlunoMateria" %>
-<%@ page import="java.util.List" %>
+<%@ page import="br.com.institutoensino.model.PostProfessor" %>
+<%@ page import="br.com.institutoensino.dao.PostProfessorDao" %><%@ page import="java.util.List" %>
 <%@ page import="java.util.Map" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
@@ -36,14 +37,21 @@
             List<Map<String, Object>> materiaInfos = alunoDao.buscarMateriasDoAluno(idUsuario);
             request.setAttribute("materiaInfos", materiaInfos);
 
-            // Call the servlet to fetch professor posts
+            List<Integer> idMaterias = new ArrayList<Integer>();
+            for (Map<String, Object> materiaInfo : materiaInfos) {
+                idMaterias.add((Integer) materiaInfo.get("idMateria"));
+            }
+
+            PostProfessorDao postProfessorDao = new PostProfessorDao();
+            List<PostProfessor> posts = postProfessorDao.buscarPostsPorMaterias(idMaterias);
+            request.setAttribute("posts", posts);
 
             if (usuario != null) {
 %>
 
     <div id="nav-bar">
         <input id="nav-toggle" type="checkbox">
-        <div id="nav-header"><a id="nav-title" href="" target="_blank">Instituto Ensino</a>
+        <div id="nav-header"><a id="nav-title">Instituto Ensino</a>
             <div class="separator"></div>
 
 
@@ -88,6 +96,7 @@
     <div class="table-container">
 
         <div class="quadro-avisos">
+            <h2 class="h2_1escrita"><i class='bx bx-message-square-detail'></i>Avisos</h2>
             <c:forEach var="post" items="${posts}">
                 <div class="post">
                     <p class="post-content">${post.conteudo}</p>

@@ -9,7 +9,7 @@
     <title>Instituto Ensino - Home</title>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
-    <link rel="stylesheet" href="css/home.css?v=1.7">
+    <link rel="stylesheet" href="css/home.css?v=2">
 </head>
 
 <body>
@@ -78,10 +78,10 @@
 </div>
 
 <div class="search-container">
-    <div class="search-bar">
+    <form class="search-bar" onsubmit="return false;">
         <input type="text" placeholder="O que você procura?">
-        <i class='bx bx-search'></i>
-    </div>
+        <button type="submit" class="search-btn"><i class='bx bx-search'></i></button>
+    </form>
 </div>
 
 <div class="swiper mySwiper">
@@ -133,7 +133,7 @@
 
 <div id="popupMarketing" class="popup">
     <div class="popup-content">
-        <span id="closePopupBtn" class="close">&times;</span>
+        <span class="close">&times;</span>
 
         <!-- Cabeçalho do popup -->
         <div class="headerpopup">
@@ -176,7 +176,7 @@
 
 <div id="popupExcel" class="popup">
     <div class="popup-content">
-        <span id="closePopupBtn" class="close">&times;</span>
+        <span class="close">&times;</span>
 
         <!-- Cabeçalho do popup -->
         <div class="headerpopup">
@@ -217,7 +217,7 @@
 
 <div id="popupDireito" class="popup">
     <div class="popup-content">
-        <span id="closePopupBtn" class="close">&times;</span>
+        <span class="close">&times;</span>
 
         <!-- Cabeçalho do popup -->
         <div class="headerpopup">
@@ -261,7 +261,7 @@
 
 <div id="popupEconomia" class="popup">
     <div class="popup-content">
-        <span id="closePopupBtn" class="close">&times;</span>
+        <span class="close">&times;</span>
 
         <!-- Cabeçalho do popup -->
         <div class="headerpopup">
@@ -337,7 +337,7 @@
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-<script src="js/home.js?v=1.2"></script>
+<script src="js/home.js?v=1.5"></script>
 
 </body>
 

@@ -94,6 +94,11 @@ header {
     font-size: 24px;
 }
 
+.search-btn{
+    border:none;
+    background-color: #FFFFFF;
+}
+
 .user-actions {
     display: flex;
     align-items: center;
@@ -259,6 +264,7 @@ header {
     margin: 20px auto 0 auto;
     text-decoration: none;
 }
+
 .cadastro-btn:hover{
     background-color: #B58600;
 }

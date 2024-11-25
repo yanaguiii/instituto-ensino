@@ -12,6 +12,16 @@ public class AdminInitializerListener implements ServletContextListener {
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
+        // Wait for database initialization to complete
+        while (!DatabaseInitializer.isDatabaseInitialized) {
+            try {
+                Thread.sleep(1000); // Wait for 1 second before checking again
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                return;
+            }
+        }
+
         UsuarioDao usuarioDao = new UsuarioDao();
 
         if (!usuarioDao.existsAdmin()) {
@@ -28,7 +38,6 @@ public class AdminInitializerListener implements ServletContextListener {
             System.out.println("Usuário admin já existe.");
         }
     }
-
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
         // Não é necessário implementar nada aqui

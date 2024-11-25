@@ -130,7 +130,7 @@ public class ProfessorDao {
 
     public List<Map<String, Object>> getMateriasByIdProfessor(int idProfessor) {
         List<Map<String, Object>> materias = new ArrayList<>();
-        String SQL = "SELECT m.ID_Materia, m.Nome, a.Nome AS NomeAluno, am.Faltas, am.Nota " +
+        String SQL = "SELECT m.ID_Materia, m.Nome, a.Nome AS NomeAluno, am.Faltas, am.Nota, al.ID_Aluno " +
                 "FROM MATERIA m " +
                 "JOIN ALUNO_MATERIA am ON m.ID_Materia = am.ID_Materia " +
                 "JOIN ALUNO al ON am.ID_Aluno = al.ID_Aluno " +
@@ -157,13 +157,13 @@ public class ProfessorDao {
                     });
 
                     Map<String, Object> aluno = new HashMap<>();
+                    aluno.put("idAluno", rs.getInt("ID_Aluno"));
                     aluno.put("nomeAluno", rs.getString("NomeAluno"));
                     aluno.put("faltas", rs.getInt("Faltas"));
                     aluno.put("nota", rs.getBigDecimal("Nota"));
                     ((List<Map<String, Object>>) materia.get("alunos")).add(aluno);
                 }
                 System.out.println("Executando query para idProfessor: " + idProfessor);
-                    // ... após o while loop
                 System.out.println("Número de matérias encontradas: " + materiaMap.size());
 
                 materias.addAll(materiaMap.values());

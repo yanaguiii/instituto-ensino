@@ -241,56 +241,60 @@ CREATE TABLE IF NOT EXISTS POST_PROFESSOR
     );
 
 
+-- Insert courses if they don't exist
 INSERT INTO CURSO (NOME, MODALIDADE, DURACAO, CAMPUS, TURNO, DESCRICAO)
-VALUES
-    ('Economia', 'Presencial', 4.0, 'Campus Central', 'Diurno', 'Curso voltado para a compreensão dos processos econômicos e financeiros.'),
-    ('Marketing Digital', 'EAD', 2.0, 'Campus Virtual', 'Noturno', 'Curso focado em estratégias de marketing no ambiente digital.'),
-    ('Direito', 'Presencial', 5.0, 'Campus Leste', 'Diurno', 'Curso que forma profissionais para atuarem em áreas jurídicas.'),
-    ('Excel', 'EAD', 0.5, 'Campus Virtual', 'Noturno', 'Curso de curta duração sobre técnicas avançadas em Excel.');
+SELECT * FROM (
+                  SELECT 'Economia' AS NOME, 'Presencial' AS MODALIDADE, 4.0 AS DURACAO, 'Campus Central' AS CAMPUS, 'Diurno' AS TURNO, 'Curso voltado para a compreensão dos processos econômicos e financeiros.' AS DESCRICAO
+                  UNION ALL SELECT 'Marketing Digital', 'EAD', 2.0, 'Campus Virtual', 'Noturno', 'Curso focado em estratégias de marketing no ambiente digital.'
+                  UNION ALL SELECT 'Direito', 'Presencial', 5.0, 'Campus Leste', 'Diurno', 'Curso que forma profissionais para atuarem em áreas jurídicas.'
+                  UNION ALL SELECT 'Excel', 'EAD', 0.5, 'Campus Virtual', 'Noturno', 'Curso de curta duração sobre técnicas avançadas em Excel.'
+              ) AS temp
+WHERE NOT EXISTS (SELECT 1 FROM CURSO WHERE NOME = temp.NOME);
 
--- Insert professors into USUARIO table
+-- Insert professors into USUARIO table if they don't exist
 INSERT INTO USUARIO (Nome, Email, Senha, Nascimento, CPF, RG, Logradouro, Numero, Complemento, Bairro, Cidade, Estado, Telefone_Comercial, Celular, Is_Admin)
-VALUES
-    ('Professor A', 'professor_a@example.com', 'senha123', '1980-01-01', '111.111.111-11', 'MG-11.111.111', 'Rua A', 101, 'Sala 1', 'Centro', 'Cidade A', 'MG', '(31) 1234-5678', '(31) 91234-5678', FALSE);
+SELECT * FROM (
+                  SELECT 'Professor A' AS Nome, 'professor_a@example.com' AS Email, 'senha123' AS Senha, '1980-01-01' AS Nascimento, '111.111.111-11' AS CPF, 'MG-11.111.111' AS RG, 'Rua A' AS Logradouro, 101 AS Numero, 'Sala 1' AS Complemento, 'Centro' AS Bairro, 'Cidade A' AS Cidade, 'MG' AS Estado, '(31) 1234-5678' AS Telefone_Comercial, '(31) 91234-5678' AS Celular, FALSE AS Is_Admin
+                  UNION ALL SELECT 'Professor B', 'professor_b@example.com', 'senha123', '1985-03-20', '222.222.222-22', 'MG-22.222.222', 'Rua B', 202, 'Apto 2', 'Jardim', 'Cidade B', 'RJ', '(21) 2345-6789', '(21) 92345-6789', FALSE
+                  UNION ALL SELECT 'Professor C', 'professor_c@example.com', 'senha123', '1978-11-15', '333.333.333-33', 'MG-33.333.333', 'Rua C', 303, 'Casa', 'Bela Vista', 'Cidade C', 'MG', '(31) 3456-7890', '(31) 93456-7890', FALSE
+                  UNION ALL SELECT 'Professor D', 'professor_d@example.com', 'senha123', '1990-07-25', '444.444.444-44', 'MG-44.444.444', 'Rua D', 404, 'Casa 2', 'Industrial', 'Cidade D', 'BA', '(71) 4567-8901', '(71) 94567-8901', FALSE
+              ) AS temp
+WHERE NOT EXISTS (SELECT 1 FROM USUARIO WHERE Email = temp.Email);
+
+-- Insert professors if they don't exist
+INSERT INTO PROFESSOR (ID_Usuario, Salario)
+SELECT ID_Usuario, 5000.00 FROM USUARIO WHERE Email = 'professor_a@example.com' AND NOT EXISTS (SELECT 1 FROM PROFESSOR WHERE ID_Usuario = USUARIO.ID_Usuario);
 
 INSERT INTO PROFESSOR (ID_Usuario, Salario)
-VALUES ((SELECT ID_Usuario FROM USUARIO WHERE Email = 'professor_a@example.com'), 5000.00);
-
-INSERT INTO USUARIO (Nome, Email, Senha, Nascimento, CPF, RG, Logradouro, Numero, Complemento, Bairro, Cidade, Estado, Telefone_Comercial, Celular, Is_Admin)
-VALUES
-    ('Professor B', 'professor_b@example.com', 'senha123', '1985-03-20', '222.222.222-22', 'MG-22.222.222', 'Rua B', 202, 'Apto 2', 'Jardim', 'Cidade B', 'RJ', '(21) 2345-6789', '(21) 92345-6789', FALSE);
+SELECT ID_Usuario, 5200.00 FROM USUARIO WHERE Email = 'professor_b@example.com' AND NOT EXISTS (SELECT 1 FROM PROFESSOR WHERE ID_Usuario = USUARIO.ID_Usuario);
 
 INSERT INTO PROFESSOR (ID_Usuario, Salario)
-VALUES ((SELECT ID_Usuario FROM USUARIO WHERE Email = 'professor_b@example.com'), 5200.00);
-
-INSERT INTO USUARIO (Nome, Email, Senha, Nascimento, CPF, RG, Logradouro, Numero, Complemento, Bairro, Cidade, Estado, Telefone_Comercial, Celular, Is_Admin)
-VALUES
-    ('Professor C', 'professor_c@example.com', 'senha123', '1978-11-15', '333.333.333-33', 'MG-33.333.333', 'Rua C', 303, 'Casa', 'Bela Vista', 'Cidade C', 'MG', '(31) 3456-7890', '(31) 93456-7890', FALSE);
+SELECT ID_Usuario, 4200.00 FROM USUARIO WHERE Email = 'professor_c@example.com' AND NOT EXISTS (SELECT 1 FROM PROFESSOR WHERE ID_Usuario = USUARIO.ID_Usuario);
 
 INSERT INTO PROFESSOR (ID_Usuario, Salario)
-VALUES ((SELECT ID_Usuario FROM USUARIO WHERE Email = 'professor_c@example.com'), 4200.00);
+SELECT ID_Usuario, 4300.00 FROM USUARIO WHERE Email = 'professor_d@example.com' AND NOT EXISTS (SELECT 1 FROM PROFESSOR WHERE ID_Usuario = USUARIO.ID_Usuario);
 
-INSERT INTO USUARIO (Nome, Email, Senha, Nascimento, CPF, RG, Logradouro, Numero, Complemento, Bairro, Cidade, Estado, Telefone_Comercial, Celular, Is_Admin)
-VALUES
-    ('Professor D', 'professor_d@example.com', 'senha123', '1990-07-25', '444.444.444-44', 'MG-44.444.444', 'Rua D', 404, 'Casa 2', 'Industrial', 'Cidade D', 'BA', '(71) 4567-8901', '(71) 94567-8901', FALSE);
-
-INSERT INTO PROFESSOR (ID_Usuario, Salario)
-VALUES ((SELECT ID_Usuario FROM USUARIO WHERE Email = 'professor_d@example.com'), 4300.00);
-
+-- Insert subjects if they don't exist
 INSERT INTO MATERIA (Nome, ID_Curso, ID_Professor)
-VALUES
-    ('Microeconomia', (SELECT ID_CURSO FROM CURSO WHERE NOME = 'Economia'), (SELECT ID_Professor FROM PROFESSOR WHERE ID_Usuario = (SELECT ID_Usuario FROM USUARIO WHERE Email = 'professor_a@example.com'))),
-    ('Macroeconomia', (SELECT ID_CURSO FROM CURSO WHERE NOME = 'Economia'), (SELECT ID_Professor FROM PROFESSOR WHERE ID_Usuario = (SELECT ID_Usuario FROM USUARIO WHERE Email = 'professor_a@example.com'))),
-    ('Econometria', (SELECT ID_CURSO FROM CURSO WHERE NOME = 'Economia'), (SELECT ID_Professor FROM PROFESSOR WHERE ID_Usuario = (SELECT ID_Usuario FROM USUARIO WHERE Email = 'professor_a@example.com'))),
-
-    ('SEO e Marketing de Conteúdo', (SELECT ID_CURSO FROM CURSO WHERE NOME = 'Marketing Digital'), (SELECT ID_Professor FROM PROFESSOR WHERE ID_Usuario = (SELECT ID_Usuario FROM USUARIO WHERE Email = 'professor_b@example.com'))),
-    ('Publicidade Online', (SELECT ID_CURSO FROM CURSO WHERE NOME = 'Marketing Digital'), (SELECT ID_Professor FROM PROFESSOR WHERE ID_Usuario = (SELECT ID_Usuario FROM USUARIO WHERE Email = 'professor_b@example.com'))),
-    ('Gestão de Redes Sociais', (SELECT ID_CURSO FROM CURSO WHERE NOME = 'Marketing Digital'), (SELECT ID_Professor FROM PROFESSOR WHERE ID_Usuario = (SELECT ID_Usuario FROM USUARIO WHERE Email = 'professor_b@example.com'))),
-
-    ('Direito Constitucional', (SELECT ID_CURSO FROM CURSO WHERE NOME = 'Direito'), (SELECT ID_Professor FROM PROFESSOR WHERE ID_Usuario = (SELECT ID_Usuario FROM USUARIO WHERE Email = 'professor_c@example.com'))),
-    ('Direito Penal', (SELECT ID_CURSO FROM CURSO WHERE NOME = 'Direito'), (SELECT ID_Professor FROM PROFESSOR WHERE ID_Usuario = (SELECT ID_Usuario FROM USUARIO WHERE Email = 'professor_c@example.com'))),
-    ('Direito Civil', (SELECT ID_CURSO FROM CURSO WHERE NOME = 'Direito'), (SELECT ID_Professor FROM PROFESSOR WHERE ID_Usuario = (SELECT ID_Usuario FROM USUARIO WHERE Email = 'professor_c@example.com'))),
-
-    ('Excel Básico', (SELECT ID_CURSO FROM CURSO WHERE NOME = 'Excel'), (SELECT ID_Professor FROM PROFESSOR WHERE ID_Usuario = (SELECT ID_Usuario FROM USUARIO WHERE Email = 'professor_d@example.com'))),
-    ('Excel Intermediário', (SELECT ID_CURSO FROM CURSO WHERE NOME = 'Excel'), (SELECT ID_Professor FROM PROFESSOR WHERE ID_Usuario = (SELECT ID_Usuario FROM USUARIO WHERE Email = 'professor_d@example.com'))),
-    ('Excel Avançado', (SELECT ID_CURSO FROM CURSO WHERE NOME = 'Excel'), (SELECT ID_Professor FROM PROFESSOR WHERE ID_Usuario = (SELECT ID_Usuario FROM USUARIO WHERE Email = 'professor_d@example.com')));
+SELECT m.Nome, c.ID_Curso, p.ID_Professor
+FROM (
+         SELECT 'Microeconomia' AS Nome, 'Economia' AS Curso, 'professor_a@example.com' AS ProfEmail
+         UNION ALL SELECT 'Macroeconomia', 'Economia', 'professor_a@example.com'
+         UNION ALL SELECT 'Econometria', 'Economia', 'professor_a@example.com'
+         UNION ALL SELECT 'SEO e Marketing de Conteúdo', 'Marketing Digital', 'professor_b@example.com'
+         UNION ALL SELECT 'Publicidade Online', 'Marketing Digital', 'professor_b@example.com'
+         UNION ALL SELECT 'Gestão de Redes Sociais', 'Marketing Digital', 'professor_b@example.com'
+         UNION ALL SELECT 'Direito Constitucional', 'Direito', 'professor_c@example.com'
+         UNION ALL SELECT 'Direito Penal', 'Direito', 'professor_c@example.com'
+         UNION ALL SELECT 'Direito Civil', 'Direito', 'professor_c@example.com'
+         UNION ALL SELECT 'Excel Básico', 'Excel', 'professor_d@example.com'
+         UNION ALL SELECT 'Excel Intermediário', 'Excel', 'professor_d@example.com'
+         UNION ALL SELECT 'Excel Avançado', 'Excel', 'professor_d@example.com'
+     ) AS m
+         JOIN CURSO c ON c.NOME = m.Curso
+         JOIN USUARIO u ON u.Email = m.ProfEmail
+         JOIN PROFESSOR p ON p.ID_Usuario = u.ID_Usuario
+WHERE NOT EXISTS (
+    SELECT 1 FROM MATERIA
+    WHERE Nome = m.Nome AND ID_Curso = c.ID_Curso AND ID_Professor = p.ID_Professor
+);

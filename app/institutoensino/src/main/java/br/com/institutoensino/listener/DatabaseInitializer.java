@@ -1,4 +1,6 @@
-package br.com.institutoensino.config;
+package br.com.institutoensino.listener;
+
+import br.com.institutoensino.config.ConnectionPoolConfig;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -14,6 +16,7 @@ import java.util.stream.Collectors;
 
 @WebListener
 public class DatabaseInitializer implements ServletContextListener {
+    public static boolean isDatabaseInitialized = false;
 
     @Override
     public void contextInitialized(ServletContextEvent servletContextEvent) {
@@ -21,6 +24,7 @@ public class DatabaseInitializer implements ServletContextListener {
             String script = readScriptFromFile("/script.sql");
             try (Statement stmt = connection.createStatement()) {
                 stmt.execute(script);
+                isDatabaseInitialized = true;
             }
         } catch (SQLException | IOException e) {
             e.printStackTrace();

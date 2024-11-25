@@ -46,3 +46,21 @@ function redirecionarMaterias(idUsuario) {
         });
 }
 
+document.querySelector('.search-bar').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const searchTerm = this.querySelector('input').value.toLowerCase();
+    searchAndScrollToCourse(searchTerm);
+});
+
+function searchAndScrollToCourse(searchTerm) {
+    const slides = swiper.slides;
+    for (let i = 0; i < slides.length; i++) {
+        const slideTitle = slides[i].querySelector('.slide-title').textContent.toLowerCase();
+        if (slideTitle.includes(searchTerm)) {
+            swiper.slideTo(i);
+            return;
+        }
+    }
+    alert('Curso não encontrado');
+}
+
