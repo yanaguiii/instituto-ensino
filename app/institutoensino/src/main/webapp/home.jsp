@@ -162,10 +162,9 @@
             <div class="text">
                 <h4>O que você vai aprender:</h4>
                 <ul>
-                    <li>Introdução ao Marketing Digital</li>
-                    <li>Google e Mídias Sociais</li>
-                    <li>SEO</li>
-                    <li>Marketing e Métricas</li>
+                    <li>SEO e Marketing de Conteúdo</li>
+                    <li>Publicidade Online</li>
+                    <li>Gestão de Redes Sociais</li>
                 </ul>
             </div>
         </div>
@@ -181,9 +180,9 @@
         <!-- Cabeçalho do popup -->
         <div class="headerpopup">
             <h2>Curso Instituto Ensino</h2>
-            <h3>Excel – do básico ao intermediário</h3>
+            <h3>Excel – do básico ao avançado</h3>
             <p><strong>Sobre o curso:</strong> Neste curso, você desenvolverá as habilidades necessárias em Excel, do
-                básico ao intermediário, para poder lidar com as funcionalidades necessárias para realizar um trabalho
+                básico ao avançado, para poder lidar com as funcionalidades necessárias para realizar um trabalho
                 inicial de gerenciamento ou análise de dados.
             </p>
         </div>
@@ -201,12 +200,9 @@
             <div class="text">
                 <h4>O que você vai aprender:</h4>
                 <ul>
-                    <li>Introdução ao Excel</li>
-                    <li>Formatação de Células e Planilhas</li>
-                    <li>Funções Básicas</li>
-                    <li>Funções Avançadas</li>
-                    <li>Tabelas e Gráficos Dinâmicos</li>
-                    <li>Análise de Dados</li>
+                    <li>Excel Básico</li>
+                    <li>Excel Intermediário</li>
+                    <li>Excel Avançado</li>
                 </ul>
             </div>
         </div>
@@ -247,10 +243,6 @@
                     <li>Direito Constitucional</li>
                     <li>Direito Civil</li>
                     <li>Direito Penal</li>
-                    <li>Direito Administrativo</li>
-                    <li>Direito do Trabalho</li>
-                    <li>Direito Comercial</li>
-                    <li>Direito Tributário</li>
                 </ul>
             </div>
         </div>
@@ -288,12 +280,9 @@
             <div class="text">
                 <h4>O que você vai aprender:</h4>
                 <ul>
-                    <li>Microeconomia</li>
                     <li>Macroeconomia</li>
-                    <li>Economia Internacional</li>
-                    <li>Economia Monetária</li>
+                    <li>Microeconomia</li>
                     <li>Econometria</li>
-                    <li>Economia do Setor Público</li>
                 </ul>
             </div>
         </div>
