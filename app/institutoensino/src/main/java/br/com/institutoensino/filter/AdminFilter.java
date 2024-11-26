@@ -9,7 +9,33 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter({"/admin.jsp", "/dashboard.jsp"})
+@WebFilter({"/admin.jsp", "/dashboard.jsp",
+        "/delete-aluno-materia",
+        "/delete-aluno",
+        "/delete-curso",
+        "/delete-materia",
+        "/delete-post-professor",
+        "/delete-professor",
+        "/delete-usuario",
+
+        "/find-all",
+        "/find-all-aluno-materias",
+        "/find-all-alunos",
+        "/find-all-cursos",
+        "/find-all-materias",
+        "/find-all-post-professores",
+        "/find-all-professores",
+        "/find-all-usuarios",
+
+        "/create-aluno-materia",
+        "/create-aluno",
+        "/create-curso",
+        "/create-materia",
+        "/create-post-professor",
+        "/create-professor",
+        "/create-usuario",
+
+})
 public class AdminFilter implements Filter {
 
     @Override

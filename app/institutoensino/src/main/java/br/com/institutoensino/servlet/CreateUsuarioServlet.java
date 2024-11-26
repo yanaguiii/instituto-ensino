@@ -35,6 +35,7 @@ public class CreateUsuarioServlet extends HttpServlet {
 
         try {
             Date nascimento = Date.valueOf(nascimentoStr);
+
             int numero = Integer.parseInt(numeroStr);
             UsuarioDao usuarioDao = new UsuarioDao();
             Usuario usuario;
@@ -53,6 +54,7 @@ public class CreateUsuarioServlet extends HttpServlet {
             resp.sendRedirect("/find-all");
         } catch (NumberFormatException e) {
             req.setAttribute("error", "Invalid input format.");
+            System.out.println("Invalid input format.");
             req.getRequestDispatcher("home.jsp").forward(req, resp);
         }
     }

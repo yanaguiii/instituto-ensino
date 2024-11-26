@@ -1,50 +1,84 @@
 #InstitutoEnsino
 
-TODAS as janelas deverão conter o mesmo cabeçalho (header) e rodapé (footer), que consistirá em: 
-- Cabeçalho: logo da empresa na parte esquerda, e área de login na parte direita, ou se já logado, botão de sair ("Logout").
-- Rodapé: Dados sobre a instituição (telefone, email de contato) e algumas empresas que apoiam a instituição.
+Tela Home
+    Cabeçalho:
+        - Logo e nome da empresa à esquerda
+        - Área de login/logout à direita
+        - Botão para acessar informações do aluno/professor à esquerda da área de acesso
+    Área central:
+        - Imagem do campus abaixo do cabeçalho
+        - Barra de pesquisa de cursos entre a imagem e o carrossel
+        - Carrossel de cursos com cards contendo:
+        - Imagem ilustrativa do curso
+        - Título do curso
+        - Breve descrição
+        - Botão "Saiba Mais" (abre popup com detalhes do curso)
+    Popup de detalhes do curso:
+        - Nome da instituição e do curso
+        - Descrição detalhada
+        - Quatro "balões" com informações: Modalidade, Duração, Campus, Horários
+        - Imagem ilustrativa à esquerda
+        - Lista de matérias do curso à direita
+        - Botão "Cadastre-se" no centro inferior
+    Rodapé:
+        - Informações de contato da instituição
+        - Lista de empresas parceiras
+        - Breve descrição sobre a instituição
+Tela de Login
+    - Campos de entrada para e-mail e senha
+    - Botão "Acessar" para efetuar login
+    - Botão "Escolha um curso e cadastre-se" para novos usuários
+    - Logo da empresa no canto superior direito (link para home)
+    - Fundo dividido diagonalmente em branco e verde
+Tela de Cadastro
+    - Seções de cadastro:
+        Dados para login: E-mail, confirmação de e-mail, senha, confirmação de senha
+        Dados Pessoais: Nome completo, data de nascimento, RG, CPF
+        Dados Residenciais: Logradouro, número, complemento (opcional), bairro, cidade, estado
+        Contato: Telefone comercial (opcional), celular
+    - Botões de cadastro e retorno à home
+    - Link para tela de login (para usuários já cadastrados)
+Tela do Professor
+    Menu lateral:
+        - Nome da empresa
+        - Lista de matérias ministradas pelo professor
+        - Botão de logout
+    Cabeçalho:
+        - Mensagem de boas-vindas personalizada
+        - Título "Gestão de Alunos"
+        - Logo da empresa (link para home)
+    Conteúdo principal:
+        - Tabelas de alunos para cada matéria (nome, faltas, nota final, ações)
+        - Campo para criar posts por matéria
+        - Botão "Modificar" para editar notas e faltas dos alunos
+Tela do Aluno
+    Menu lateral:
+        - Nome da empresa
+        - Curso do aluno
+        - Botão de logout
+    Cabeçalho:
+        - Mensagem de boas-vindas personalizada
+        - Título "Quadro do Aluno"
+        - Logo da empresa (link para home)
+    Conteúdo principal:
+        - Quadro de posts dos professores (central)
+        - Tabela de notas e faltas por matéria (abaixo do quadro de posts)
 
--Tela de cursos e matérias (home) - Janela na qual a área central (body) consistirá em: Uma barra de pesquisa de cursos logo acima dos cursos, que ficarão em carrossel e se clicado em qualquer curso, abrirá um pop-up que contêm a modalidade do curso, o câmpus, duração e horários, e um pequeno texto sobre o curso.
-
--Tela de login - Janela na qual a área central (body) consistirá em dois campos (inputs) em seguida dos seus devidos nomes ("E-mail e "Senha"), para colocar as credenciais de login, com um botão ("Fazer login") logo abaixo dos campos para entrar, haverá um outro botão ("Cadastrar") ao lado do de entrada que levará para página de cadastro, caso ele não esteja registrado ainda.
-
--Tela de cadastro - Janela na qual a área central (body) consistirá em diversos nomes de cada campo, seguido de seu respectivo campo (input), que deverão ser preenchidos para que o aluno se cadastre. Os campos serão dividos em 4 partes, 
-- Primeira parte (Dados Cadastrais): "E-mail", "Confirmação do E-mail", "Senha" e "Confirmação da senha".
-- Segunda parte (Dados Pessoais): "Nome completo", "Nome social" (opcional), "CPF", "Data de nascimento", "RG".
-- Terceira parte (Endereço): "Logradouro", "Número", "Complemento" (opcional), "Bairro", "Estado" e "Cidade".
-- Quarta parte (Contato): "Telefone comercial" (opcional) e "Celular".
-No final você terá um botão para cadastrar essas informações.
-
-A tela do professor será a partir do login, que só será acessada caso digitado as credenciais certas (login e senha de professor).
--Tela do professor - Janela na qual a área central (body) consistirá em exibir as matérias que ele ministra em uma lista na esquerda, que se clicadas exibirão suas informações no meio da tela, como, seus devidos cursos e os alunos que-o estudam, os alunos também serão clicáveis, e caso clicados, a página deve estender para baixo, exibindo informações (notas, faltas, info. adicional) sobre o aluno clicado. Todas as informações sobre a matéria e sobre os alunos poderão ser editadas/removidas/adicionadas pelo professor.
-
-A tela do aluno será a partir do login, que só será acessada caso digitado as credenciais certas (login e senha de aluno).
--Tela do aluno - Janela na qual a área central (body) consistirá em exibir as matérias que o aluno cursa em uma lista na direita da página, e caso clicado na matéria, deverá ser exibido as informações daquela matéria: notas, atividades, posts do professor, cursos, ou qualquer outra informação que o professor adicionar.
-
-
--Adicionar e organizar matérias
--Adicionar e organizar professores
--Adicionar e organizar alunos
--Adicionar e organizar aulas
-
--tela do professor pré implementada: 
--adicionar funcionalida nos botoes de editar e salvar, para que o professor consiga realizar alterações nas informações dos alunos.
--adicionar funcionalidade que só permita que o professor altere as informações quando clicar no botao "editar"
--adicionar funcionalidade para que os botoes "editar" e "salvar" peguem todos os campos ou se for o caso, adicionar os botoes "editar" e "salvar" em todos os campos
--adicionar funcionalidade no botao de enviar no quadro de avisos para que o aluno receba quando o professor enviar
--adicionar funcionalidade para quando o professor clicar na materia que ele deseja aparecer os alunos cadastrados daquele curso em especifico
-
--tela do aluno pré implementada:
--adicionar funcionalidade para que quando o aluno clicar na materia que ele cursa e mostrar os dados relacionados, pré implementado com javascript
--adicionar funcionalidade para quando o professor escrever no quadro de avisos, ser enviado para o quadro de avisos do aluno
-
+Funcionalidades Principais
+- Gerenciamento completo de cursos e matérias
+- Sistema de cadastro e autenticação de usuários (alunos e professores)
+- Painel administrativo para gestão do sistema
+- Sistema de posts para comunicação entre professores e alunos
+- Registro e visualização de notas e faltas
+- Pesquisa de cursos na página inicial
 
 Telas ja implementadas (01/11/2024)
--Tela de home: contém um carrossel dos cursos, que podem ser clicados para exibir detalhes. Botão de login no canto superior direito (que leva a tela de login), seguido do botão da área administrativa (que leva para a index.jsp).
--Tela de login: contem dois inputs para login, hyperlink no título (provisório) para voltar a home, e botão para voltar a tela de cadastro.
--Tela de cadastro: cadastro de usuário, com botão para tela de login.
--Tela de index: para criação de qualquer elemento das tabelas pertinentes a instituição. Contém botões embaixo para fácil acesso.
--Tela de dashboard: exibe todas as tabelas e seus elementos. Contém botões embaixo para fácil acesso.
+- Tela de home: contém um carrossel dos cursos, que podem ser clicados para exibir detalhes. Botão de login no canto superior direito (que leva a tela de login), seguido do botão da área administrativa (que leva para a index.jsp).
+- Tela de login: contem dois inputs para login, hyperlink no título (provisório) para voltar a home, e botão para voltar a tela de cadastro.
+- Tela de cadastro: cadastro de usuário, com botão para tela de login.
+- Tela de index: para criação de qualquer elemento das tabelas pertinentes a instituição. Contém botões embaixo para fácil acesso.
+- Tela de dashboard: exibe todas as tabelas e seus elementos. Contém botões embaixo para fácil acesso.
+
 #Diagramas
 
 ![Diagrama DER](/images/DER.png)

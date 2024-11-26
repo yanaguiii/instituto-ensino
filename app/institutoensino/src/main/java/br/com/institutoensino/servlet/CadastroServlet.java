@@ -6,7 +6,6 @@ import br.com.institutoensino.dao.CursoDao;
 import br.com.institutoensino.dao.UsuarioDao;
 import br.com.institutoensino.model.*;
 
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,7 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Date;
 import java.util.List;
-
 
 @WebServlet("/cadastro")
 public class CadastroServlet extends HttpServlet {
@@ -36,10 +34,12 @@ public class CadastroServlet extends HttpServlet {
         String estado = req.getParameter("usuario-estado");
         String telefoneComercial = req.getParameter("usuario-telefone-comercial");
         String celular = req.getParameter("usuario-celular");
-        String cursoNome = req.getParameter("curso-nome");  // Captura o nome do curso;
+        String cursoNome = req.getParameter("curso-nome");
 
         try {
+            System.out.println("Data de nascimento recebida: " + nascimentoStr);
             Date nascimento = Date.valueOf(nascimentoStr);
+
             int numero = Integer.parseInt(numeroStr);
 
             UsuarioDao usuarioDao = new UsuarioDao();
@@ -49,18 +49,20 @@ public class CadastroServlet extends HttpServlet {
                 req.setAttribute("usuarioNome", nome);
                 req.setAttribute("usuarioEmail", email);
                 req.setAttribute("usuarioSenha", senha);
-                req.setAttribute("usuarioNascimento", nascimento);
+                req.setAttribute("usuarioNascimento", nascimentoStr);
                 req.setAttribute("usuarioRg", rg);
                 req.setAttribute("usuarioCpf", cpf);
                 req.setAttribute("usuarioLogradouro", logradouro);
-                req.setAttribute("usuarioNumero", numero);
+                req.setAttribute("usuarioNumero", numeroStr);
                 req.setAttribute("usuarioComplemento", complemento);
                 req.setAttribute("usuarioBairro", bairro);
                 req.setAttribute("usuarioCidade", cidade);
                 req.setAttribute("usuarioEstado", estado);
                 req.setAttribute("usuarioTelefoneComercial", telefoneComercial);
                 req.setAttribute("usuarioCelular", celular);
-                req.getRequestDispatcher("cadastro.jsp").forward(req, resp);
+                req.setAttribute("curso-nome", cursoNome);
+
+                req.getRequestDispatcher("cadastro.jsp?cursoNome=" + cursoNome).forward(req, resp);
             } else {
                 Usuario usuario = new Usuario(nome, email, senha, nascimento, cpf, rg, logradouro, numero, complemento, bairro, cidade, estado, telefoneComercial, celular);
                 usuarioDao.createUsuario(usuario);
@@ -79,13 +81,11 @@ public class CadastroServlet extends HttpServlet {
                 int idAluno = alunoDao.getIdAlunoByIdUsuario(idUsuario);
 
                 if (curso != null) {
-                    // Buscar as matérias relacionadas ao curso
                     List<Materia> materias = cursoDao.getMateriasPorCurso(curso.getIdCurso());
-                    // Criar instâncias de AlunoMateria para cada matéria
                     AlunoMateriaDao alunoMateriaDao = new AlunoMateriaDao();
                     for (Materia materia : materias) {
                         AlunoMateria alunoMateria = new AlunoMateria(idAluno, materia.getIdMateria());
-                        alunoMateriaDao.createAlunoMateria(alunoMateria);  // Associar o aluno à matéria
+                        alunoMateriaDao.createAlunoMateria(alunoMateria);
                     }
                 }
 
@@ -93,11 +93,21 @@ public class CadastroServlet extends HttpServlet {
             }
         } catch (NumberFormatException e) {
             req.setAttribute("error", "Formato de número inválido.");
-            req.getRequestDispatcher("cadastro.jsp").forward(req, resp);
-        } catch (IllegalArgumentException e) {
-            req.setAttribute("error", "Formato de data inválido.");
-            req.getRequestDispatcher("cadastro.jsp").forward(req, resp);
+            req.setAttribute("usuarioNome", nome);
+            req.setAttribute("usuarioEmail", email);
+            req.setAttribute("usuarioSenha", senha);
+            req.setAttribute("usuarioNascimento", nascimentoStr);
+            req.setAttribute("usuarioRg", rg);
+            req.setAttribute("usuarioCpf", cpf);
+            req.setAttribute("usuarioLogradouro", logradouro);
+            req.setAttribute("usuarioComplemento", complemento);
+            req.setAttribute("usuarioBairro", bairro);
+            req.setAttribute("usuarioCidade", cidade);
+            req.setAttribute("usuarioEstado", estado);
+            req.setAttribute("usuarioTelefoneComercial", telefoneComercial);
+            req.setAttribute("usuarioCelular", celular);
+            req.setAttribute("curso-nome", cursoNome);
+            req.getRequestDispatcher("cadastro.jsp?cursoNome=" + cursoNome).forward(req, resp);
         }
     }
 }
-

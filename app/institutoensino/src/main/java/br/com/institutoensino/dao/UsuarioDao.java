@@ -27,7 +27,7 @@ public class UsuarioDao {
             preparedStatement.setString(1, usuario.getNomeUsuario());
             preparedStatement.setString(2, usuario.getEmail());
             preparedStatement.setString(3, usuario.getSenha());
-            preparedStatement.setDate(4, null);
+            preparedStatement.setDate(4, (java.sql.Date) usuario.getNascimento());
             preparedStatement.setString(5, usuario.getCpf());
             preparedStatement.setString(6, usuario.getRg());
             preparedStatement.setString(7, usuario.getLogradouro());

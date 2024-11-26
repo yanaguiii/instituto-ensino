@@ -299,7 +299,8 @@
         <div class="footer-section">
             <h4>Empresas Parceiras:</h4>
             <ul>
-                <li>Hamburgueria</li>
+                <li>-Hamburgueria</li>
+                <li>-ViaJAVA</li>
             </ul>
         </div>
 
