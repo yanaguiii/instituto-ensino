@@ -34,9 +34,16 @@ public class CreateUsuarioServlet extends HttpServlet {
         boolean isAdmin = "true".equals(req.getParameter("isAdmin"));
 
         try {
-            Date nascimento = Date.valueOf(nascimentoStr);
+            Date nascimento=null;
+            int numero;
+            try{
+                nascimento = Date.valueOf(nascimentoStr);
 
-            int numero = Integer.parseInt(numeroStr);
+            }catch (Exception e){
+                System.out.println("Data inválida");
+            }
+
+            numero = Integer.parseInt(numeroStr);
             UsuarioDao usuarioDao = new UsuarioDao();
             Usuario usuario;
 

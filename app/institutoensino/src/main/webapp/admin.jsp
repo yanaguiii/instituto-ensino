@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <html lang="pt-BR">
@@ -40,29 +38,29 @@
     <div class="row">
         <div class="col-md-4 mb-3">
             <label class="form-label" for="usuario-nascimento">Data de Nascimento:</label>
-            <input class="form-control" id="usuario-nascimento" name="usuario-nascimento" required type="date" value="${param.nascimento}">
+            <input class="form-control" id="usuario-nascimento" name="usuario-nascimento" type="date" value="${param.nascimento}">
         </div>
 
         <div class="col-md-4 mb-3">
             <label class="form-label" for="usuario-cpf">CPF:</label>
-            <input class="form-control" id="usuario-cpf" name="usuario-cpf" required type="text" value="${param.cpf}">
+            <input class="form-control" id="usuario-cpf" name="usuario-cpf" type="text" maxlength="14" value="${param.cpf}">
         </div>
 
         <div class="col-md-4 mb-3">
             <label class="form-label" for="usuario-rg">RG:</label>
-            <input class="form-control" id="usuario-rg" name="usuario-rg" required type="text" value="${param.rg}">
+            <input class="form-control" id="usuario-rg" name="usuario-rg"  type="text" maxlength="12" value="${param.rg}">
         </div>
     </div>
 
     <div class="row">
         <div class="col-md-4 mb-3">
             <label class="form-label" for="usuario-logradouro">Logradouro:</label>
-            <input class="form-control" id="usuario-logradouro" name="usuario-logradouro" required type="text" value="${param.logradouro}">
+            <input class="form-control" id="usuario-logradouro" name="usuario-logradouro"  type="text" value="${param.logradouro}">
         </div>
 
         <div class="col-md-4 mb-3">
             <label class="form-label" for="usuario-numero">Número:</label>
-            <input class="form-control" id="usuario-numero" name="usuario-numero" required type="number" value="${param.numero}">
+            <input class="form-control" id="usuario-numero" name="usuario-numero"  type="number" value="${param.numero}">
         </div>
 
         <div class="col-md-4 mb-3">
@@ -74,17 +72,17 @@
     <div class="row">
         <div class="col-md-4 mb-3">
             <label class="form-label" for="usuario-bairro">Bairro:</label>
-            <input class="form-control" id="usuario-bairro" name="usuario-bairro" required type="text" value="${param.bairro}">
+            <input class="form-control" id="usuario-bairro" name="usuario-bairro"  type="text" value="${param.bairro}">
         </div>
 
         <div class="col-md-4 mb-3">
             <label class="form-label" for="usuario-cidade">Cidade:</label>
-            <input class="form-control" id="usuario-cidade" name="usuario-cidade" required type="text" value="${param.cidade}">
+            <input class="form-control" id="usuario-cidade" name="usuario-cidade"  type="text" value="${param.cidade}">
         </div>
 
         <div class="col-md-4 mb-3">
             <label class="form-label" for="usuario-estado">Estado:</label>
-            <input class="form-control" id="usuario-estado" maxlength="2" name="usuario-estado" required type="text" value="${param.estado}">
+            <input class="form-control" id="usuario-estado" maxlength="2" name="usuario-estado"  type="text" value="${param.estado}">
         </div>
     </div>
 
@@ -96,7 +94,7 @@
 
         <div class="col-md-4 mb-3">
             <label class="form-label" for="usuario-celular">Celular:</label>
-            <input class="form-control" id="usuario-celular" name="usuario-celular" required type="text" value="${param.celular}">
+            <input class="form-control" id="usuario-celular" name="usuario-celular" type="text" value="${param.celular}">
             </div>
 
         <div class="col-md-4 mb-3">
