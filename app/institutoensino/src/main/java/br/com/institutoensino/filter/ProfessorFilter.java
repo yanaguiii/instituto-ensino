@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter("/professor.jsp")
+@WebFilter("/professor")
 public class ProfessorFilter implements Filter {
 
     @Override

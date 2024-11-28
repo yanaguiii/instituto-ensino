@@ -1,11 +1,3 @@
-<%@ page import="br.com.institutoensino.model.Usuario" %>
-<%@ page import="br.com.institutoensino.model.Aluno" %>
-<%@ page import="br.com.institutoensino.model.Curso" %>
-<%@ page import="br.com.institutoensino.dao.*" %>
-<%@ page import="br.com.institutoensino.model.PostProfessor" %>
-<%@ page import="br.com.institutoensino.dao.PostProfessorDao" %><%@ page import="java.util.List" %>
-<%@ page import="java.util.Map" %>
-<%@ page import="java.util.ArrayList" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
@@ -20,35 +12,6 @@
 
 
 <body>
-<%
-    String idUsuarioStr = request.getParameter("idUsuario");
-    if (idUsuarioStr != null && !idUsuarioStr.isEmpty()) {
-        try {
-            int idUsuario = Integer.parseInt(idUsuarioStr);
-
-            UsuarioDao usuarioDao = new UsuarioDao();
-            Usuario usuario = usuarioDao.findUserById(idUsuario);
-            AlunoDao alunoDao = new AlunoDao();
-            int idAluno = alunoDao.getIdAlunoByIdUsuario(idUsuario);
-            Aluno aluno = alunoDao.findAlunoById(idAluno);
-            CursoDao cursoDao = new CursoDao();
-            Curso curso = cursoDao.getCursoById(aluno.getAlunoIdCurso());
-
-            List<Map<String, Object>> materiaInfos = alunoDao.buscarMateriasDoAluno(idUsuario);
-            request.setAttribute("materiaInfos", materiaInfos);
-
-            List<Integer> idMaterias = new ArrayList<Integer>();
-            for (Map<String, Object> materiaInfo : materiaInfos) {
-                idMaterias.add((Integer) materiaInfo.get("idMateria"));
-            }
-
-            PostProfessorDao postProfessorDao = new PostProfessorDao();
-            List<PostProfessor> posts = postProfessorDao.buscarPostsPorMaterias(idMaterias);
-            request.setAttribute("posts", posts);
-
-            if (usuario != null) {
-%>
-
     <div id="nav-bar">
         <input id="nav-toggle" type="checkbox">
         <div id="nav-header"><a id="nav-title">Instituto Ensino</a>
@@ -62,11 +25,11 @@
         </div>
         <div id="nav-content">
             <div class="nav-item"><span class="title">Acadêmico</span></div>
-            <div class="nav-item"><span><%= curso.getNomeCurso() %></span></div>
+            <div class="nav-item"><span>${curso.nomeCurso}</span></div>
 
             <div class="separator"></div>
 
-            <a href="logout.jsp">
+            <a href="logout">
                 <div class="nav-button"><i class="bx bx-log-out"></i><span>Logout</span></div>
             </a>
 
@@ -75,7 +38,7 @@
     </div>
 
     <div class="textoBoasVindas">
-        <h1><span class="hand"><img src="../images/hand.png" alt="icone"></span> Bem-vindo à área do aluno, <%= usuario.getNomeUsuario() %>!</h1>
+        <h1><span class="hand"><img src="../images/hand.png" alt="icone"></span> Bem-vindo à área do aluno, ${usuario.nomeUsuario}!</h1>
     </div>
 
 
@@ -128,16 +91,5 @@
             </table>
         </div>
     </div>
-<%
-        } else {
-        System.out.println("<h1>Usuário não encontrado.</h1>");
-    }
-    } catch (NumberFormatException e) {
-    System.out.println("<h1>Formato de ID inválido.</h1>");
-    }
-    } else {
-    System.out.println("<h1>ID do usuário não fornecido.</h1>");
-    }
-%>
 </body>
 </html>

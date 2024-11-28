@@ -25,11 +25,9 @@ public class VerificarTipoUsuarioServlet extends HttpServlet {
             String tipoUsuario = usuarioDao.verificarTipoUsuario(idUsuario);
 
             if ("ALUNO".equals(tipoUsuario)) {
-                // Redirecionar para aluno.jsp com o idUsuario como parâmetro
-                response.getWriter().write("aluno.jsp?idUsuario=" + idUsuario);
+                response.getWriter().write("aluno?idUsuario=" + idUsuario);
             } else if ("PROFESSOR".equals(tipoUsuario)) {
-                // Redirecionar para professor.jsp com o idUsuario como parâmetro
-                response.getWriter().write("professor.jsp?idUsuario=" + idUsuario);
+                response.getWriter().write("professor?idUsuario=" + idUsuario);
             } else {
                 response.getWriter().write("home.jsp");
             }

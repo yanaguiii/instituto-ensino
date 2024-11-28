@@ -53,7 +53,7 @@
                 </button>
             </a>
 
-            <a href="logout.jsp" class="logout-link">
+            <a href="logout" class="logout-link">
                 <button class="sign-out-btn">
                     <i class='bx bx-log-out'></i>
                     Logout

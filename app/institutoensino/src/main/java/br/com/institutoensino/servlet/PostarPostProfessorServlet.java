@@ -30,10 +30,10 @@ public class PostarPostProfessorServlet extends HttpServlet {
             PostProfessor postProfessor = new PostProfessor(conteudo, data, idProfessor, idMateria);
             postProfessorDao.createPostProfessor(postProfessor);
 
-            resp.sendRedirect("professor.jsp?idUsuario=" + idProfessor);
+            resp.sendRedirect("professor?idUsuario=" + idProfessor);
         } catch (NumberFormatException e) {
             req.setAttribute("error", "Invalid input format.");
-            req.getRequestDispatcher("professor.jsp").forward(req, resp);
+            req.getRequestDispatcher("professor").forward(req, resp);
         }
     }
 }

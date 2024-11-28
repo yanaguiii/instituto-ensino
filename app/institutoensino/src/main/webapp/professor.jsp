@@ -1,7 +1,3 @@
-<%@ page import="br.com.institutoensino.model.Usuario" %>
-<%@ page import="br.com.institutoensino.dao.*" %>
-<%@ page import="java.util.List" %>
-<%@ page import="java.util.Map" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
@@ -16,23 +12,6 @@
 </head>
 
 <body>
-<%
-    String idUsuarioStr = request.getParameter("idUsuario");
-    if (idUsuarioStr != null && !idUsuarioStr.isEmpty()) {
-        try {
-            int idUsuario = Integer.parseInt(idUsuarioStr);
-
-            UsuarioDao usuarioDao = new UsuarioDao();
-            Usuario usuario = usuarioDao.findUserById(idUsuario);
-            ProfessorDao professorDao = new ProfessorDao();
-            int idProfessor = professorDao.getIdProfessorByIdUsuario(idUsuario);
-
-            List<Map<String, Object>> materias = professorDao.getMateriasByIdProfessor(idProfessor);
-            request.setAttribute("materias", materias);
-
-            if (usuario != null) {
-%>
-
 <div id="nav-bar">
     <input id="nav-toggle" type="checkbox">
     <div id="nav-header"><a id="nav-title" href="home.jsp">Instituto Ensino</a>
@@ -49,14 +28,14 @@
         </c:forEach>
         <div class="separator"></div>
 
-        <a href="logout.jsp">
+        <a href="logout">
             <div class="nav-button"><i class="bx bx-log-out"></i><span>Logout</span></div>
         </a>
     </div>
 </div>
 
 <div class="textoBoasVindas">
-    <h1><span class="hand"><img src="images/hand.png" alt="icone"></span> Bem-vindo à área do professor, <%= usuario.getNomeUsuario() %>!</h1>
+    <h1><span class="hand"><img src="images/hand.png" alt="icone"></span> Bem-vindo à área do professor, ${usuario.nomeUsuario}!</h1>
 </div>
 
 <div class="gestao">
@@ -118,8 +97,8 @@
         <h2 class="h2_1escrita"><i class="bx bx-message-square-add icon1"></i>Criar Novo Post</h2>
         <form action="postar-post-professor" method="post">
             <textarea name="post-conteudo" placeholder="Escreva seu post aqui..." required></textarea>
-            <input type="hidden" name="post-data" value="<%= new java.sql.Date(System.currentTimeMillis()) %>">
-            <input type="hidden" name="post-id-professor" value="<%= idProfessor %>">
+            <input type="hidden" name="post-data" value="${dataAtual}">
+            <input type="hidden" name="post-id-professor" value="${idProfessor}">
             <select name="post-id-materia" required>
                 <option value="">Selecione a matéria</option>
                 <c:forEach var="materia" items="${materias}">
@@ -130,17 +109,6 @@
         </form>
     </div>
 </div>
-<%
-            } else {
-                System.out.println("<h1>Usuário não encontrado.</h1>");
-            }
-        } catch (NumberFormatException e) {
-                System.out.println("<h1>Formato de ID inválido.</h1>");
-        }
-    } else {
-                System.out.println("<h1>ID do usuário não fornecido.</h1>");
-    }
-%>
 
 <script src="js/scriptProfessor.js?v=1.2"></script>
 

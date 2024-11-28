@@ -25,7 +25,7 @@ public class ListCursoByIdServlet extends HttpServlet {
 
                 if (curso != null) {
                     req.setAttribute("curso", curso);
-                    req.getRequestDispatcher("/aluno.jsp").forward(req, resp);
+                    req.getRequestDispatcher("/aluno").forward(req, resp);
                 } else {
                     resp.sendError(HttpServletResponse.SC_NOT_FOUND, "Curso not found");
                 }

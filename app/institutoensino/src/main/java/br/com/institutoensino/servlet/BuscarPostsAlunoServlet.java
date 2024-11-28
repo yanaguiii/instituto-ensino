@@ -30,7 +30,7 @@ public class BuscarPostsAlunoServlet extends HttpServlet {
             List<PostProfessor> posts = postProfessorDao.buscarPostsPorMaterias(idMaterias);
 
             request.setAttribute("posts", posts);
-            request.getRequestDispatcher("aluno.jsp").forward(request, response);
+            request.getRequestDispatcher("aluno").forward(request, response);
         } else {
             response.sendRedirect("login.jsp");
         }

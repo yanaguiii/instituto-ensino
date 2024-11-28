@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter("/aluno.jsp")
+@WebFilter("/aluno")
 public class AlunoFilter implements Filter {
 
     @Override
