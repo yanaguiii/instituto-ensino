@@ -1,5 +1,6 @@
 package br.com.institutoensino.listener;
 
+import br.com.institutoensino.config.DatabaseInitializer;
 import br.com.institutoensino.dao.UsuarioDao;
 import br.com.institutoensino.model.Usuario;
 

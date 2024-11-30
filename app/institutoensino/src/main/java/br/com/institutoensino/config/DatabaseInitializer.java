@@ -1,6 +1,4 @@
-package br.com.institutoensino.listener;
-
-import br.com.institutoensino.config.ConnectionPoolConfig;
+package br.com.institutoensino.config;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
