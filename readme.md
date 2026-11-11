@@ -1,107 +1,75 @@
-#InstitutoEnsino
+# Instituto de Ensino
 
-Tela Home
+![Java](https://img.shields.io/badge/Java_11-ED8B00?style=flat-square&logo=openjdk&logoColor=white)
+![Servlets](https://img.shields.io/badge/Servlets_%2B_JSP-161b22?style=flat-square)
+![H2](https://img.shields.io/badge/H2_Database-0f6ab4?style=flat-square)
+![Maven](https://img.shields.io/badge/Maven-C71A36?style=flat-square&logo=apachemaven&logoColor=white)
+![Tomcat](https://img.shields.io/badge/Tomcat-F8DC75?style=flat-square&logo=apachetomcat&logoColor=black)
 
-    Cabeçalho:
-        - Logo e nome da empresa à esquerda
-        - Área de login/logout à direita
-        - Botão para acessar informações do aluno/professor à esquerda da área de acesso
-    Área central:
-        - Imagem do campus abaixo do cabeçalho
-        - Barra de pesquisa de cursos entre a imagem e o carrossel
-        - Carrossel de cursos com cards contendo:
-        - Imagem ilustrativa do curso
-        - Título do curso
-        - Breve descrição
-        - Botão "Saiba Mais" (abre popup com detalhes do curso)
-    Popup de detalhes do curso:
-        - Nome da instituição e do curso
-        - Descrição detalhada
-        - Quatro "balões" com informações: Modalidade, Duração, Campus, Horários
-        - Imagem ilustrativa à esquerda
-        - Lista de matérias do curso à direita
-        - Botão "Cadastre-se" no centro inferior
-    Rodapé:
-        - Informações de contato da instituição
-        - Lista de empresas parceiras
-        - Breve descrição sobre a instituição
+Sistema web de gestão acadêmica para uma instituição de ensino, com **áreas separadas para aluno, professor e administrador**. Feito em **Java (Servlets + JSP)** com padrão **DAO**, pool de conexões e banco **H2**.
 
-Tela de Login
+![Tela inicial](/images/telahome.png)
 
-    - Campos de entrada para e-mail e senha
-    - Botão "Acessar" para efetuar login
-    - Botão "Escolha um curso e cadastre-se" para novos usuários
-    - Logo da empresa no canto superior direito (link para home)
-    - Fundo dividido diagonalmente em branco e verde
+## Funcionalidades
 
-Tela de Cadastro
+- **Página inicial:** carrossel de cursos com busca e popup de detalhes (modalidade, duração, campus, turno e matérias)
+- **Cadastro e login:** autenticação de alunos, professores e administradores
+- **Área do professor:** tabelas de alunos por matéria, lançamento de notas e faltas, e posts para a turma
+- **Área do aluno:** mural com os posts dos professores e boletim de notas e faltas por matéria
+- **Painel administrativo:** CRUD de cursos, matérias, usuários, alunos e professores, com dashboard de todas as tabelas
 
-    - Seções de cadastro:
-      - Dados para login: E-mail, confirmação de e-mail, senha, confirmação de senha
-      - Dados Pessoais: Nome completo, data de nascimento, RG, CPF
-      - Dados Residenciais: Logradouro, número, complemento (opcional), bairro, cidade, estado
-      - Contato: Telefone comercial (opcional), celular
-    - Botões de cadastro e retorno à home
-    - Link para tela de login (para usuários já cadastrados)
+## Arquitetura
 
-Tela do Professor
+```text
+src/main/java/br/com/institutoensino/
+├── model/      # Curso, Materia, Usuario, Aluno, Professor, AlunoMateria, PostProfessor
+├── dao/        # Acesso a dados (JDBC) por entidade
+├── servlet/    # 30+ servlets: CRUD, login/logout, posts, notas
+├── filter/     # Controle de acesso: AdminFilter, ProfessorFilter, AlunoFilter
+├── listener/   # Cria o usuário administrador na inicialização
+└── config/     # Pool de conexões (DBCP2) e criação do schema
+src/main/webapp/  # Páginas JSP + CSS
+```
 
-    Menu lateral:
-        - Nome da empresa
-        - Lista de matérias ministradas pelo professor
-        - Botão de logout
-    Cabeçalho:
-        - Mensagem de boas-vindas personalizada
-        - Título "Gestão de Alunos"
-        - Logo da empresa (link para home)
-    Conteúdo principal:
-        - Tabelas de alunos para cada matéria (nome, faltas, nota final, ações)
-        - Campo para criar posts por matéria
-        - Botão "Modificar" para editar notas e faltas dos alunos
+- **Controle de acesso por perfil** com *Servlet Filters*
+- **Pool de conexões** com Apache Commons DBCP2
+- **Schema criado automaticamente** a partir de `script.sql` na subida da aplicação
 
-Tela do Aluno
+## Como executar
 
-    Menu lateral:
-        - Nome da empresa
-        - Curso do aluno
-        - Botão de logout
-    Cabeçalho:
-        - Mensagem de boas-vindas personalizada
-        - Título "Quadro do Aluno"
-        - Logo da empresa (link para home)
-    Conteúdo principal:
-        - Quadro de posts dos professores (central)
-        - Tabela de notas e faltas por matéria (abaixo do quadro de posts)
+Requer **JDK 11+** e **Maven**.
 
-Funcionalidades Principais
+```bash
+cd app/institutoensino
+mvn tomcat7:run
+```
 
-    - Gerenciamento completo de cursos e matérias
-    - Sistema de cadastro e autenticação de usuários (alunos e professores)
-    - Painel administrativo para gestão do sistema
-    - Sistema de posts para comunicação entre professores e alunos
-    - Registro e visualização de notas e faltas
-    - Pesquisa de cursos na página inicial
+Acesse `http://localhost:8080`. O banco H2 fica em `~/test` e um usuário administrador padrão é criado na primeira execução (veja `AdminInitializerListener`).
 
-Telas ja implementadas (01/11/2024)
-- Tela de home: contém um carrossel dos cursos, que podem ser clicados para exibir detalhes. Botão de login no canto superior direito (que leva a tela de login), seguido do botão da área administrativa (que leva para a index.jsp).
-- Tela de login: contem dois inputs para login, hyperlink no título (provisório) para voltar a home, e botão para voltar a tela de cadastro.
-- Tela de cadastro: cadastro de usuário, com botão para tela de login.
-- Tela de index: para criação de qualquer elemento das tabelas pertinentes a instituição. Contém botões embaixo para fácil acesso.
-- Tela de dashboard: exibe todas as tabelas e seus elementos. Contém botões embaixo para fácil acesso.
+## Modelagem
 
-#Diagramas
+| DER | MER |
+|:--:|:--:|
+| ![Diagrama DER](/images/DER.png) | ![Diagrama MER](/images/MER.PNG) |
 
-![Diagrama DER](/images/DER.png)
-![Diagrama MER](/images/MER.PNG)
+## Telas
 
-#prototipos 
-![Diagrama MER](/images/telahome.png)
-![Diagrama MER](/images/telalogin.png)
-![Diagrama MER](/images/telaprofessor.png)
-![Diagrama MER](/images/telaaluno.png)
-![Diagrama MER](/images/telacadastro.png)
-![Diagrama MER](/images/telacurso1.png)
-![Diagrama MER](/images/telacurso2.png)
-![Diagrama MER](/images/telacurso3.png)
-![Diagrama MER](/images/telacurso4.png)
+| Login | Cadastro |
+|:--:|:--:|
+| ![Login](/images/telalogin.png) | ![Cadastro](/images/telacadastro.png) |
+| **Professor** | **Aluno** |
+| ![Professor](/images/telaprofessor.png) | ![Aluno](/images/telaaluno.png) |
 
+<details>
+<summary>Detalhes dos cursos</summary>
+
+![Curso 1](/images/telacurso1.png)
+![Curso 2](/images/telacurso2.png)
+![Curso 3](/images/telacurso3.png)
+![Curso 4](/images/telacurso4.png)
+
+</details>
+
+## Contexto
+
+Projeto acadêmico desenvolvido em dupla no curso de Análise e Desenvolvimento de Sistemas (SENAC São Paulo), em 2024 :)
